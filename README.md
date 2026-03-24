@@ -3,7 +3,7 @@
 # VigLat - Sistema IoT para Monitoramento de Maturação de Queijo Minas Artesanal 🧀📊
 
 ## Visão Geral 👀
-O **VigLac** é um sistema IoT de baixo custo para monitoramento de **temperatura** e **umidade relativa do ar (URA)** em câmaras de maturação de **Queijo Minas Padrão Artesanal (QMA)**. Desenvolvido com **Arduino**, **sensores DHT11** e um site web com **dashboard de gráficos**, ele coleta dados em tempo real, armazena em **MySQL** e envia **alertas** para variações críticas.
+O **VigLat** é um sistema IoT de baixo custo para monitoramento de **temperatura** e **umidade relativa do ar (URA)** em câmaras de maturação de **Queijo Minas Padrão Artesanal (QMA)**. Desenvolvido com **Arduino**, **sensores DHT11** e um site web com **dashboard de gráficos**, ele coleta dados em tempo real, armazena em **MySQL** e envia **alertas** para variações críticas.
 
 O projeto atende produtores artesanais de **Minas Gerais**, ajudando a **padronizar** o produto, **reduzir perdas** (até R$480.000/ano) e garantir **segurança alimentar**, monitorando parâmetros ideais: **16-20°C** e **75-85% URA** por **14-22 dias**.
 
