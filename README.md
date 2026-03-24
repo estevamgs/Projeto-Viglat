@@ -8,7 +8,7 @@ O **VigLac** é um sistema IoT de baixo custo para monitoramento de **temperatur
 O projeto atende produtores artesanais de **Minas Gerais**, ajudando a **padronizar** o produto, **reduzir perdas** (até R$480.000/ano) e garantir **segurança alimentar**, monitorando parâmetros ideais: **16-20°C** e **75-85% URA** por **14-22 dias**.
 
 ## Funcionalidades ✨
-- 🔄 **Coleta contínua** de temperatura e URA via Arduino + DHT11
+- 🔄 **Coleta temporizada** de temperatura e URA via Arduino + DHT11
 - 💾 **Armazenamento** de dados em MySQL (100% dos registros)
 - 📈 **Dashboard web** com gráficos dinâmicos (JavaScript/HTML/CSS)
 - 🔐 **Login seguro** para produtores
@@ -16,7 +16,7 @@ O projeto atende produtores artesanais de **Minas Gerais**, ajudando a **padroni
 - 📋 **Histórico de dados** e exportação de relatórios
 
 ## Tecnologias Utilizadas 🛠️
-| Componente | Tecnologias |
+| Componentes | Tecnologias |
 |------------|-------------|
 | 💻 **Hardware** | Arduino, DHT11, Protoboard, Cabos Jumper |
 | 🗄️ **Backend** | MySQL (banco de dados), Arduino IDE |
@@ -32,20 +32,19 @@ O projeto atende produtores artesanais de **Minas Gerais**, ajudando a **padroni
 
 ## Instalação 🚀
 
-1. Clone o repositório: git clone https://github.com/seu-usuario/viglac.git
+1. Clone o repositório: git clone https://github.com/estevamgs/Projeto-Viglat
 2. Instale dependências do Arduino via Arduino IDE
-3. Configure o MySQL com schema: /database/schema.sql
-4. Hospede o site (Vercel/Netlify) e aponte para o banco
-5. Conecte Arduino ao DHT11 (diagrama em /docs/)
+3. Configure o MySQL
+4. Hospede o site e aponte para o banco
+5. Conecte Arduino ao DHT11
 6. Teste envio de dados via API
 
 
 ## Uso 🎮
 1. **Login** no site com credenciais de produtor
-2. Visualize **dashboard** com gráficos **temperatura/URA** em tempo real
+2. Visualize **dashboard** com gráficos **temperatura/URA** de 10 em 10 minutos
 3. Configure **alertas** para limites (ex: <16°C ou >85% URA)
-4. Acesse **histórico** e baixe relatórios **PDF/CSV**
-**Exemplo de gráfico**: Linhas de **temperatura** e **URA** ao longo do tempo, com **alertas destacados em vermelho**.
+4. Acesse **histórico** e baixe relatórios **PDF**
 
 ## Limitações ⚠️
 - Monitora **apenas temperatura e URA** na maturação
