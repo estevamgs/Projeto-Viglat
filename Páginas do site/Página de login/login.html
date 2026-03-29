@@ -1,22 +1,26 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login</title>
-</head>
-<body>
-    
-<h2>Login do usuário</h2>
+  </head>
+  <body>
+    <h2>Acesse sua conta</h2>
 
-Email: <br>
-<input type="email" id="input_email" placeholder = "seunome@email.com"> <br> 
-
-Senha: <br>
-<input type="password" id="input_senha" placeholder = "******" > <br> <br>
-
-<button>Entrar</button>
-
-
-</body>
+    <div class="container">
+      Email
+      <input type="email" id="input_email" placeholder="seunome@email.com" />
+      Senha
+      <input type="password" id="input_senha" placeholder="******" />
+      <button onclick="ent()">Entrar</button>
+      <p>
+        <a href="#">Esqueceu a senha?</a>
+      </p>
+      <p>
+        Não possui cadastro?
+        <a href="../Página de cadastro/Cadastro.html">Cadastre-se</a>
+      </p>
+    </div>
+  </body>
 </html>
