@@ -1,0 +1,100 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --corPrin: #F2E8DC;
+    --corSec: #593128;
+}
+
+/* MAIN */
+
+.logo img {
+    width: 10em;
+}
+
+.container {
+    height: 100dvh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #F2F1F0;
+}
+
+
+.box {
+    border-radius: 1em;
+    width: 30%;
+    height: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    background-color: var(--corPrin);
+    padding: 3em;
+}
+
+.box h2 {
+    text-align: center;
+}
+
+.inputs {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 40%;
+    width: 70%;
+}
+
+.email,
+.senha {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border-radius: 1em;
+    margin-top: .5em;
+}
+
+.email i,
+.senha i {
+    padding: .5em;
+    font-size: 1.2em;
+}
+
+.email input,
+.senha input {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    border: 0;
+    height: 3em;
+
+}
+
+.email input:focus,
+.senha input:focus {
+    outline: 0;
+}
+
+.box button {
+    padding: 1em;
+    color: white;
+    border: 0;
+    border-radius: 1em;
+    width: 70%;
+    background-color: var(--corSec);
+    cursor: pointer;
+}
+
+.box button:hover {
+    background-color: #794637;
+    transform: scale(1.02);
+}
+
+.box p a:hover {
+    text-decoration: underline;
+}
