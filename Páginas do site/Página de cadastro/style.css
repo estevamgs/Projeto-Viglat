@@ -1,0 +1,90 @@
+
+body{
+    font-family: 'Inter', sans-serif; 
+    background-color: #f2f1f0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+h1{ 
+    color: #593128;
+    margin-bottom: 20px;
+    font-size: 24px;
+
+}
+
+.container {
+    background-color: #f2e8dc;
+    padding: 60px;
+    border-radius: 40px;
+    width: 30%;
+    text-align: center;
+    height: 70%;
+    
+}
+.container h2{
+    color: #593128;
+    margin-top: 0;
+    margin-bottom: 30px;
+
+}
+
+.content h3{    
+    text-align: left;
+    color: #593128;
+    font-size: 14px;
+    margin-bottom: 8px;
+    margin-left: 5px;
+}
+.content input { 
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 15px;
+    background-color: #f2f1f0;
+    color: #593128;
+    box-sizing: border-box;
+    font-size: 15px;
+    margin-bottom: 5px;
+}
+.content input::placeholder {
+    color: #593128;
+}
+.cad-botao {
+    margin-top: 20px;
+}
+.cad-botao button{
+    background-color: #593128;
+    color: #f2f1f0;
+    border: none;
+    padding: 15px;
+    width: 100%;
+    border-radius: 30px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.cad-botao button:hover {
+    background-color: #794637;
+    transform: scale(1.02);
+}
+.cad-botao p{
+    margin-top: 20px;
+    font-size: 14px;
+    color: #593128;
+
+}
+.cad-botao a{
+    color: #593128;
+    text-decoration: none;
+    font-weight: bold;
+
+}
+.cad-botao a:hover{
+      text-decoration: underline;
+}
