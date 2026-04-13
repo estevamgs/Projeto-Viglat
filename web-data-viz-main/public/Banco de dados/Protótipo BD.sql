@@ -1,26 +1,16 @@
-CREATE DATABASE PROJETOPI;
-USE PROJETOPI;
+CREATE DATABASE projetopi;
+USE projetopi;
 
-CREATE TABLE temperatura (
+CREATE TABLE registro (
   idTemp INT PRIMARY KEY AUTO_INCREMENT,
   dt_Hora DATETIME DEFAULT current_timestamp,
-  temperatura INT
+  temperatura INT,
+  umidade INT,
   );
   
-  CREATE TABLE umidade (
-  idUmidade INT PRIMARY KEY AUTO_INCREMENT,
-  dt_Hora DATETIME DEFAULT current_timestamp,
-  umidade INT
-  );
-  
-  SELECT * FROM temperatura;
-  
-  SELECT * FROM umidade;
-  
-  truncate temperatura;
-  
-  truncate umidade;
+  SELECT * FROM registro;
+
+  truncate registro;
     
-  drop table temperatura;
+  drop table registro;
   
-  drop table umidade;

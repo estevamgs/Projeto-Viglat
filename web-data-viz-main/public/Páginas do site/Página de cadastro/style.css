@@ -1,46 +1,101 @@
+* {
+    margin: 0;
+    padding: 0;
+}
 
-body{
-    font-family: 'Inter', sans-serif; 
+body {
+    font-family: 'Inter', sans-serif;
     background-color: #f2f1f0;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 100vh;
     margin: 0;
 }
 
-h1{ 
+header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 5em;
+}
+
+header a {
+    color: #617355;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.2em;
+    transition: .3s;
+}
+
+header a:hover {
+    opacity: .8;
+    transform: scale(1.1);
+}
+
+.right-header {
+    display: flex;
+    width: 30%;
+    justify-content: space-around;
+}
+
+.right-header button {
+    width: 8em;
+    height: 2.5em;
+    cursor: pointer;
+    border: 0;
+    background-color: #593128;
+    border-radius: 1em;
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+h1 {
     color: #593128;
     margin-bottom: 20px;
     font-size: 24px;
 
 }
 
+.logo img {
+    width: 10em;
+}
+
 .container {
-    background-color: #f2e8dc;
-    padding: 60px;
-    border-radius: 40px;
+    background-color: #ead7bfc5;
+    border-radius: 1em;
+    padding: .5em 3em;
     width: 30%;
     text-align: center;
-    height: 70%;
-    
 }
-.container h2{
+
+.container h2 {
     color: #593128;
     margin-top: 0;
     margin-bottom: 30px;
 
 }
 
-.content h3{    
+.content {
+    justify-self: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    width: 60%;
+}
+
+.content h3 {
     text-align: left;
     color: #593128;
     font-size: 14px;
     margin-bottom: 8px;
     margin-left: 5px;
 }
-.content input { 
+
+.content input {
     width: 100%;
     padding: 15px;
     border: none;
@@ -49,15 +104,21 @@ h1{
     color: #593128;
     box-sizing: border-box;
     font-size: 15px;
-    margin-bottom: 5px;
 }
+
+.content input:focus {
+    outline: none;
+}
+
 .content input::placeholder {
     color: #593128;
 }
+
 .cad-botao {
     margin-top: 20px;
 }
-.cad-botao button{
+
+.cad-botao button {
     background-color: #593128;
     color: #f2f1f0;
     border: none;
@@ -69,22 +130,58 @@ h1{
     cursor: pointer;
     transition: 0.3s;
 }
+
 .cad-botao button:hover {
     background-color: #794637;
     transform: scale(1.02);
 }
-.cad-botao p{
-    margin-top: 20px;
+
+.cad-botao p {
+    margin: 1em 0;
     font-size: 14px;
     color: #593128;
 
 }
-.cad-botao a{
+
+.cad-botao a {
     color: #593128;
     text-decoration: none;
     font-weight: bold;
+}
+
+.cad-botao a:hover {
+    text-decoration: underline;
+}
+
+.req {
+    text-align: start;
+    font-size: .7em;
+    align-self: flex-start;
+}
+
+#caracteres,
+#especial,
+#maius,
+#minus {
+    color: red;
+}
+
+.usuario,
+.email,
+.senha,
+.senhaConfirm {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border-radius: 1em;
+    margin-bottom: 1em;
+    width: 100%;
 
 }
-.cad-botao a:hover{
-      text-decoration: underline;
+
+.usuario i,
+.email i,
+.senha i,
+.senhaConfirm i {
+    margin: .5em;
 }

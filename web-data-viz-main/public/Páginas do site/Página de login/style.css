@@ -2,11 +2,53 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
 }
 
 :root {
-    --corPrin: #F2E8DC;
+    --corPrin: #ead7bfc5;
     --corSec: #593128;
+}
+
+/* HEADER */
+
+header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 5em;
+}
+
+header a {
+    color: #617355;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.2em;
+    transition: .3s;
+}
+
+header a:hover {
+    opacity: .8;
+    transform: scale(1.1);
+}
+
+.right-header {
+    display: flex;
+    width: 30%;
+    justify-content: space-around;
+}
+
+.right-header button {
+    width: 8em;
+    height: 2.5em;
+    cursor: pointer;
+    border: 0;
+    background-color: #593128;
+    border-radius: 1em;
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
 }
 
 /* MAIN */
@@ -16,7 +58,7 @@
 }
 
 .container {
-    height: 100dvh;
+    height: 60dvh;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -28,7 +70,7 @@
 .box {
     border-radius: 1em;
     width: 30%;
-    height: 60%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -88,6 +130,7 @@
     width: 70%;
     background-color: var(--corSec);
     cursor: pointer;
+    transition: 0.3s;
 }
 
 .box button:hover {
@@ -97,4 +140,17 @@
 
 .box p a:hover {
     text-decoration: underline;
+}
+
+.emailMaior p,
+.senhaMaior p,
+h2 {
+    color: #593128;
+    font-weight: bold;
+}
+
+p a {
+    color: #593128;
+    text-decoration: none;
+    font-weight: bold;
 }
