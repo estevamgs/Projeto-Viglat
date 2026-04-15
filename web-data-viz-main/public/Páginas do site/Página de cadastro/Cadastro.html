@@ -1,102 +1,122 @@
 <!doctype html>
 <html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cadastro</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cadastro</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
-    rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" />
-  <link rel="stylesheet" href="style.css" />
-</head>
-
-<body>
-
-  <header>
-    <div class="logo">
-      <img src="../IMG/logo.png" alt="">
-    </div>
-    <div class="right-header">
-      <a href="#">Início</a>
-      <a href="#">Solução</a>
-      <a href="#">Contato</a>
-      <button>Login</button>
-    </div>
-  </header>
-
-  <div class="container">
-    <div class="logo">
-      <img src="../IMG/logo.png" alt="" />
-    </div>
-    <h2>Crie sua conta</h2>
-    <div class="content">
-      <h3>
-        <b>Nome Completo</b>
-        <span id="nome_verify" style="color: red; display: none">Insira seu nome!</span>
-      </h3>
-      <div class="usuario">
-      <i class="bi bi-lock"></i>
-      <input oninput="verificar()" id="ipt_nome" type="text" placeholder="Nome Completo" />
+  <body>
+    <header>
+      <div class="logo">
+        <img src="../IMG/logo.png" alt="" />
       </div>
-
-
-      <h3>
-        <b>E-mail</b>
-        <span id="email_verify" style="color: red; display: none">
-          Insira um email válido!
-        </span>
-      </h3>
-      <div class="email">
-        <i class="bi bi-envelope"></i>
-        <input id="ipt_email" type="email" placeholder="seunome@email.com" />
+      <div class="right-header">
+        <a href="#">Início</a>
+        <a href="#">Solução</a>
+        <a href="#">Contato</a>
+        <button>Login</button>
       </div>
+    </header>
 
-
-      <h3>
-        <b>Senha</b>
-        <span oninput="verificar()" id="senha_verify" style="color: red; display: none">A senha não atingiu os
-          requisitos!</span>
-      </h3>
-      <div class="senha">
-        <i class="bi bi-lock"></i>
-        <input oninput="verificar()" id="ipt_senha" type="password" placeholder="********" />
+    <div class="container">
+      <div class="logo">
+        <img src="../IMG/logo.png" alt="" />
       </div>
-      <p class="req">
-        <span id="caracteres">Deve possuir no mínimo 6 caracteres</span><br>
-        <span id="especial">Deve possuir 1 caracteres especial</span><br>
-        <span id="maius">Deve possuir uma letra maiúscula</span><br>
-        <span id="minus">Deve possuir uma letra minúscula</span><br>
-      </p>
-      <h3>
-        <b>Confirme sua senha</b>
-        <span id="senhaConfirm_verify" style="color: red; display: none">As senhas não coincidem!<span>
-      </h3>
-      <div class="senhaConfirm">
-        <i class="bi bi-lock"></i>
-        <input id="ipt_senha_confirm" type="password" />
-      </div>
+      <h2>Crie sua conta</h2>
+      <div class="content">
+        <h3>
+          <b>Nome Completo</b>
+          <span id="nome_verify" style="color: red; display: none"
+            >Insira seu nome!</span
+          >
+        </h3>
+        <div class="usuario">
+          <i class="bi bi-lock"></i>
+          <input
+            oninput="verificar()"
+            id="ipt_nome"
+            type="text"
+            placeholder="Nome Completo"
+          />
+        </div>
 
-      <div class="cad-botao">
-        <button onclick="cad()">Cadastrar</button>
+        <h3>
+          <b>E-mail</b>
+          <span id="email_verify" style="color: red; display: none">
+            Insira um email válido!
+          </span>
+        </h3>
+        <div class="email">
+          <i class="bi bi-envelope"></i>
+          <input id="ipt_email" type="email" placeholder="seunome@email.com" />
+        </div>
 
-        <p>
-          Já possui conta?
-          <a href="../Página de login/login.html">Faça login</a>
+        <h3>
+          <b>Senha</b>
+          <span
+            oninput="verificar()"
+            id="senha_verify"
+            style="color: red; display: none"
+            >A senha não atingiu os requisitos!</span
+          >
+        </h3>
+        <div class="senha">
+          <i class="bi bi-lock"></i>
+          <input
+            oninput="verificar()"
+            id="ipt_senha"
+            type="password"
+            placeholder="********"
+          />
+        </div>
+        <p class="req">
+          <span id="caracteres">Deve possuir no mínimo 6 caracteres</span>
+          <span id="foiCar">❌</span><br />
+          <span id="especial">Deve possuir 1 caracteres especial</span>
+          <span id="foiEsp">❌</span><br />
+          <span id="maius">Deve possuir uma letra maiúscula</span>
+          <span id="foiMai">❌</span><br />
+          <span id="minus">Deve possuir uma letra minúscula</span>
+          <span id="foiMin">❌</span><br />
         </p>
+        <h3>
+          <b>Confirme sua senha</b>
+          <span id="senhaConfirm_verify" style="color: red; display: none"
+            >As senhas não coincidem!</span
+          >
+        </h3>
+        <div class="senhaConfirm">
+          <i class="bi bi-lock"></i>
+          <input id="ipt_senha_confirm" type="password" />
+        </div>
+
+        <div class="cad-botao">
+          <button onclick="cad()">Cadastrar</button>
+
+          <p>
+            Já possui conta?
+            <a href="../Página de login/login.html">Faça login</a>
+          </p>
+        </div>
       </div>
     </div>
-  </div>
-</body>
-
+  </body>
 </html>
 
 <script>
   function cad() {
-
     let verificarNome = nome_verify;
     let verificarEmail = email_verify;
     let verificarSenha = senha_verify;
@@ -154,7 +174,6 @@
   }
 
   function verificar() {
-
     let verificarSenhas = senhaConfirm_verify;
 
     let senha = ipt_senha.value;
@@ -182,33 +201,41 @@
     if (criterioEspecial >= 1) {
       especial.style.color = "green";
       especial.style.textDecoration = "line-through";
+      foiEsp.innerHTML = `✅`;
     } else {
       especial.style.color = "red";
       especial.style.textDecoration = "none";
+      foiEsp.innerHTML = `❌`;
     }
 
     if (senha.length >= 6) {
       caracteres.style.color = "green";
       caracteres.style.textDecoration = "line-through";
+      foiCar.innerHTML = `✅`;
     } else {
       caracteres.style.color = "red";
       caracteres.style.textDecoration = "none";
+      foiCar.innerHTML = `❌`;
     }
 
     if (verMaius) {
       maius.style.color = "green";
       maius.style.textDecoration = "line-through";
+      foiMai.innerHTML = `✅`;
     } else {
       maius.style.color = "red";
       maius.style.textDecoration = "none";
+      foiMai.innerHTML = `❌`;
     }
 
     if (verMinus) {
       minus.style.color = "green";
       minus.style.textDecoration = "line-through";
+      foiMin.innerHTML = `✅`;
     } else {
       minus.style.color = "red";
       minus.style.textDecoration = "none";
+      foiMin.innerHTML = `❌`;
     }
   }
 </script>
