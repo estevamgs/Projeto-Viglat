@@ -61,7 +61,8 @@ header a:hover {
 /* MAIN */
 
 .logo img {
-    width: 10em;
+    width: 5em;
+    margin-left: 1em;
 }
 
 .container {

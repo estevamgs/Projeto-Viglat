@@ -1,0 +1,40 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #dcdcdc;
+  text-align: center;
+}
+
+h1 {
+  color: #c29504;
+  margin-bottom: 30px;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(2, 300px);
+  gap: 30px;
+  justify-content: center;
+}
+
+.card {
+  background-color: #e6e6e6;
+  padding: 20px;
+  border-radius: 12px;
+  border: 2px solid #fdb61d;
+  box-shadow: 5px 5px 10px rgba(0,0,0,0.3);
+  text-align: left;
+}
+
+.card p {
+  margin: 0;    
+  color: #333;
+}
+
+.card h2 {
+  color: #af9500;
+  margin: 10px 0;
+}
+
+.card span {
+  font-weight: bold;
+}

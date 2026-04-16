@@ -30,6 +30,10 @@ header a {
     transition: .3s;
 }
 
+header a img {
+    margin-left: 1em;
+}
+
 header a:hover {
     opacity: .8;
     transform: scale(1.1);
@@ -62,7 +66,7 @@ h1 {
 }
 
 .logo img {
-    width: 10em;
+    width: 5em;
 }
 
 .container {
@@ -186,4 +190,8 @@ h1 {
 .senha i,
 .senhaConfirm i {
     margin: .5em;
+}
+
+#requisitos {
+    display: none;
 }
