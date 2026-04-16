@@ -54,7 +54,7 @@ nav {
   justify-content: space-between;
   align-items: center;
   padding: 0px 2%;
-  margin: 0px;
+  margin: -20px;
 }
 
 .ul {
@@ -117,4 +117,29 @@ main .container {
 .destaque {
   color: #c8860a;
   font-weight: 700;
+}
+
+/* section diferenciais */
+
+
+.diferenciais .container{
+  display: flex;
+  justify-content: center;
+  margin: 30px auto;
+}
+
+.diferenciais .card{
+  width: 30%;
+  cursor: pointer;
+  padding: 30px;
+}
+
+
+.diferenciais .card img {
+  width: 60px;
+}
+
+.diferenciais .card .titulo{
+  margin: 13px 0;
+  font-weight: 600px;
 }
