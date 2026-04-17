@@ -70,7 +70,7 @@ header a:hover {
     width: 5em;
 }
 
-.container {
+div.container {
     height: 70dvh;
     width: 100%;
     display: flex;
