@@ -160,3 +160,32 @@ main .container {
   margin: 13px 0;
   font-weight: 600px;
 }
+
+.comoFunciona .container {
+  display: flex;
+align-items: center;
+}
+
+.comoFunciona .funcionamento-img {
+  width: 50%;
+}
+
+.comoFunciona .funcionamento-img img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.comoFunciona .texto-casa {
+  width: 50%;
+  padding-left: 90px;
+}
+
+.comoFunciona .texto-casa h2{
+font-size: 2.5em;
+color: #3b1f02
+}
+
+.comoFunciona .texto-casa p{
+  margin: 20px 0px;
+  color: #3b1f02
+}
