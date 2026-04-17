@@ -138,6 +138,7 @@
     let verMinus = senha != senhaMaius;
 
     let criterioEspecial = 0;
+    let criterios = 0;
 
     for (let i = 0; i < senhaVetor.length; i++) {
       if (
@@ -147,31 +148,44 @@
         senhaVetor[i] > "z"
       ) {
         criterioEspecial++;
+        criterios++;
       }
     }
 
     if (nome == "" || nome == null) {
       verificarNome.style.display = "inline";
+      criterios--;
     } else {
       verificarNome.style.display = "none";
+      criterios++;
     }
 
     if (!email.includes("@")) {
       verificarEmail.style.display = "inline";
+      criterios--;
     } else {
       verificarEmail.style.display = "none";
+      criterios++;
     }
 
     if (senha.length < 6 || criterioEspecial < 1 || !verMaius || !verMinus) {
       verificarSenha.style.display = "inline";
+      criterios--;
     } else {
       verificarSenha.style.display = "none";
+      criterios++;
     }
 
     if (!(senha == senha_confirm)) {
       verificarSenhas.style.display = "inline";
+      criterios--;
     } else {
       verificarSenhas.style.display = "none";
+      criterios++;
+    }
+
+    if (criterios == 5) {
+      window.location = "../Página de login/login.html";
     }
   }
 
