@@ -5,72 +5,131 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashboard VigLat</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
+    <header>
+      <!-- Container -->
+      <nav>
+        <div class="logo">
+          <a href="../index.html"
+            ><img src="../img/Viglat-removebg-preview.png" alt="" />
+          </a>
+        </div>
+        <ul class="ul">
+          <li><a href="../index.html">Início</a></li>
+          <li>
+            <a href="../Calculadora Financeira/Calculadora.html"
+              >Simulador Financeiro</a
+            >
+          </li>
+          <li><a href="#">Contato</a></li>
+          <li>
+            <a class="btn-gradiente" href="../Página de login/login.html"
+              >Login</a
+            >
+          </li>
+        </ul>
+      </nav>
+      <!-- end Container -->
+    </header>
 
-<h1>Dashboard | Análise de Câmara</h1>
-
-
-<div class="container">
-
-  <div class="card">
-    <p>Temperatura Atual </p>
-    <h2>20,3°C</h2>
-  
-  </div>
-
-  <div class="card">
-    <p>Umidade atual</p>
-    <h2>85%</h2>
-  </div>
-
-  <div class="card">
-    <p>Tempo acima da Umidade</p>
-    <h2>⚠️1 min e 35s</h2>
-    <span>Acarretou 2 Alertas</span>
-  </div>
-
-  <div class="card">
-    <p>Tempo acima da Temperatura</p>
-    <h2>⚠️ 2 min e 35s</h2>
-    <span>Acarretou 3 Alertas</span>
-  </div>
-
-</div>
-
-    <div style="display: flex; gap: 20px">
-      <div style="width: 50%">
-        <canvas id="graficoBarras"></canvas>
+    <div class="box-maior">
+      <div class="box-menor-first">
+        <div class="left-box-m">
+          <button class="fazenda btn-fazenda-1">Fazenda 1</button>
+          <button class="fazenda btn-fazenda-2">Fazenda 2</button>
+          <button class="fazenda btn-fazenda-3">Fazenda 3</button>
+          <button class="fazenda btn-fazenda-4">Fazenda 4</button>
+        </div>
+        <span class="divisao-borda"></span>
+        <div class="right-box-m">
+          <button class="btn btn-camara-1">
+            camara 1<br /><sub>T=20°C U=88%</sub>
+          </button>
+          <button class="btn btn-camara-2">
+            camara 2<br /><sub>T=18°C U=89%</sub>
+          </button>
+          <button class="btn btn-camara-3">
+            camara 3<br /><sub>T=19°C U=89%</sub>
+          </button>
+          <button class="btn btn-camara-4">
+            camara 4<br /><sub>T=12°C U=90%</sub>
+          </button>
+          <button class="btn btn-camara-5">
+            camara 5<br /><sub>T=20°C U=91%</sub>
+          </button>
+          <button class="btn btn-camara-6">
+            camara 6<br /><sub>T=20°C U=79%</sub>
+          </button>
+          <button class="btn btn-camara-7">
+            camara 7<br /><sub>T=20°C U=91%</sub>
+          </button>
+          <button class="btn btn-camara-8">
+            camara 8<br /><sub>T=20°C U=91%</sub>
+        </div>
       </div>
-      <div style="width: 50%">
-        <canvas id="graficoLinha"></canvas>
+      <div class="box-menor-second">
+        <div class="metricas-temperatura">
+          <h2>Temperatura</h2>
+          <p style="color: red;">-16 - Urgente</p>
+          <p style="color: #a8a804;">16 - 18 - Atenção</p>
+          <p style="color: green;">18 - 20 - Normal</p>
+          <p style="color: #a8a804;">21 - 25 - Atenção</p>
+          <p style="color: red;">+26 - Urgente</p>
+        </div>
+        <span class="divisao-borda"></span>
+        <div class="metricas-umidade">
+          <h2>Umidade</h2>
+          <p style="color: red;">-80% - Urgente</p>
+          <p style="color: #a8a804;">80% - 85% - Atenção</p>
+          <p style="color: green;">85% - 92% - Normal</p>
+          <p style="color: #a8a804;">92% - 95% - Atenção</p>
+          <p style="color: red;">+ 95% - Urgente</p>
+        </div>
+        <div class="nomenclatura">
+          <h3>T = Temperatura | U = Umidade</h3>
+        </div>
+      </div>
+      <div class="box-menor-third">
+        <div class="grafico-barras">
+          <canvas id="grafico-alertas"></canvas>
+        </div>
       </div>
     </div>
   </body>
 </html>
 
 <script>
-const dados = {
-  horas: ["12:02", "12:04", "12:06", "12:08"],
-  temperatura: [25, 21, 20, 22],
-  umidade: [80, 82, 80, 85]
-};
+  const dados = {
+    horas: ["12:02", "12:04", "12:06", "12:08"],
+    temperatura: [25, 21, 20, 22],
+    umidade: [80, 82, 80, 85],
+  };
 
-  const ctxx = document.getElementById("graficoBarras");
+  const ctxx = document.getElementById("grafico-alertas");
+
+  ctxx.style.width = '160em'
 
   new Chart(ctxx, {
     type: "bar",
     data: {
-      labels: ['Segunda feira','Terça Feira','Quarta Feira','Quinta Feira','Sexta Feira','Sábado', 'Domingo'],
+      labels: [
+        "Segunda feira",
+        "Terça Feira",
+        "Quarta Feira",
+        "Quinta Feira",
+        "Sexta Feira",
+        "Sábado",
+        "Domingo",
+      ],
       datasets: [
         {
           label: "Alertas",
-          data: [1,3,1,0,5,3,2],
+          data: [1, 3, 1, 0, 5, 3, 2],
           borderColor: "#CD1C18",
           backgroundColor: "#CD1C18",
         },
-  
       ],
     },
     options: {
