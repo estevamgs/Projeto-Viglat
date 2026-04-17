@@ -157,7 +157,7 @@ header .ul li {
 }
 
 .btn:nth-child(6) {
-  background-color: #4caf50 ;
+  background-color: #4caf50;
 }
 
 .btn:nth-child(7) {
@@ -195,15 +195,20 @@ header .ul li {
   height: 40em;
 }
 
-.grafico-barras {
-  display: flex;
+/* GRÁFICOS */
+
+.grafico {
+  display: none;
   align-items: center;
   width: 90%;
   height: 100%;
 }
 
-#grafico-alertas {
+.transparente-grafico {
   display: inline-block;
+}
+
+.transparente-grafico canvas {
   margin: 0 auto;
   width: 90%;
   height: 100%;

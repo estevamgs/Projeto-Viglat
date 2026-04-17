@@ -1,17 +1,3 @@
-let opcoesGrafico = {
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: { 
-        legend: { 
-            labels: { color: '#3b1f02', font: { size: 14 } } 
-        } 
-    },
-    scales: { 
-        x: { ticks: { color: '#666' }, grid: { display: false } },
-        y: { ticks: { color: '#666' }, grid: { color: '#f0f0f0' } }
-    }
-};
-
 function showView(viewId) {
     let telas = document.querySelectorAll('.tela-monitoramento');
     for (var i = 0; i < telas.length; i++) {
@@ -33,6 +19,9 @@ function abrirDetalhes(elemento) {
     
     showView('view-camara');
     renderizarGraficosDetalhes();
+}
+
+function renderizarGraficosDetalhes() {
 }
 
 function trocarFazenda(id, botao) {

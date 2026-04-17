@@ -18,7 +18,7 @@
 
 body, html {
     height: 100%;
-    overflow: hidden;
+    overflow-x: hidden;
     background-color: var(--fundo-viglat);
     color: var(--marrom-primario);
 }
@@ -107,6 +107,10 @@ body, html {
     text-align: center;
     cursor: pointer;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.card-dispositivo.metrica {
+    background-color: #fff;
 }
 
 .card-dispositivo.status-ideal {
@@ -217,3 +221,20 @@ body, html {
     background-color: #ef4444;
     color: #ffffff;
 }
+
+/* GRÁFICOS */
+
+.chart-container {
+  /* position: relative; */
+  margin: auto;
+  height: 53dvh;
+  /* width: 80vw; */
+}
+
+/* .grafico-detalhado {
+    display: none;
+} */
+
+/* #grafico-temp,#grafico-umidade {
+    display: none;
+} */

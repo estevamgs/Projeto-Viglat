@@ -92,8 +92,11 @@
         </div>
       </div>
       <div class="box-menor-third">
-        <div class="grafico-barras">
+        <div class="grafico">
           <canvas id="grafico-alertas"></canvas>
+        </div>
+        <div class="transparente-grafico grafico">
+          <canvas id="grafico-alertass"></canvas>
         </div>
       </div>
     </div>
@@ -147,7 +150,7 @@
     },
   });
 
-  const ctx = document.getElementById("graficoLinha");
+  const ctx = document.getElementById("grafico-alertass");
 
   new Chart(ctx, {
     type: "line",
