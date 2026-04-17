@@ -1,0 +1,219 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap');
+
+:root {
+    --fundo-viglat: #fffffa;
+    --marrom-primario: #3b1f02;
+    --marrom-destaque: #7a5208;
+    --cor-sucesso: #22c55e;
+    --cor-atencao: #eab308;
+    --cor-perigo: #ef4444;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body, html {
+    height: 100%;
+    overflow: hidden;
+    background-color: var(--fundo-viglat);
+    color: var(--marrom-primario);
+}
+
+.viglat-navbar {
+    background: #fff;
+    padding: 5px 4%;
+    border-bottom: 1px solid #ddd;
+}
+
+.nav-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+}
+
+.viglat-logo img {
+    height: 120px;
+    width: auto;
+}
+
+.links-navegacao {
+    display: flex;
+    align-items: center;
+    gap: 35px;
+}
+
+.links-navegacao a {
+    font-size: 18px;
+    color: var(--marrom-primario);
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.btn-acesso {
+    background-color: var(--marrom-destaque);
+    color: #fff !important;
+    padding: 10px 35px;
+    border-radius: 50px;
+}
+
+.painel-principal {
+    flex: 1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    background-color: #f9f9f9;
+}
+
+.seletor-unidades {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.aba-unidade {
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    background: white;
+    cursor: pointer;
+    font-weight: bold;
+    color: var(--marrom-primario);
+}
+
+.aba-unidade.ativa {
+    background: var(--marrom-destaque);
+    color: white;
+    border-color: var(--marrom-destaque);
+}
+
+.grid-dispositivos {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.card-dispositivo {
+    padding: 15px;
+    background: white;
+    border-radius: 12px;
+    border: 4px solid transparent;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.card-dispositivo.status-ideal {
+    border-color: var(--cor-sucesso);
+}
+
+.card-dispositivo.status-alerta {
+    border-color: var(--cor-atencao);
+}
+
+.card-dispositivo.status-critico {
+    border-color: var(--cor-perigo);
+}
+
+.dashboard-kpis {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.indicador-card {
+    background: white;
+    flex: 1;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    border: 1px solid #eee;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.rotulo-kpi {
+    font-size: 13px;
+    color: #666;
+    display: block;
+}
+
+.valor-kpi {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.container-grafico-geral {
+    flex: 1;
+    min-height: 0;
+    background: white;
+    border-radius: 12px;
+    padding: 10px;
+    border: 1px solid #eee;
+}
+
+.dashboard-graficos {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    flex: 1;
+    min-height: 0;
+}
+
+.grafico-detalhado {
+    background: white;
+    border-radius: 12px;
+    padding: 10px;
+    border: 1px solid #eee;
+}
+
+.texto-critico {
+    color: var(--cor-perigo);
+}
+
+.btn-retorno {
+    background: #eee;
+    border: none;
+    padding: 5px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 15px;
+}
+
+.legenda-status {
+    display: flex;
+    gap: 12px;
+    margin-top: 10px;
+    margin-bottom: 40px;
+}
+
+.status-tag {
+    display: block;
+    padding: 8px 20px;
+    border-radius: 50px;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.status-ideal {
+    background-color: #22c55e;
+    color: #ffffff;
+}
+
+.status-alerta {
+    background-color: #eab308;
+    color: #ffffff;
+}
+
+.status-critico {
+    background-color: #ef4444;
+    color: #ffffff;
+}
