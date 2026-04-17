@@ -118,3 +118,45 @@ main .container {
   color: #c8860a;
   font-weight: 700;
 }
+
+/* section diferenciais */
+
+
+.textosolucao {
+  padding: 30px 0px;
+  text-align: center;
+  }
+
+.diferenciais .container{
+  display: flex;
+  justify-content: space-between; /* Distancia entre os Cards */
+  margin: 30px auto;
+
+}
+
+.diferenciais .card{
+  width: 30%;
+  cursor: pointer;
+  padding: 30px;
+  border-radius: 15px;  
+  transition: 0.3s;
+      border-style: solid;
+    border-width: 2px;
+    border-color: #c8860a;
+
+}
+
+.diferenciais .card:hover{
+  box-shadow: 0px 10px 67px 8px #fff9e3
+
+}
+
+
+.diferenciais .card img {
+  width: 60px;
+}
+
+.diferenciais .card .titulo{
+  margin: 13px 0;
+  font-weight: 600px;
+}
