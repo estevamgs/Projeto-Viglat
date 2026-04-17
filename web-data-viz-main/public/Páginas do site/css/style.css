@@ -127,6 +127,10 @@ main .container {
   text-align: center;
   }
 
+  .textosolucao h1 {
+  padding: 15px;
+  }
+
 .diferenciais .container{
   display: flex;
   justify-content: space-between; /* Distancia entre os Cards */
@@ -162,6 +166,7 @@ main .container {
 }
 
 .comoFunciona .container {
+  margin-top: 100px;
   display: flex;
 align-items: center;
 }
@@ -177,18 +182,24 @@ align-items: center;
 
 .comoFunciona .texto-casa {
   width: 50%;
-  padding-left: 90px;
+  padding-left: 80px;
 }
 
 .comoFunciona .texto-casa h2{
-font-size: 2.5em;
-color: #3b1f02
+font-size: 2.0em;
+color: #3b1f02;
 }
 
 .comoFunciona .texto-casa p{
   margin: 20px 0px;
   color: #3b1f02
 }
+
+.contato {
+  margin-top: 100px;
+  border-top: 2px solid #3b1f02;
+}
+
 
 footer {
   background-color: #3b1f02;
@@ -233,6 +244,7 @@ footer .container{
 /* Miguel */
   h2 {
     font-size: 28px;
+    margin-top: 50px;
     margin-bottom: 40px;
     color: #3b1f02;
     text-align: center;
@@ -257,6 +269,7 @@ footer .container{
     padding: 10px;
     border: 1px solid #3b1f02;
     border-radius: 4px;
+   resize: none;
   }
   
   .contato-form button {
@@ -284,9 +297,21 @@ footer .container{
       outline: none;
   }
 
+  .texto-casa {
+    text-align: center;
+  }
+
+  h4 {
+  padding: 10px;
+  
+  }
+
+  .comoFunciona .container .funcionamento-img img {
+    width: 700px;
+    height: 600px;
+    object-fit: cover;
+  }
 /* Miguel */
-
-
 
 .footer-nav {
   margin-bottom: 20px;  
