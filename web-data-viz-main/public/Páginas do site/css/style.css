@@ -230,6 +230,64 @@ footer .container{
   color: white;
 }
 
+/* Miguel */
+  h2 {
+    font-size: 28px;
+    margin-bottom: 40px;
+    color: #3b1f02;
+    text-align: center;
+  }
+
+ .contato-form {
+    max-width: 600px;
+    margin: auto;
+    text-align: left;
+  }
+  
+  .contato-form label {
+    display: block;
+    margin: 10px 0 5px;
+    font-weight: bold;
+    color: #3b1f02;
+  }
+  
+  .contato-form input,
+  .contato-form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #3b1f02;
+    border-radius: 4px;
+  }
+  
+  .contato-form button {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 100%;
+    padding: 12px;
+    background: #3b1f02;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+
+  input:focus {
+    border: 2px solid #c8860a;
+    box-shadow: 0 0 5px 2px #c8860a;
+    outline: none;
+  }
+
+  textarea:focus{
+      border: 2px solid #c8860a;
+      box-shadow: 0 0 5px 2px #c8860a;
+      outline: none;
+  }
+
+/* Miguel */
+
+
+
 .footer-nav {
   margin-bottom: 20px;  
   padding: 20px;
@@ -257,3 +315,5 @@ footer hr {
   font-size: 14px;
   margin: 0;
 }
+
+
