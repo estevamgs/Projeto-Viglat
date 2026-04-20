@@ -74,6 +74,7 @@ body, html {
     justify-content: center;
     gap: 15px;
     margin-bottom: 20px;
+
 }
 
 .aba-unidade {
@@ -86,10 +87,23 @@ body, html {
     color: var(--marrom-primario);
 }
 
-.aba-unidade.ativa {
-    background: var(--marrom-destaque);
+.aba-unidade:nth-child(1){
+    background: red;
     color: white;
     border-color: var(--marrom-destaque);
+
+}
+.aba-unidade:nth-child(2){
+    background: green;
+    color: white;
+    border-color: var(--marrom-destaque);
+
+}
+
+
+.aba-unidade:focus{
+    transform: scale(1.1);
+    
 }
 
 .grid-dispositivos {
@@ -133,7 +147,9 @@ body, html {
 
 .indicador-card {
     background: white;
-    flex: 1;
+    flex-direction: column;
+    width: 100%;
+    display:flex;
     padding: 15px;
     border-radius: 10px;
     text-align: center;
@@ -151,7 +167,25 @@ body, html {
     font-size: 22px;
     font-weight: bold;
 }
-
+ .box-faixa-ideal {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #459aea4a;
+  border: 2px solid #459aea;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #1f3a5f;
+}
+.cor-faixa {
+  width: 12px;
+  height: 12px;
+  background-color: #459aea4a;
+  border: 2px solid #459aea;
+  border-radius: 3px;
+}
 .container-grafico-geral {
     flex: 1;
     min-height: 0;

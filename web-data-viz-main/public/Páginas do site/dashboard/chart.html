@@ -70,18 +70,18 @@
               onclick="abrirDetalhes(this)"
             >
               <h3>Cam 01</h3>
-              <p>T = 12°C | U = 86%</p>
+              <p>Ideal</p>
             </div>
             <div
               class="card-dispositivo status-alerta"
               data-nome="Câmara 02"
-              data-temp="23.1"
+              data-temp="20°C - 18°C - 21"
               data-umi="58"
               data-alertas="4"
               onclick="abrirDetalhes(this)"
             >
               <h3>Cam 02</h3>
-              <p>T = 15°C | U = 91%</p>
+              <p>Alerta</p>
             </div>
             <div
               class="card-dispositivo status-ideal"
@@ -92,18 +92,18 @@
               onclick="abrirDetalhes(this)"
             >
               <h3>Cam 03</h3>
-              <p>T = 13°C | U = 88%</p>
+              <p>Ideal</p>
             </div>
             <div
               class="card-dispositivo status-critico"
               data-nome="Câmara 04"
-              data-temp="25.4"
-              data-umi="62"
-              data-alertas="7"
+              data-temp="22°C - 32°C - 21"
+              data-umi="80% - 85% - 65"
+              data-alertas="8"
               onclick="abrirDetalhes(this)"
             >
               <h3>Cam 04</h3>
-              <p>T = 21°C | U = 98%</p>
+              <p><b>CRÍTICO!</b></p>
             </div>
           </div>
 
@@ -136,6 +136,13 @@
             <div class="indicador-card">
               <span class="rotulo-kpi">Alertas Hoje</span>
               <span class="valor-kpi texto-critico" id="kpi-alertas">--</span>
+            </div>
+            <div class="indicador-card">
+            <span class="rotulo-kpi">Faixa ideal </span> 
+           <div class="box-faixa-ideal">
+           <span class="cor-faixa"></span>
+           Temperatura e Umidade Ideal 
+           </div>
             </div>
           </div>
 

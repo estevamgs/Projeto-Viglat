@@ -25,11 +25,36 @@ function renderizarGraficosDetalhes() {
 }
 
 function trocarFazenda(id, botao) {
+     if (id == '2') {
+    aplicarFazenda2();
+  } else {
+    aplicarFazenda1();
+  }
+  
     let abas = document.querySelectorAll('.aba-unidade');
     for (let i = 0; i < abas.length; i++) {
         abas[i].classList.remove('ativa');
+        
     }
     botao.classList.add('ativa');
     document.getElementById('titulo-fazenda').innerText = "Visão Geral: Fazenda " + id;
     showView('view-fazenda');
+}
+
+function aplicarFazenda2() {
+  const cards = document.querySelectorAll(".card-dispositivo");
+
+  for (let i = 0; i < cards.length; i++) {
+    cards[i].classList.remove("status-alerta", "status-critico");
+    cards[i].classList.add("status-ideal");
+  }
+}
+
+function aplicarFazenda1() {
+  const cards = document.querySelectorAll(".card-dispositivo");
+
+  cards[0].className = "card-dispositivo status-ideal";
+  cards[1].className = "card-dispositivo status-alerta";
+  cards[2].className = "card-dispositivo status-ideal";
+  cards[3].className = "card-dispositivo status-critico";
 }
