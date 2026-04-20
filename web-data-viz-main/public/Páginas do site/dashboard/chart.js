@@ -179,7 +179,7 @@ new Chart(graficoUmidade, {
   options: {
     tension:0.25,
     maintainAspectRatio: false,
-    
+     
     scales: {
       y: {
         grid: {
@@ -193,5 +193,14 @@ new Chart(graficoUmidade, {
         },
       },
     },
+     plugins: {
+      legend: {
+        labels: {
+          filter: function (item, chart) {
+            return item.text !== "FaixaMaxIdeal" && item.text !== "FaixaMinIdeal";
+          }
+        }
+      }
+    }
   },
 });
