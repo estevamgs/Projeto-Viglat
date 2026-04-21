@@ -28,7 +28,7 @@ new Chart(alertas, {
     plugins: {
       title: {
         display: true,
-        text: "Quantidade de Alertas",
+        text: "Quantidade de Alertas (últimos 7 dias)",
       },
     },
     scales: {
