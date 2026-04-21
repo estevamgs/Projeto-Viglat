@@ -61,7 +61,7 @@ new Chart(alertaSemana, {
     ],
     datasets: [
       {
-        label: "Total de Alertas Semanais",
+        label: "Alertas",
         data: [1,1,0,3,4,1,1],
         borderColor: "#7a5208",
         backgroundColor: "#7a5208",
@@ -73,7 +73,7 @@ new Chart(alertaSemana, {
     plugins: {
       title: {
         display: true,
-        text: "Quantidade de Alertas",
+        text: "Total de alertas semanais",
       },
     },
     scales: {
