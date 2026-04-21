@@ -19,7 +19,7 @@ O projeto atende produtores artesanais de **Minas Gerais**, ajudando a **padroni
 | Componentes | Tecnologias |
 |------------|-------------|
 | 💻 **Hardware** | Arduino, DHT11, Protoboard, Cabos Jumper |
-| 🗄️ **Backend** | MySQL (banco de dados), Arduino IDE |
+| 🗄️ **Backend** | MySQL (banco de dados), Arduino IDE, Node.js |
 | 🎨 **Frontend** | HTML, CSS, JavaScript (gráficos e dashboard) |
 | ⚙️ **Ferramentas** | VS Code, GitHub, Trello, MySQL Workbench |
 
