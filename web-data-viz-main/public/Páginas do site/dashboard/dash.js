@@ -31,11 +31,7 @@ function trocarFazenda(id, botao) {
     aplicarFazenda1();
   }
 
-  let abas = document.querySelectorAll('.aba-unidade');
-  for (let i = 0; i < abas.length; i++) {
-    abas[i].classList.remove('ativa');
-
-  }
+  
   botao.classList.add('ativa');
   document.getElementById('titulo-fazenda').innerText = "Visão Geral: Fazenda " + id;
   showView('view-fazenda');

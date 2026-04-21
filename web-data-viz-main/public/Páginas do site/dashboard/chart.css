@@ -16,7 +16,8 @@
     font-family: 'Segoe UI', sans-serif;
 }
 
-body, html {
+body,
+html {
     height: 100%;
     overflow-x: hidden;
     background-color: var(--fundo-viglat);
@@ -54,6 +55,8 @@ body, html {
     text-decoration: none;
 }
 
+
+
 .btn-acesso {
     background-color: var(--marrom-destaque);
     color: #fff !important;
@@ -87,13 +90,14 @@ body, html {
     color: var(--marrom-primario);
 }
 
-.aba-unidade:nth-child(1){
+.aba-unidade:nth-child(1) {
     background: red;
     color: white;
     border-color: var(--marrom-destaque);
 
 }
-.aba-unidade:nth-child(2){
+
+.aba-unidade:nth-child(2) {
     background: green;
     color: white;
     border-color: var(--marrom-destaque);
@@ -101,9 +105,9 @@ body, html {
 }
 
 
-.aba-unidade:focus{
+.aba-unidade:focus {
     transform: scale(1.1);
-    
+
 }
 
 .grid-dispositivos {
@@ -149,7 +153,7 @@ body, html {
     background: white;
     flex-direction: column;
     width: 100%;
-    display:flex;
+    display: flex;
     padding: 15px;
     border-radius: 10px;
     text-align: center;
@@ -167,25 +171,28 @@ body, html {
     font-size: 22px;
     font-weight: bold;
 }
- .box-faixa-ideal {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background-color: #459aea4a;
-  border: 2px solid #459aea;
-  padding: 6px 12px;
-  border-radius: 20px;
-  font-size: 13px;
-  font-weight: 600;
-  color: #1f3a5f;
+
+.box-faixa-ideal {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #459aea4a;
+    border: 2px solid #459aea;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #1f3a5f;
 }
+
 .cor-faixa {
-  width: 12px;
-  height: 12px;
-  background-color: #459aea4a;
-  border: 2px solid #459aea;
-  border-radius: 3px;
+    width: 12px;
+    height: 12px;
+    background-color: #459aea4a;
+    border: 2px solid #459aea;
+    border-radius: 3px;
 }
+
 .container-grafico-geral {
     flex: 1;
     min-height: 0;
@@ -241,6 +248,7 @@ body, html {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+
 .status-ideal {
     background-color: #22c55e;
     color: #ffffff;
@@ -259,10 +267,10 @@ body, html {
 /* GRÁFICOS */
 
 .chart-container {
-  /* position: relative; */
-  margin: auto;
-  height: 53dvh;
-  /* width: 80vw; */
+    /* position: relative; */
+    margin: auto;
+    height: 53dvh;
+    /* width: 80vw; */
 }
 
 /* .grafico-detalhado {

@@ -116,6 +116,7 @@ new Chart(graficoTemp, {
     ],
   },
   options: {
+   
     tension:0.25,
     maintainAspectRatio: false,
     scales: {
@@ -125,6 +126,10 @@ new Chart(graficoTemp, {
       }
     },
     plugins: {
+       title: {
+        display: true,
+        text: "Gráfico de Temperatura",
+      },
       legend: {
         labels: {
           filter: function (item, chart) {
@@ -194,6 +199,10 @@ new Chart(graficoUmidade, {
       },
     },
      plugins: {
+      title: {
+        display: true,
+        text: "Gráfico de Umidade",
+      },
       legend: {
         labels: {
           filter: function (item, chart) {
