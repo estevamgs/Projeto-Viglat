@@ -31,18 +31,14 @@ function trocarFazenda(id, botao) {
     aplicarFazenda1();
   }
 
-  let abas = document.querySelectorAll('.aba-unidade');
-  for (let i = 0; i < abas.length; i++) {
-    abas[i].classList.remove('ativa');
-
-  }
+  
   botao.classList.add('ativa');
   document.getElementById('titulo-fazenda').innerText = "Visão Geral: Fazenda " + id;
   showView('view-fazenda');
 }
 
 function aplicarFazenda2() {
-  const cards = document.querySelectorAll(".card-dispositivo");
+  let cards = document.querySelectorAll(".card-dispositivo");
 
   cards[0].className = "card-dispositivo status-ideal";
   cards[1].className = "card-dispositivo status-ideal";
@@ -58,7 +54,7 @@ function aplicarFazenda2() {
 }
 
 function aplicarFazenda1() {
-  const cards = document.querySelectorAll(".card-dispositivo");
+  let cards = document.querySelectorAll(".card-dispositivo");
 
 
   cards[0].className = "card-dispositivo status-ideal";
