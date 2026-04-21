@@ -38,7 +38,7 @@ function trocarFazenda(id, botao) {
 }
 
 function aplicarFazenda2() {
-  const cards = document.querySelectorAll(".card-dispositivo");
+  let cards = document.querySelectorAll(".card-dispositivo");
 
   cards[0].className = "card-dispositivo status-ideal";
   cards[1].className = "card-dispositivo status-ideal";
@@ -54,7 +54,7 @@ function aplicarFazenda2() {
 }
 
 function aplicarFazenda1() {
-  const cards = document.querySelectorAll(".card-dispositivo");
+  let cards = document.querySelectorAll(".card-dispositivo");
 
 
   cards[0].className = "card-dispositivo status-ideal";
