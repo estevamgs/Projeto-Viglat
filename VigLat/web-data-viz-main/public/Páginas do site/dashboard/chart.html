@@ -45,47 +45,57 @@
             <div class="status-item">
               <span class="status-tag metrica">
 
-                <span style="font-size: 13px; font-weight: bold;"><</span> = menor que<br>
-                <span style="font-size: 13px; font-weight: bold;">></span> = maior que
-              </span>
+                <span style="font-size: 13px; font-weight: bold;">
+                  << /span> = menor que<br>
+                    <span style="font-size: 13px; font-weight: bold;">></span> = maior que
+                </span>
             </div>
             <div class="status-item">
-              <span class="status-tag status-ideal">T:18°C a 22°C&nbsp;&nbsp; / Ideal<br />U:80% a 90%&nbsp;&nbsp; / Ideal</span>
+              <span class="status-tag status-ideal">T:18°C a 22°C&nbsp;&nbsp; / Ideal<br />U:80% a 90%&nbsp;&nbsp; /
+                Ideal</span>
             </div>
             <div class="status-item">
-              <span class="status-tag status-alerta">T:>22°C ou <18°C / Alerta<br />U:>90% ou <80%&nbsp; / Alerta</span>
+              <span class="status-tag status-alerta">T:>22°C ou
+                <18°C / Alerta<br />U:>90% ou <80%&nbsp; / Alerta</span>
             </div>
             <div class="status-item">
-              <span class="status-tag status-critico">T:>26°C ou <15°C &nbsp;/ Crítico<br />U:>95% ou <70% &nbsp;&nbsp;/ Crítico</span>
+              <span class="status-tag status-critico">T:>26°C ou
+                <15°C &nbsp;/ Crítico<br />U:>95% ou <70% &nbsp;&nbsp;/ Crítico</span>
             </div>
           </div>
         </header>
 
         <div class="grid-dispositivos">
-          <div class="card-dispositivo status-ideal" data-nome="Câmara 01" data-temp="19.5" data-umi="55"
+          <div class="card-dispositivo status-ideal" data-nome="Câmara 01" data-temp="A= 19°C / B= 22°C / C= 20" data-umi="A= 80% / B= 85% / C= 65"
             data-alertas="1" onclick="abrirDetalhes(this)">
             <h3>Câmara 01</h3>
             <p>Ideal</p>
           </div>
-          <div class="card-dispositivo status-alerta" data-nome="Câmara 02" data-temp="20°C - 18°C - 21" data-umi="58"
+          <div class="card-dispositivo status-alerta" data-nome="Câmara 02" data-temp="A= 20°C / B= 30°C / C= 21" data-umi="A= 80% / B= 85% / C= 65"
             data-alertas="4" onclick="abrirDetalhes(this)">
             <h3>Câmara 02</h3>
             <p>Alerta</p>
           </div>
-          <div class="card-dispositivo status-ideal" data-nome="Câmara 03" data-temp="a:22°C - b:32°C - c:2" data-umi="a:80% - b:85% - c:65"
-            data-alertas="0" onclick="abrirDetalhes(this)">
+          <div class="card-dispositivo status-ideal" data-nome="Câmara 03" data-temp="A= 22°C / B= 32°C / C= 21"
+            data-umi="A= 80% / B= 85% / C= 65" data-alertas="0" onclick="abrirDetalhes(this)">
             <h3>Câmara 03</h3>
             <p>Ideal</p>
           </div>
-          <div class="card-dispositivo status-critico" data-nome="Câmara 04" data-temp="A:22°C - B:32°C - C:21"
-            data-umi="A:80% - B:85% - C:65" data-alertas="8" onclick="abrirDetalhes(this)">
+          <div class="card-dispositivo status-critico" data-nome="Câmara 04" data-temp="A= 22°C / B= 32°C / C= 21"
+            data-umi="A= 80% / B= 85% / C= 65" data-alertas="8" onclick="abrirDetalhes(this)">
             <h3>Câmara 04</h3>
             <p><b>CRÍTICO!</b></p>
           </div>
         </div>
 
-        <div class="chart-container">
-          <canvas id="chart"></canvas>
+        <div class="dashboard-graficos">
+          <div class="grafico-detalhado">
+            <canvas id="chart"></canvas>
+          </div>
+
+          <div class="grafico-detalhado">
+            <canvas id="grafico-alerta"></canvas>
+          </div>
         </div>
       </section>
 

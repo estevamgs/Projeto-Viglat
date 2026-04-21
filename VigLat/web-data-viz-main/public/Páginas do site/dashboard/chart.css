@@ -203,18 +203,16 @@ html {
 }
 
 .dashboard-graficos {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 15px;
-    flex: 1;
-    min-height: 0;
+    display: flex;
+    gap: 20px;
 }
-
 .grafico-detalhado {
     background: white;
     border-radius: 12px;
     padding: 10px;
     border: 1px solid #eee;
+    height: 420px;
+    flex: 1;
 }
 
 .texto-critico {
