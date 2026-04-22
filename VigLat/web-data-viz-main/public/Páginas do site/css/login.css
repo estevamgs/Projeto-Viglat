@@ -14,50 +14,6 @@ body {
     background-color: #f2f1f0;
 }
 
-/* HEADER */
-
-header {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 5em;
-    background-color: white;
-
-}
-
-header a {
-    color: #617355;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 1.2em;
-    transition: .3s;
-}
-
-header a:hover {
-    opacity: .8;
-    transform: scale(1.1);
-}
-
-.right-header {
-    display: flex;
-    width: 30%;
-    justify-content: space-around;
-    align-items: center;
-}
-
-.right-header button {
-    width: 8em;
-    height: 2.5em;
-    cursor: pointer;
-    border: 0;
-    background-color: #593128;
-    border-radius: 1em;
-    color: white;
-    text-transform: uppercase;
-    font-weight: bold;
-}
-
 /* MAIN */
 
 .logo img {
@@ -65,7 +21,7 @@ header a:hover {
     margin-left: 1em;
 }
 
-.container {
+.container2 {
     height: 60dvh;
     width: 100%;
     display: flex;
