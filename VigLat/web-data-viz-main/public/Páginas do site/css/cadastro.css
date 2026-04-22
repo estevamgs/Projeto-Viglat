@@ -1,0 +1,152 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f2f1f0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+}
+
+h1 {
+    color: #593128;
+    margin-bottom: 20px;
+    font-size: 24px;
+
+}
+
+.logo img {
+    width: 5em;
+}
+
+.container2 {
+    background-color: #ead7bfc5;
+    border-radius: 1em;
+    padding: .5em 3em;
+    width: 30%;
+    text-align: center;
+}
+
+.container2 h2 {
+    color: #593128;
+    margin-top: 0;
+    margin-bottom: 30px;
+
+}
+
+.content {
+    justify-self: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    width: 60%;
+}
+
+.content h3 {
+    text-align: left;
+    color: #593128;
+    font-size: 14px;
+    margin-bottom: 8px;
+    margin-left: 5px;
+}
+
+.content input {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 15px;
+    color: #593128;
+    box-sizing: border-box;
+    font-size: 15px;
+}
+
+.content input:focus {
+    outline: none;
+}
+
+.content input::placeholder {
+    color: #593128;
+}
+
+.cad-botao {
+    margin-top: 20px;
+}
+
+.cad-botao button {
+    background-color: #593128;
+    color: #f2f1f0;
+    border: none;
+    padding: 15px;
+    width: 100%;
+    border-radius: 30px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.cad-botao button:hover {
+    background-color: #794637;
+    transform: scale(1.02);
+}
+
+.cad-botao p {
+    margin: 1em 0;
+    font-size: 14px;
+    color: #593128;
+
+}
+
+.cad-botao a {
+    color: #593128;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.cad-botao a:hover {
+    text-decoration: underline;
+}
+
+.req {
+    text-align: start;
+    font-size: .7em;
+    align-self: flex-start;
+    margin-bottom: 1em;
+}
+
+#caracteres,
+#especial,
+#maius,
+#minus {
+    color: red;
+}
+
+.usuario,
+.email,
+.senha,
+.senhaConfirm {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border-radius: 1em;
+    margin-bottom: 1em;
+    width: 100%;
+
+}
+
+.usuario i,
+.email i,
+.senha i,
+.senhaConfirm i {
+    margin: .5em;
+}
+
+#requisitos {
+    display: none;
+}

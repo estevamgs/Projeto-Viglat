@@ -1,0 +1,65 @@
+.btn-gradiente {
+    padding: 10px 25px;
+    color: white;
+    border: none;
+    cursor: pointer;
+    background-color: #7a5208;
+    border-radius: 25px;
+}
+
+header {
+    background-color: white;
+    margin-bottom: 4em;
+    width: 100%;
+}
+
+header .container {
+    max-width: 1440px;
+    padding: 0 2%;
+    margin: 0 auto;
+}
+
+header nav ul li,
+a {
+    list-style: none;
+    text-decoration: none;
+}
+
+header .logo img {
+    width: 160px;
+    height: 160px;
+    display: block;
+}
+
+/* Classes do site */
+
+nav a {
+    display: inline-block;
+    color: #3b1f02;
+    font-size: 18px;
+    transition: .3s;
+}
+
+nav a:hover {
+    transform: scale(.95);
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 2%;
+    margin: -20px;
+}
+
+.ul {
+    display: flex;
+    align-items: center;
+}
+
+
+/* espaçamento do list itens */
+.ul li {
+    margin: 0 15px;
+    font-size: 20px;
+}

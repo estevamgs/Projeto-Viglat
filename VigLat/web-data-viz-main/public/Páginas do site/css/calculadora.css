@@ -1,0 +1,153 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+:root {
+    --corPrin: #ead7bfc5;
+    --corSec: #593128;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f2f1f0;
+}
+
+div.container2 {
+    height: 70dvh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.input-group input {
+    border-radius: 1em;
+    padding: 1.2em;
+    border: 0;
+    outline: 0;
+    background-color: #f0f0f0d2;
+    width: 21em;
+}
+
+.input-group input:focus {
+    border-bottom: 1px solid black;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.content {
+    border-radius: 3em;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.contas p,
+#div_mensagem {
+    text-align: justify;
+}
+
+.contas {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    width: 45em;
+    height: 45em;
+    background-color: white;
+    padding: 1em;
+    border-radius: 1em;
+}
+
+#div_mensagem {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 35em;
+    height: 10em;
+    background-color: #f0f0f0d2;
+    padding: 1em;
+    border-radius: 1em;
+}
+
+.caixa-maior {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    height: 45em;
+}
+
+.caixa-menor {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 7em;
+    justify-content: space-between;
+}
+
+.caixa-menor {
+    width: 21em;
+}
+
+.caixa-menor p {
+    font-size: 1.2em;
+}
+
+.cad-botao-resposta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    height: 20em;
+}
+
+.cad-botao-resposta button {
+    width: 90%;
+    height: 3em;
+    border-radius: 2em;
+    outline: 0;
+    border: 0;
+    background-color: #6B3A2E;
+    color: white;
+    font-weight: bold;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.cad-botao-resposta button:hover {
+    box-shadow: 2px 3px 10px #6B3A2E;
+    transform: scale(1.01);
+}
+
+.cad-botao-resposta button span {
+    margin-left: 1em;
+}
+
+.boxMsg1,
+.boxMsg2,
+.boxMsg3 {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-start;
+    height: 3em;
+}
+
+.boxMsg1 h6#resp1,
+.boxMsg2 h6#resp2,
+.boxMsg3 h6#resp3 {
+    color: rgb(192, 192, 192);
+    font-size: 1.4em;
+
+}
