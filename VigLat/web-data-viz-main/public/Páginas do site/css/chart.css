@@ -16,6 +16,10 @@
     font-family: 'Segoe UI', sans-serif;
 }
 
+header {
+    margin-bottom: 0;
+}
+
 body,
 html {
     height: 100%;
