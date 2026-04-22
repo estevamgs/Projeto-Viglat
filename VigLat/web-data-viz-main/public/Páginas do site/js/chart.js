@@ -73,7 +73,7 @@ new Chart(alertaSemana, {
     plugins: {
       title: {
         display: true,
-        text: "Total de alertas semanais",
+        text: "Alertas dos último 7 dias",
       },
     },
     scales: {
@@ -129,8 +129,8 @@ new Chart(graficoTemp, {
       {
         label: "Sensor A",
         data: dadosSensorA.temperatura,
-        borderColor: "green",
-        backgroundColor: "green"
+        borderColor: "purple",
+        backgroundColor: "purple"
       },
       {
         label: "Sensor B",
@@ -141,8 +141,8 @@ new Chart(graficoTemp, {
       {
         label: "Sensor C",
         data: dadosSensorC.temperatura,
-        borderColor: "#CD1C18",
-        backgroundColor: "#CD1C18"
+        borderColor: "gray",
+        backgroundColor: "gray"
       },
       {
         label: "Faixa Ideal",
@@ -195,8 +195,8 @@ new Chart(graficoUmidade, {
       {
         label: "Sensor A",
         data: dadosSensorA.umidade,
-        borderColor: "green",
-        backgroundColor: "green",
+        borderColor: "purple",
+        backgroundColor: "purple",
       },
       {
         label: "Sensor B",
@@ -207,15 +207,14 @@ new Chart(graficoUmidade, {
       {
         label: "Sensor C",
         data: dadosSensorC.umidade,
-        borderColor: "#CD1C18",
-        backgroundColor: "#CD1C18",
+        borderColor: "gray",
+        backgroundColor: "gray",
       },
       {
         label: "FaixaMinIdeal",
         data: tempMaxIdeal.umidade,
        borderColor: "#459aea4a",
         backgroundColor: "#459aea4a",
-        fill: '-1'
       },
       {
         label: "FaixaMaxIdeal",
