@@ -27,57 +27,7 @@ new Chart(alertas, {
     plugins: {
       title: {
         display: true,
-<<<<<<< HEAD:VigLat/web-data-viz-main/public/Páginas do site/dashboard/chart.js
         text: "Quantidade de Alertas (últimos 7 dias)",
-=======
-        text: "Alertas das ultimas 24 horas",
-      },
-    },
-    scales: {
-      y: {
-        stacked: true,
-        grid: {
-          display: true,
-          color: "rgba(255,99,132,0.2)",
-        },
-      },
-      x: {
-        grid: {
-          display: false,
-        },
-      },
-    },
-  },
-});
-new Chart(alertaSemana, {
-  type: "bar",
-  data: {
-    labels: [
-      "Segunda-Feira",
-      "Terça-Feira",
-      "Quarta-Feira",
-      "Quinta-Feira",
-      "Sexta-Feira",
-      "Sabado",
-      "Domingo",
-      
-    ],
-    datasets: [
-      {
-        label: "Alertas",
-        data: [1,1,0,3,4,1,1],
-        borderColor: "#7a5208",
-        backgroundColor: "#7a5208",
-      },
-    ],
-  },
-  options: {
-    maintainAspectRatio: false,
-    plugins: {
-      title: {
-        display: true,
-        text: "Alertas dos último 7 dias",
->>>>>>> 4d4e9db0a48a9d37f9aef8a195f9409dc2386904:VigLat/web-data-viz-main/public/Páginas do site/js/chart.js
       },
     },
     scales: {
