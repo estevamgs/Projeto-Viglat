@@ -17,63 +17,49 @@
     </div>
 
     <script>
-      var temp = new Chart(
-        document.getElementById("temp").getContext("2d"),
-        {
-          type: "line",
-          data: {
-            datasets: [
-              {
-                label: "Temperatura",
-                borderColor: "#63B1BC",
-                backgroundColor: "#ED145B",
-              },
-            ],
-          },
-          options: {
-            scales: {
-              x: {
-                beginAtZero: true,
-              },
-              y: {
-                title: {
-                  display: true,
-                  text: "(°C)",
-                },
-                beginAtZero: true,
-              },
+      var temp = new Chart(document.getElementById("temp").getContext("2d"), {
+        type: "line",
+        data: {
+          datasets: [
+            {
+              label: "Temperatura",
+              borderColor: "#63B1BC",
+              backgroundColor: "#ED145B",
+            },
+          ],
+        },
+        options: {
+          scales: {
+            x: {
+              beginAtZero: true,
+            },
+            y: {
+              beginAtZero: true,
             },
           },
         },
-      );
+      });
 
-      var umi = new Chart(
-        document.getElementById("umi").getContext("2d"),
-        {
-          type: "line",
-          data: {
-            datasets: [
-              {
-                label: "Umidade",
-                borderColor: "#63B1BC",
-                backgroundColor: "#0762C8", 
-                fill: true,
-              },
-        
-            ],
-          },
-          options: {
-            scales: {
-              y: {
-                title: {
-                  text: "(%)",
-                },
-                beginAtZero: true,
-              },
+      var umi = new Chart(document.getElementById("umi").getContext("2d"), {
+        type: "line",
+        data: {
+          datasets: [
+            {
+              label: "Umidade",
+              borderColor: "#63B1BC",
+              backgroundColor: "#0762C8",
+              fill: true,
+            },
+          ],
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true,
             },
           },
         },
-      );
+      });
 
       var paginacao = {};
       var tempo = {};

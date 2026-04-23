@@ -43,38 +43,47 @@
       </div>
     </header>
 
+    <div id="boxAlerta">
+      <h2>Insira dados válidos!</h2>
+    </div>
+
     <div class="container2">
       <div class="content">
         <div class="contas">
+          <h2>Dados da sua Operação</h2>
           <div class="caixa-maior">
             <div class="caixa-menor">
-              <p>
-                Litros de Leite Produzidos
-                <br />
-                (1 kg = 10 litros)
-              </p>
+              <p>Quantos litros você faz 1Kg de QMA</p>
+              <div class="input-group">
+                <input
+                  type="number"
+                  id="input_qtdLitrosParaQma"
+                  placeholder="Litros para fazer 1Kg de QMA"
+                />
+              </div>
+            </div>
+            <div class="caixa-menor">
+              <p>Litros de Leite Produzidos por dia</p>
               <div class="input-group">
                 <input
                   type="number"
                   id="input_litroLeite"
-                  placeholder="Litros de leite por dia"
+                  placeholder="Litros produzidos diários"
                 />
               </div>
             </div>
-
             <div class="caixa-menor">
-              <p>Custo da produção de 1 litro</p>
+              <p>Custo de produção por litro</p>
               <div class="input-group">
                 <input
                   type="number"
                   id="input_custoLeiteLitro"
-                  placeholder="Custo por litro (R$)"
+                  placeholder="Custo por litro do leite (R$)"
                 />
               </div>
             </div>
-
             <div class="caixa-menor">
-              <p>Preço do kg do queijo vendido</p>
+              <p>Preço do kg do QMA</p>
               <div class="input-group">
                 <input
                   type="number"
@@ -83,8 +92,7 @@
                 />
               </div>
             </div>
-
-            <div class="caixa-menor">
+            <div id="caixa-maior-extras" class="caixa-menor">
               <p>Gastos extras a mais do mês (R$)</p>
               <div class="input-group">
                 <input
@@ -99,55 +107,109 @@
               <button onclick="simular()">
                 <i class="bi bi-calculator"></i><span>Simular economia</span>
               </button>
-              <div id="div_mensagem">
-                <div class="boxMsg1">
-                  <h6>Gastos Totais</h6>
-                  <h6 id="resp1">R$ -</h6>
-                </div>
-                <div class="boxMsg2">
-                  <h6>Valor Bruto</h6>
-                  <h6 id="resp2">R$ -</h6>
-                </div>
-                <div class="boxMsg3">
-                  <h6>Valor Líquido</h6>
-                  <h6 id="resp3">R$ -</h6>
-                </div>
-              </div>
             </div>
           </div>
+        </div>
+      </div>
+      <div style="display: none" id="resumo-contas" class="content">
+        <div class="resumo">
+          <div class="box-menor-resumo boxMsg1">
+            <p>Gastos (Sem nosso sistema - Diário)</p>
+            <h6 id="resp1">R$ -</h6>
+          </div>
+          <div class="box-menor-resumo boxMsg2">
+            <p>Gastos (Com nosso sistema - Diário)</p>
+            <h6 id="resp2">R$ -</h6>
+          </div>
+          <div class="box-menor-resumo boxMsg3">
+            <p>Redução de Perdas (Diário)</p>
+            <h6 id="resp3">R$ -</h6>
+          </div>
+        </div>
+        <div id="div_mensagem">
+          <p id="texto_mensagem">
+            <span style="color: green">Detalhamento da Economia</span><br />
+            Redução de Perda total monetária (Mês):
+            <span style="color: green" id="resposta1"></span><br />
+            Redução de Perda total monetária (Ano):
+            <span style="color: green" id="resposta2"></span><br />
+            Prejuízo (Sem Nosso Sistema - Ano):
+            <span style="color: red" id="resposta3"></span>
+            <br />
+            Prejuízo (Com Nosso Sistema - Ano):
+            <span style="color: red" id="resposta4"></span>
+            <br />
+            Economia Total (Com Nosso Sistema -Ano):
+            <span style="color: green" id="resposta5"></span>
+            <br />
+            Lucro Bruto (Com Nosso Sistema - Mês):
+            <span style="color: green" id="resposta6"></span>
+            <br />
+            Lucro Líquido (Com Nosso Sistema - Mês):
+            <span style="color: green" id="resposta7"></span>
+            <br />
+          </p>
         </div>
       </div>
     </div>
 
     <script>
       function simular() {
-        let litrosLeite = Number(input_litroLeite.value);
+        let qtdUsadaParaFazerUmKg = Number(input_qtdLitrosParaQma.value);
+        let litrosLeiteProduzido = Number(input_litroLeite.value);
         let custoLeiteLitro = Number(input_custoLeiteLitro.value);
         let precoQueijoKg = Number(input_precoQueijo.value);
-        let gastoExtra = Number(input_gastosExtra.value) || 0;
+        let gastoExtra = Number(input_gastosExtra.value);
 
-        // Quantos kg de queijo produziu no dia (kg)
-        let total_queijo = litrosLeite / 10; // estimativa de 10L para 1 Kg queijo
+        // Quantos kg de queijo produziu (kg)
+        let total_queijo = litrosLeiteProduzido / qtdUsadaParaFazerUmKg;
 
-        // O custo total da produção de leite do dia (R$)
-        let custo_leiteTotal = litrosLeite * custoLeiteLitro;
+        let produzidoTotalQueijo = total_queijo * 30 * precoQueijoKg;
+
+        let gastoSemNossoSistema = custoLeiteLitro * litrosLeiteProduzido;
+
+        let gastoComNossoSistema = gastoSemNossoSistema * 0.9;
+        // Lucro liquido, vendendo todos queijos com gastos (R$)
+        let diferenca = gastoSemNossoSistema - gastoComNossoSistema;
+
+        let lucroBruto = produzidoTotalQueijo;
+
+        let lucroLiquido =
+          lucroBruto - gastoComNossoSistema * 30 + gastoExtra * 30;
 
         // Gastos totais (R$)
-        let gastosTotais = custo_leiteTotal + gastoExtra;
 
-        let lucroBruto = total_queijo * precoQueijoKg;
+        let totalSemSistema = (gastoSemNossoSistema + gastoExtra) * 360;
+        let totalComSistema = (gastoComNossoSistema + gastoExtra) * 360;
+        let economiaTotal = totalSemSistema - totalComSistema;
 
-        // Lucro liquido, vendendo todos queijos com gastos (R$)
-        let lucroLiquido = lucroBruto - gastosTotais;
-
-        resp1.innerHTML = `${gastosTotais.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}`;
-        resp2.innerHTML = `${lucroBruto.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}`;
-        resp3.innerHTML = `${lucroLiquido.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}`;
-
-        if (lucroLiquido >= 0) {
-          resp3.style.color = "green";
+        if (
+          litrosLeiteProduzido == "" ||
+          qtdUsadaParaFazerUmKg == "" ||
+          custoLeiteLitro == "" ||
+          precoQueijoKg == ""
+        ) {
+          boxAlerta.style.opacity = 1;
+          setTimeout(() => {
+            boxAlerta.style.opacity = 0;
+          }, 1500);
         } else {
-          resp3.style.color = "red";
+          resp1.innerHTML = `${gastoSemNossoSistema.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}`;
+          resp2.innerHTML = `${gastoComNossoSistema.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}`;
+          resp3.innerHTML = `${diferenca.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}`;
+          resposta1.innerHTML = `${(diferenca * 30).toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}`;
+          resposta2.innerHTML = `${(diferenca * 360).toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}`;
+          resposta3.innerHTML = `${totalSemSistema.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}`;
+          resposta4.innerHTML = `${totalComSistema.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}`;
+          resposta5.innerHTML = `${economiaTotal.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}`;
+          resposta6.innerHTML = `${lucroBruto.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}`;
+          resposta7.innerHTML = `${lucroLiquido.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}`;
+          document.getElementById("resumo-contas").style.display = "flex";
+          if (diferenca >= 0) {
+            resp3.style.color = "green";
+          } else {
+            resp3.style.color = "red";
+          }
         }
       }
     </script>
