@@ -133,19 +133,19 @@
             <span style="color: green" id="resposta1"></span><br />
             Redução de Perda total monetária (Ano):
             <span style="color: green" id="resposta2"></span><br />
-            Prejuízo (Sem Nosso Sistema - Ano):
+            Perdas (Sem Nosso Sistema - Ano):
             <span style="color: red" id="resposta3"></span>
             <br />
-            Prejuízo (Com Nosso Sistema - Ano):
+            Perdas (Com Nosso Sistema - Ano):
             <span style="color: red" id="resposta4"></span>
             <br />
-            Economia Total (Com Nosso Sistema -Ano):
+            Valor Bruto (Com Nosso Sistema - Mês):
             <span style="color: green" id="resposta5"></span>
             <br />
-            Lucro Bruto (Com Nosso Sistema - Mês):
+            Gastos Totais (Com Nosso Sistema - Mês):
             <span style="color: green" id="resposta6"></span>
             <br />
-            Lucro Líquido (Com Nosso Sistema - Mês):
+            Valor Líquido (Com Nosso Sistema - Mês):
             <span style="color: green" id="resposta7"></span>
             <br />
           </p>
@@ -170,12 +170,18 @@
 
         let gastoComNossoSistema = gastoSemNossoSistema * 0.9;
         // Lucro liquido, vendendo todos queijos com gastos (R$)
+
         let diferenca = gastoSemNossoSistema - gastoComNossoSistema;
 
-        let lucroBruto = produzidoTotalQueijo;
+        let diferencaMes =
+          gastoSemNossoSistema * 30 - gastoComNossoSistema * 30;
+        let diferencaAno =
+          gastoSemNossoSistema * 360 - gastoComNossoSistema * 360;
 
-        let lucroLiquido =
-          lucroBruto - gastoComNossoSistema * 30 + gastoExtra * 30;
+        let valorBruto = produzidoTotalQueijo;
+        let gastosTotaisMes = (gastoComNossoSistema + gastoExtra) * 30;
+
+        let valorLiquido = valorBruto - gastosTotaisMes;
 
         // Gastos totais (R$)
 
@@ -197,18 +203,24 @@
           resp1.innerHTML = `${gastoSemNossoSistema.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}`;
           resp2.innerHTML = `${gastoComNossoSistema.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}`;
           resp3.innerHTML = `${diferenca.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}`;
-          resposta1.innerHTML = `${(diferenca * 30).toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}`;
-          resposta2.innerHTML = `${(diferenca * 360).toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}`;
+          resposta1.innerHTML = `${diferencaMes.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}`;
+          resposta2.innerHTML = `${diferencaAno.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}`;
           resposta3.innerHTML = `${totalSemSistema.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}`;
           resposta4.innerHTML = `${totalComSistema.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}`;
-          resposta5.innerHTML = `${economiaTotal.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}`;
-          resposta6.innerHTML = `${lucroBruto.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}`;
-          resposta7.innerHTML = `${lucroLiquido.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}`;
+          resposta5.innerHTML = `${valorBruto.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}`;
+          resposta6.innerHTML = `${gastosTotaisMes.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}`;
+          resposta7.innerHTML = `${valorLiquido.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}`;
           document.getElementById("resumo-contas").style.display = "flex";
           if (diferenca >= 0) {
             resp3.style.color = "green";
           } else {
             resp3.style.color = "red";
+          }
+
+          if (valorLiquido >= 0) {
+            resposta7.style.color = "green";
+          } else {
+            resposta7.style.color = "red";
           }
         }
       }
