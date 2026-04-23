@@ -8,14 +8,9 @@ function showView(viewId) {
 
 function abrirDetalhes(elemento) {
   let nome = elemento.dataset.nome;
-  let temp = elemento.dataset.temp;
-  let umi = elemento.dataset.umi;
   let alertas = elemento.dataset.alertas;
 
   document.getElementById('titulo-camara').innerText = nome;
-  document.getElementById('kpi-temp').innerText = temp + "°C";
-  document.getElementById('kpi-umi').innerText = umi + "%";
-  document.getElementById('kpi-alertas').innerText = alertas;
 
   showView('view-camara');
   renderizarGraficosDetalhes();
