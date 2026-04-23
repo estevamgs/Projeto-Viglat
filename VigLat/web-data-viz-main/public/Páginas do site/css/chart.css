@@ -300,3 +300,17 @@ nav {
 /* #grafico-temp,#grafico-umidade {
     display: none;
 } */
+
+.seletor-unidades button {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.seletor-unidades span {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    border-radius: 100%;
+    margin-left: 1em;
+}
