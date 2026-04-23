@@ -32,10 +32,10 @@
     <main class="painel-principal">
       <div class="seletor-unidades">
         <button class="aba-unidade ativa" onclick="trocarFazenda('1', this)">
-          Fazenda 1 <span style="background-color: red;"></span>
+          Fazenda 1
         </button>
         <button class="aba-unidade" onclick="trocarFazenda('2', this)">
-          Fazenda 2 <span style="background-color: green;"></span>
+          Fazenda 2
         </button>
       </div>
 
@@ -50,8 +50,8 @@
               <span class="status-tag metrica">
 
                 <span style="font-size: 13px; font-weight: bold;">
-                  <</span> = menor que<br>
-                    <span style="font-size: 13px; font-weight: bold;">></span> = maior que
+                  <</span> - menor que<br>
+                    <span style="font-size: 13px; font-weight: bold;">></span> - maior que
                 </span>
             </div>
             <div class="status-item">
@@ -104,46 +104,70 @@
       </section>
 
       <section id="view-camara" class="tela-monitoramento" style="display: none">
-        <header class="cabecalho-secao">
-          <button class="btn-retorno" onclick="showView('view-fazenda')">
-            ← Voltar
-          </button>
-          <h2 id="titulo-camara">Câmara 01</h2>
-        </header>
+  <header class="cabecalho-secao">
+    <button class="btn-retorno" onclick="showView('view-fazenda')">
+      ← Voltar
+    </button>
+    <h2 id="titulo-camara">Câmara 01</h2>
+  </header>
 
-        <div class="dashboard-kpis">
-          <div class="indicador-card">
-            <span class="rotulo-kpi">Temperatura Atual</span>
-            <div class="sensores">
-              <span class="valor-kpi" id="kpi-temp">--°C</span>
-            </div>
-          </div>
-          <div class="indicador-card">
-            <span class="rotulo-kpi">Umidade Atual</span>
-            <span class="valor-kpi" id="kpi-umi">--%</span>
-          </div>
-          <div class="indicador-card">
-            <span class="rotulo-kpi">Alertas Hoje</span>
-            <span class="valor-kpi texto-critico" id="kpi-alertas">--</span>
-          </div>
-          <div class="indicador-card">
-            <span class="rotulo-kpi">Faixa ideal </span>\
-            <div class="box-faixa-ideal">
-              <span class="cor-faixa"></span>
-              Temperatura e Umidade Ideal
-            </div>
-          </div>
-        </div>  
+  <div class="dashboard-kpis">
+    <div class="indicador-card indicador-sensores">
+      <span class="rotulo-kpi">Sensores da Câmara</span>
 
-        <div class="dashboard-graficos">
-          <div class="grafico-detalhado">
-            <canvas id="grafico-temp"></canvas>
+      <div class="grid-sensores-kpi">
+        <div class="sensor-box">
+          <div class="sensor-topo">
+            <span class="sensor-nome">Sensor A</span>
+            <span class="bolinha-status status-ideal"></span>
           </div>
-          <div class="grafico-detalhado">
-            <canvas id="grafico-umidade"></canvas>
-          </div>
+          <p>T: 19°C</p>
+          <p>U: 80%</p>
         </div>
-      </section>
+
+        <div class="sensor-box">
+          <div class="sensor-topo">
+            <span class="sensor-nome">Sensor B</span>
+            <span class="bolinha-status status-alerta"></span>
+          </div>
+          <p>T: 25°C</p>
+          <p>U: 92%</p>
+        </div>
+
+        <div class="sensor-box">
+          <div class="sensor-topo">
+            <span class="sensor-nome">Sensor C</span>
+            <span class="bolinha-status status-critico"></span>
+          </div>
+          <p>T: 28°C</p>
+          <p>U: 65%</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="indicador-card">
+      <span class="rotulo-kpi">Alertas Hoje</span>
+      <span class="valor-kpi texto-critico" id="kpi-alertas">--</span>
+    </div>
+
+    <div class="indicador-card">
+      <span class="rotulo-kpi">Faixa ideal</span>
+      <div class="box-faixa-ideal">
+        <span class="cor-faixa"></span>
+        Temperatura e Umidade Ideal
+      </div>
+    </div>
+  </div>
+
+  <div class="dashboard-graficos">
+    <div class="grafico-detalhado">
+      <canvas id="grafico-temp"></canvas>
+    </div>
+    <div class="grafico-detalhado">
+      <canvas id="grafico-umidade"></canvas>
+    </div>
+  </div>
+</section>
     </main>
   </div>
   <script src="../js/dash.js"></script> 
