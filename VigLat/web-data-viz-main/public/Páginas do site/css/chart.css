@@ -14,7 +14,6 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Segoe UI', sans-serif;
-    overflow-y: hidden;
 }
 
 header {
@@ -83,6 +82,8 @@ nav {
     display: flex;
     justify-content: center;
     gap: 15px;
+    overflow-y: visible;
+    padding: 10px 0;
 }
 
 .aba-unidade {
@@ -93,6 +94,7 @@ nav {
     cursor: pointer;
     font-weight: bold;
     color: var(--marrom-primario);
+    transition: transform 0.2s ease;
 }
 
 .cir-critico {
@@ -123,8 +125,8 @@ nav {
 
 
 .aba-unidade:focus {
-    transform: scale(1.2);
-
+    transform: scale(1.08);
+    z-index: 10;
 }
 
 .cabecalho-secao {
