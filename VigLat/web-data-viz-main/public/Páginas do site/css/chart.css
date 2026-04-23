@@ -302,60 +302,17 @@ nav {
 /* #grafico-temp,#grafico-umidade {
     display: none;
 } */
- .indicador-sensores {
-    text-align: left;
-}
 
-.grid-sensores-kpi {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
-    margin-top: 12px;
-}
-
-.sensor-box {
-    background: #f8f8f8;
-    border: 1px solid #e7e7e7;
-    border-radius: 12px;
-    padding: 12px;
-}
-
-.sensor-topo {
+.seletor-unidades button {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    margin-bottom: 10px;
+    justify-content: space-around;
 }
 
-.sensor-nome {
-    font-size: 14px;
-    font-weight: bold;
-}
-
-.sensor-box p {
-    margin: 4px 0;
-    font-weight: 600;
-}
-
-/* BOLINHA */
-
-.bolinha-status {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
+.seletor-unidades span {
     display: inline-block;
-}
-
-/* CORES (já usando seu padrão) */
-
-.status-ideal {
-    background-color: var(--cor-sucesso);
-}
-
-.status-alerta {
-    background-color: var(--cor-atencao);
-}
-
-.status-critico {
-    background-color: var(--cor-perigo);
+    width: 1em;
+    height: 1em;
+    border-radius: 100%;
+    margin-left: 1em;
 }

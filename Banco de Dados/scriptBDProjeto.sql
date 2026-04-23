@@ -68,10 +68,52 @@ primary key (idSituacao,SensorId),
 constraint sensorFk foreign key (SensorId) references sensor(idSensor)
 );
 
-desc registro;
+-- 1. Empresas produtoras de queijo artesanal
+INSERT INTO empresa (nome, cnpj) VALUES
+('Queijos Artesanais Minas Gerais LTDA', '12345678000190'),
+('Fazenda Atalaia Paulista ME', '98765432000110'),
+('Serra da Canastra Queijos EIRELI', '45678912000155');
 
-insert into sensor values
-(default,'Sensor de Temperatura e Umidade','DHT11','acima da escada',null);
+-- 2. Endereços das fazendas
+INSERT INTO endereco (cep, complemento, numLogradouro) VALUES
+('37945000', 'Zona Rural - Bairro São José', 'S/N'),
+('13430000', 'Sítio Atalaia - Km 15', '125'),
+('37464000', 'Fazenda Boa Vista - Estrada Real', '42');
+
+-- 3. Usuários administradores/fazendeiros vinculados às empresas
+INSERT INTO usuario (nome, email, senha, empresa_id) VALUES
+('Carlos Henrique Oliveira', 'carlos.henrique@minasqueijos.com', 'Minas@2024', 1),
+('Ana Paula Ferreira', 'ana.ferreira@fazendaatalaia.com', 'Atalaia#2024', 2),
+('Roberto Silva Canastra', 'roberto.canastra@serraqueijos.com', 'Canastra!99', 3);
+
+-- 4. Fazendas vinculadas às empresas e endereços
+INSERT INTO fazenda (nome, empresaId, enderecoId) VALUES
+('Fazenda São José da Serra', 1, 1),
+('Fazenda Atalaia Paulista', 2, 2);
+
+-- 5. Câmaras de maturação nas fazendas
+INSERT INTO camara (nomeCamara, capacidade, fazendaId) VALUES
+('Câmara de Maturação 01', 500.0, 1),
+('Câmara de Maturação 02', 750.0, 1),
+('Câmara Principal - Atalaia', 1200.0, 2);
+
+-- 6. Sensores DHT11 instalados nas câmaras
+INSERT INTO sensor (nome, tipo, localizacao, camaraId) VALUES
+('Sensor DHT11 - Entrada Câmara 01', 'DHT11', 'próximo à porta de entrada', 1),
+('Sensor DHT11 - Centro Câmara 01', 'DHT11', 'centro da câmara - nível médio', 1),
+('Sensor DHT11 - Fundos Câmara 02', 'DHT11', 'fundo da câmara - parede leste', 2),
+('Sensor DHT11 - Atalaia Principal', 'DHT11', 'teto central da câmara', 3),
+('Sensor DHT11 - Atalaia Reserva', 'DHT11', 'lateral direita próximo ao duto', 3);
+
+-- 7. Situações dos sensores
+INSERT INTO situacao (idSituacao, SensorId, situacaoSensor, descricao) VALUES
+(1, 1, 'Captando registro', 'Sensor operando normalmente desde a instalação'),
+(1, 2, 'Captando registro', 'Sensor operando normalmente - calibrado mensalmente'),
+(1, 3, 'Não captando registro', 'Sensor com falha de conexão - necessita manutenção'),
+(1, 4, 'Captando registro', 'Sensor novo instalado na semana passada'),
+(1, 5, 'Captando registro', 'Sensor operando com leituras estáveis');
+
+desc registro;
 
 select * from registro;
 
