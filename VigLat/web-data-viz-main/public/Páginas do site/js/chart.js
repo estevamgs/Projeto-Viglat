@@ -21,7 +21,7 @@ new Chart(alertas, {
     plugins: {
       title: {
         display: true,
-        text: "Quantidade de Alertas (últimos 7 dias)",
+        text: "Quantidade de Alertas (últimas 24 horas)",
       },
     },
     scales: {
@@ -67,7 +67,7 @@ new Chart(alertaSemana, {
     plugins: {
       title: {
         display: true,
-        text: "Quantidade de Alertas",
+        text: "Quantidade de Alertas (últimos 7 dias)",
       },
     },
     scales: {
