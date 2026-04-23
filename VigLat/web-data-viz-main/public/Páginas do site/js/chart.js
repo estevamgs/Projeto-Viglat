@@ -21,7 +21,7 @@ new Chart(alertas, {
     plugins: {
       title: {
         display: true,
-        text: "Quantidade de Alertas das ultimas 24 Horas",
+        text: "Quantidade de Alertas (últimas 24 horas)",
       },
     },
     scales: {
@@ -55,7 +55,7 @@ new Chart(alertaSemana, {
     ],
     datasets: [
       {
-        label: "Alertas",
+        label: "Total de Alertas Semanais",
         data: [1, 1, 0, 3, 4, 1, 1],
         borderColor: "#7a5208",
         backgroundColor: "#7a5208",
@@ -67,7 +67,7 @@ new Chart(alertaSemana, {
     plugins: {
       title: {
         display: true,
-        text: "Quantidade de Alertas dos ultimos 7 dias",
+        text: "Quantidade de Alertas (últimos 7 dias)",
       },
     },
     scales: {
