@@ -10,7 +10,7 @@ new Chart(alertas, {
     datasets: [
       {
         label: "Alertas",
-        data: [0, 1, 0, 4],
+        data: [0, 1, 0, 12],
         borderColor: "#7a5208",
         backgroundColor: "#7a5208",
       },

@@ -164,7 +164,7 @@
         // Quantos kg de queijo produziu (kg)
         let total_queijo = litrosLeiteProduzido / qtdUsadaParaFazerUmKg;
 
-        let produzidoTotalQueijo = total_queijo * 30 * precoQueijoKg;
+        let precoTotalQueijo = total_queijo * 30 * precoQueijoKg;
 
         let gastoSemNossoSistema = custoLeiteLitro * litrosLeiteProduzido;
 
@@ -178,15 +178,15 @@
         let diferencaAno =
           gastoSemNossoSistema * 360 - gastoComNossoSistema * 360;
 
-        let valorBruto = produzidoTotalQueijo;
-        let gastosTotaisMes = (gastoComNossoSistema + gastoExtra) * 30;
+        let valorBruto = precoTotalQueijo;
+        let gastosTotaisMes = gastoComNossoSistema * 30 + gastoExtra;
 
         let valorLiquido = valorBruto - gastosTotaisMes;
 
         // Gastos totais (R$)
 
-        let totalSemSistema = (gastoSemNossoSistema + gastoExtra) * 360;
-        let totalComSistema = (gastoComNossoSistema + gastoExtra) * 360;
+        let totalSemSistema = gastoSemNossoSistema * 360 + gastoExtra * 12;
+        let totalComSistema = gastoComNossoSistema * 360 + gastoExtra * 12;
         let economiaTotal = totalSemSistema - totalComSistema;
 
         if (
