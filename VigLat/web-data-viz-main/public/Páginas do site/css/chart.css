@@ -167,7 +167,8 @@ nav {
 }
 
 .dashboard-kpis {
-    display: flex;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
     gap: 15px;
     margin-bottom: 15px;
 }
@@ -183,6 +184,13 @@ nav {
     border: 1px solid #eee;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
+.kpi-centralizado {
+    justify-content: center;
+    align-items: center;
+}
+.indicador-card .rotulo-kpi {
+    font-size: 15px;
+}
 
 .rotulo-kpi {
     font-size: 13px;
@@ -191,7 +199,7 @@ nav {
 }
 
 .valor-kpi {
-    font-size: 22px;
+font-size: 28px;
     font-weight: bold;
 }
 
@@ -206,6 +214,8 @@ nav {
     font-size: 13px;
     font-weight: 600;
     color: #1f3a5f;
+     padding: 10px 14px;   
+    font-size: 15px; 
 }
 
 .cor-faixa {
@@ -337,16 +347,16 @@ nav {
     font-weight: 600;
 }
 
-/* BOLINHA */
+
 
 .bolinha-status {
-    width: 12px;
-    height: 12px;
+    width: 20px;
+    height: 20px;
     border-radius: 50%;
     display: inline-block;
 }
 
-/* CORES (já usando seu padrão) */
+
 
 .status-ideal {
     background-color: var(--cor-sucesso);
@@ -358,4 +368,14 @@ nav {
 
 .status-critico {
     background-color: var(--cor-perigo);
+}
+.aba-unidade {
+    position: relative;
+}
+.bolinha-fazenda {
+    position: absolute;
+    top: 12px;
+    right: 6px;
+    width: 12px;
+    height: 12px;
 }

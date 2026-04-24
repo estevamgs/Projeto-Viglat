@@ -138,8 +138,8 @@ new Chart(graficoTemp, {
       {
         label: "Sensor B",
         data: dadosSensorB.temperatura,
-        borderColor: "orange",
-        backgroundColor: "orange",
+        borderColor: "#ec4899",
+        backgroundColor: "#ec4899",
       },
       {
         label: "Sensor C",
@@ -201,8 +201,8 @@ new Chart(graficoUmidade, {
       {
         label: "Sensor B",
         data: dadosSensorB.umidade,
-        borderColor: "orange",
-        backgroundColor: "orange",
+        borderColor: "#ec4899",
+        backgroundColor: "#ec4899",
       },
       {
         label: "Sensor C",

@@ -32,11 +32,14 @@
     <main class="painel-principal">
       <div class="seletor-unidades">
         <button class="aba-unidade ativa" onclick="trocarFazenda('1', this)">
-          Fazenda 1
-        </button>
-        <button class="aba-unidade" onclick="trocarFazenda('2', this)">
-          Fazenda 2
-        </button>
+  Fazenda 1
+  <span class="bolinha-status status-critico bolinha-fazenda"></span>
+</button>
+
+<button class="aba-unidade" onclick="trocarFazenda('2', this)">
+  Fazenda 2
+  <span class="bolinha-status status-ideal bolinha-fazenda"></span>
+</button>
       </div>
 
       <section id="view-fazenda" class="tela-monitoramento">
@@ -112,52 +115,52 @@
   </header>
 
   <div class="dashboard-kpis">
-    <div class="indicador-card indicador-sensores">
-      <span class="rotulo-kpi">Sensores da Câmara</span>
+  <div class="indicador-card indicador-sensores">
+    <span class="rotulo-kpi">Sensores da Câmara</span>
 
-      <div class="grid-sensores-kpi">
-        <div class="sensor-box">
-          <div class="sensor-topo">
-            <span class="sensor-nome">Sensor A</span>
-            <span class="bolinha-status status-ideal"></span>
-          </div>
-          <p>T: 19°C</p>
-          <p>U: 80%</p>
+    <div class="grid-sensores-kpi">
+      <div class="sensor-box">
+        <div class="sensor-topo">
+          <span class="sensor-nome">Sensor A</span>
+          <span class="bolinha-status status-ideal"></span>
         </div>
-
-        <div class="sensor-box">
-          <div class="sensor-topo">
-            <span class="sensor-nome">Sensor B</span>
-            <span class="bolinha-status status-alerta"></span>
-          </div>
-          <p>T: 25°C</p>
-          <p>U: 92%</p>
-        </div>
-
-        <div class="sensor-box">
-          <div class="sensor-topo">
-            <span class="sensor-nome">Sensor C</span>
-            <span class="bolinha-status status-critico"></span>
-          </div>
-          <p>T: 28°C</p>
-          <p>U: 65%</p>
-        </div>
+        <p>T: 19°C</p>
+        <p>U: 80%</p>
       </div>
-    </div>
 
-    <div class="indicador-card">
-      <span class="rotulo-kpi">Alertas Hoje</span>
-      <span class="valor-kpi texto-critico" id="kpi-alertas">--</span>
-    </div>
+      <div class="sensor-box">
+        <div class="sensor-topo">
+          <span class="sensor-nome">Sensor B</span>
+          <span class="bolinha-status status-alerta"></span>
+        </div>
+        <p>T: 25°C</p>
+        <p>U: 92%</p>
+      </div>
 
-    <div class="indicador-card">
-      <span class="rotulo-kpi">Faixa ideal</span>
-      <div class="box-faixa-ideal">
-        <span class="cor-faixa"></span>
-        Temperatura e Umidade Ideal
+      <div class="sensor-box">
+        <div class="sensor-topo">
+          <span class="sensor-nome">Sensor C</span>
+          <span class="bolinha-status status-critico"></span>
+        </div>
+        <p>T: 28°C</p>
+        <p>U: 65%</p>
       </div>
     </div>
   </div>
+
+  <div class="indicador-card kpi-centralizado">
+    <span class="rotulo-kpi">Alertas Hoje</span>
+    <span class="valor-kpi texto-critico" id="kpi-alertas">08</span>
+  </div>
+
+  <div class="indicador-card kpi-centralizado kpi-faixa">
+    <span class="rotulo-kpi">Faixa ideal</span>
+    <div class="box-faixa-ideal">
+      <span class="cor-faixa"></span>
+      Temperatura e Umidade Ideal
+    </div>
+  </div>
+</div>
 
   <div class="dashboard-graficos">
     <div class="grafico-detalhado">
