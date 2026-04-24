@@ -75,7 +75,7 @@ nav {
     padding: 20px;
     display: flex;
     flex-direction: column;
-    background-color: #f9f9f9;
+    background-color: #f9f9f9 !important;
 }
 
 .seletor-unidades {
@@ -94,7 +94,8 @@ nav {
     cursor: pointer;
     font-weight: bold;
     color: var(--marrom-primario);
-    transition: transform 0.2s ease;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
 }
 
 .cir-critico {
@@ -115,18 +116,19 @@ nav {
 
 .aba-unidade:nth-child(1) {
     border-color: var(--cor-perigo);
-
+    box-shadow: 0 8px 32px 0 rgba(255, 0, 0, 0.37);
 }
 
 .aba-unidade:nth-child(2) {
     border-color: var(--cor-sucesso);
-
+    box-shadow: 0 8px 32px 0 rgba(119, 255, 0, 0.37);
 }
 
 
 .aba-unidade:focus {
-    transform: scale(1.08);
+    transform: scale(1.10);
     z-index: 10;
+    box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.5);
 }
 
 .cabecalho-secao {
@@ -378,4 +380,34 @@ font-size: 28px;
     right: 6px;
     width: 12px;
     height: 12px;
+}
+.legenda-flex {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    background: white;
+    padding: 5px 15px;
+    border-radius: 50px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.status-grupo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.status-label {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--marrom-primario);
+}
+.bolinha-status {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.cabecalho-secao {
+    background-color: transparent;
 }
