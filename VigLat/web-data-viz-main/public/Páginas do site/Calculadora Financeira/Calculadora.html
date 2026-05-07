@@ -157,14 +157,18 @@
         let valorTotalKG = KGmaturacao * valorMedio;
         let valorComPerda = valorTotalKG * taxaPerda / 100
 
+        /* Perda com o nosso sistema */
+        let;
+
+
+
         /* Quantidade de Água economizada */
         let aguaEconomizada = valorTotalKG * 2.5
 
         if (
-          litrosLeiteProduzido == "" ||
-          qtdUsadaParaFazerUmKg == "" ||
-          custoLeiteLitro == "" ||
-          precoQueijoKg == ""
+          KGmaturacao == "" ||
+          valorMedio == "" ||
+          taxaPerda == "" 
         ) {
           boxAlerta.style.opacity = 1;
           setTimeout(() => {
