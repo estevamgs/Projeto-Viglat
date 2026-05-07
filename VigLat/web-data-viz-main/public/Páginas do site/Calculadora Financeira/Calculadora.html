@@ -57,7 +57,7 @@
               <div class="input-group">
                 <input
                   type="number"
-                  id="input_qtdLitrosParaQma"
+                  id="input_qtdKGmaturacao"
                   placeholder="Kilos de Queijo em Maturação"
                 />
               </div>
@@ -67,7 +67,7 @@
               <div class="input-group">
                 <input
                   type="number"
-                  id="input_litroLeite\"
+                  id="input_valorMedioKG"
                   placeholder="Valor Médio de Venda do KG"
                 />
               </div>
@@ -77,30 +77,23 @@
               <div class="input-group">
                 <input
                   type="number"
-                  id="input_custoLeiteLitro"
+                  id="input_taxaPerda"
                   placeholder="Taxa de Perda Atual %"
                 />
               </div>
-<!--             </div>
+            </div>
             <div class="caixa-menor">
-              <p>Preço do kg do QMA</p>
-              <div class="input-group">
-                <input
-                  type="number"
-                  id="input_precoQueijo"
-                  placeholder="Preço por kg (R$)"
-                />
-              </div>
-            </div> -->
-            <div id="caixa-maior-extras" class="caixa-menor">
               <p>Gastos extras a mais do mês (R$)</p>
               <div class="input-group">
                 <input
-                  required
                   type="number"
                   id="input_gastosExtra"
                   placeholder="Gastos extras (opcional)"
                 />
+              </div>
+            </div>
+            <div id="caixa-maior-extras" class="caixa-menor">
+              
               </div>
             </div>
             <div class="cad-botao-resposta">
@@ -155,39 +148,17 @@
 
     <script>
       function simular() {
-        let qtdUsadaParaFazerUmKg = Number(input_qtdLitrosParaQma.value);
-        let litrosLeiteProduzido = Number(input_litroLeite.value);
-        let custoLeiteLitro = Number(input_custoLeiteLitro.value);
-        let precoQueijoKg = Number(input_precoQueijo.value);
+
+        let KGmaturacao = Number(input_qtdKgmaturacao);
+        let valorMedio = Number(input_valorMedioKG.value)
+        let taxaPerda = Number(input_taxaPerda.value)
         let gastoExtra = Number(input_gastosExtra.value);
+        
+        let valorTotalKG = KGmaturacao * valorMedio;
+        let valorComPerda = valorTotalKG * taxaPerda / 100
 
-        // Quantos kg de queijo produziu (kg)
-        let total_queijo = litrosLeiteProduzido / qtdUsadaParaFazerUmKg;
-
-        let precoTotalQueijo = total_queijo * 30 * precoQueijoKg;
-
-        let gastoSemNossoSistema = custoLeiteLitro * litrosLeiteProduzido;
-
-        let gastoComNossoSistema = gastoSemNossoSistema * 0.9;
-        // Lucro liquido, vendendo todos queijos com gastos (R$)
-
-        let diferenca = gastoSemNossoSistema - gastoComNossoSistema;
-
-        let diferencaMes =
-          gastoSemNossoSistema * 30 - gastoComNossoSistema * 30;
-        let diferencaAno =
-          gastoSemNossoSistema * 360 - gastoComNossoSistema * 360;
-
-        let valorBruto = precoTotalQueijo;
-        let gastosTotaisMes = gastoComNossoSistema * 30 + gastoExtra;
-
-        let valorLiquido = valorBruto - gastosTotaisMes;
-
-        // Gastos totais (R$)
-
-        let totalSemSistema = gastoSemNossoSistema * 360 + gastoExtra * 12;
-        let totalComSistema = gastoComNossoSistema * 360 + gastoExtra * 12;
-        let economiaTotal = totalSemSistema - totalComSistema;
+        /* Quantidade de Água economizada */
+        let aguaEconomizada = valorTotalKG * 2.5
 
         if (
           litrosLeiteProduzido == "" ||
