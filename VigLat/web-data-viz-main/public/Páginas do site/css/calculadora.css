@@ -32,12 +32,12 @@ body {
 }
 
 .input-group input {
-    border-radius: 1em;
+    border-radius: 1.2em;
     padding: 1.0em;
     border: 0;
     outline: 0;
     background-color: #f0f0f0d2;
-    width: 15em;
+    width: 25em;
 }
 
 .input-group input:focus {
@@ -109,7 +109,7 @@ body {
 
 .box-menor-resumo {
     width: 18em;
-    height: 7em;
+    height: 8em;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -156,8 +156,8 @@ body {
     display: flex;
     flex-direction: column;
     height: auto;
-    width: 25em;
-    height: 12em;
+    width: 35em;
+    height: 26.5em;
     background-color: #f0f0f0d2;
     padding: 1em;
     border-radius: 1em;
