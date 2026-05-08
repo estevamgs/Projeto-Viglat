@@ -95,7 +95,6 @@
             <div id="caixa-maior-extras" class="caixa-menor">
               
               </div>
-            </div>
             <div class="cad-botao-resposta">
               <button onclick="simular()">
                 <i class="bi bi-calculator"></i><span>Simular economia</span>
@@ -146,63 +145,45 @@
       </div>
     </div>
 
-    <script>
+ <script>
       function simular() {
+        let kgMaturacao = Number(input_qtdKGmaturacao.value);
+        let valorMedio = Number(input_valorMedioKG.value);
+        let taxaPerda = Number(input_taxaPerda.value);
+        let gastoExtra = Number(input_gastosExtra.value) || 0;
 
-    let kgMaturacao = Number(input_qtdKGmaturacao.value);
-    let valorMedio = Number(input_valorMedioKG.value);
-    let taxaPerda = Number(input_taxaPerda.value);
-    let gastoExtra = Number(input_gastosExtra.value) || 0;
-
-    let faturamentoPotencial = kgMaturacao * valorMedio;
-    
-    let perdaSemSistema = faturamentoPotencial * (taxaPerda / 100);
-
-    /* VALOR A DEFINIR NA DAILY */
-    let perdaComSistema = perdaSemSistema * 0.10; 
-    
-    let economiaMensal = perdaSemSistema - perdaComSistema;
-    let economiaAnual = economiaMensal * 12;
-
-    let diferenca = perdaComSistema - perdaSemSistema
-
-
-    let valorBruto = faturamentoPotencial - perdaComSistema;
-    let valorLiquido = valorBruto - gastoExtra;
-
-        if (
-          kgMaturacao == "" ||
-          valorMedio == "" ||
-          taxaPerda == "" 
-        ) {
+        if (input_qtdKGmaturacao.value == "" || input_valorMedioKG.value == "" || input_taxaPerda.value == "") {
           boxAlerta.style.opacity = 1;
-          setTimeout(() => {
-            boxAlerta.style.opacity = 0;
-          }, 1500);
-        } else {
-          resp1.innerHTML = `${perdaSemSistema.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}`;
-          resp2.innerHTML = `${perdaComSistema.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}`;
-          resp3.innerHTML = `${diferenca.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}`;
-          resposta1.innerHTML = `${economiaMensal.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}`;
-          resposta2.innerHTML = `${economiaAnual.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}`;
-          resposta3.innerHTML = `${totalSemSistema.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}`;
-          resposta4.innerHTML = `${totalComSistema.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}`;
-          resposta5.innerHTML = `${valorBruto.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}`;
-          resposta6.innerHTML = `${gastosTotaisMes.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}`;
-          resposta7.innerHTML = `${valorLiquido.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}`;
-          document.getElementById("resumo-contas").style.display = "flex";
-          if (diferenca >= 0) {
-            resp3.style.color = "green";
-          } else {
-            resp3.style.color = "red";
-          }
-
-          if (valorLiquido >= 0) {
-            resposta7.style.color = "green";
-          } else {
-            resposta7.style.color = "red";
-          }
+          setTimeout(() => { boxAlerta.style.opacity = 0; }, 1500);
+          return;
         }
+
+        let faturamentoTotal = kgMaturacao * valorMedio;
+        let perdaSemSistema = faturamentoTotal * (taxaPerda / 100);
+
+        /* DEFINIR NA DAILY */
+        let perdaComSistema = perdaSemSistema * 0.8;
+        
+        let economiaMensal = perdaSemSistema - perdaComSistema;
+        let economiaAnual = economiaMensal * 12;
+
+        let valorBruto = faturamentoTotal - perdaComSistema;
+        let valorLiquido = valorBruto - gastoExtra;
+        
+
+        /* perde no max 5% com o IOTx */
+
+
+        resposta1.innerHTML = economiaMensal.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+        resposta2.innerHTML = economiaAnual.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+        resposta3.innerHTML = (perdaSemSistema * 12).toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+        resposta4.innerHTML = (perdaComSistema * 12).toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+        resposta5.innerHTML = valorBruto.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+        resposta6.innerHTML = gastoExtra.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+        resposta7.innerHTML = valorLiquido.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+
+        document.getElementById("resumo-contas").style.display = "flex";
+        resposta7.style.color = valorLiquido >= 0 ? "green" : "red";
       }
     </script>
   </body>

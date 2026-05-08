@@ -14,12 +14,15 @@ body {
     background-color: #f2f1f0;
 }
 
-div.container2 {
-    height: 70dvh;
+.container2 {
+    min-height: 80dvh;
     width: 100%;
     display: flex;
-    justify-content: space-around;
-    align-items: center;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 20px;
+    flex-wrap: wrap;
+    padding: 20px;
 }
 
 .input-group {
@@ -30,11 +33,11 @@ div.container2 {
 
 .input-group input {
     border-radius: 1em;
-    padding: 1.2em;
+    padding: 1.0em;
     border: 0;
     outline: 0;
     background-color: #f0f0f0d2;
-    width: 25em;
+    width: 15em;
 }
 
 .input-group input:focus {
@@ -65,6 +68,35 @@ div.container2 {
     flex-direction: column;
     max-width: 45em;
 
+}
+
+.resumo {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 40%;
+}
+
+#resumo-contas {
+    display: none;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+    width: 70em;
+    padding: 20px;
+}
+
+#resumo-contas.content {
+    display: none; 
+    flex-direction: row; 
+    flex: 1; 
+    max-width: 100%;
+    width: 45em;
+    gap: 20px;
+    padding: 20px;
+    background-color: white;
+    align-items: stretch;
 }
 
 .content:nth-child(2) .resumo {
@@ -108,7 +140,7 @@ div.container2 {
     align-items: center;
     justify-content: space-around;
     width: 45em;
-    height: 40em;
+    height: 45em;
     background-color: white;
     padding: 1em;
     border-radius: .5em;
@@ -120,8 +152,11 @@ div.container2 {
 }
 
 #div_mensagem {
+    flex: 1;
     display: flex;
-    width: 35em;
+    flex-direction: column;
+    height: auto;
+    width: 25em;
     height: 12em;
     background-color: #f0f0f0d2;
     padding: 1em;
