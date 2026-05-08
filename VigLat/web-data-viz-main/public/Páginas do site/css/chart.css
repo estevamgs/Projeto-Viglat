@@ -87,7 +87,7 @@ nav {
 }
 
 .aba-unidade {
-    padding: 10px 24px;
+    padding: 16px 32px;
     border-radius: 8px;
     border: 2px solid #ddd;
     background: white;
@@ -96,6 +96,7 @@ nav {
     color: var(--marrom-primario);
     backdrop-filter: blur(10px);
     transition: all 0.3s ease;
+    font-size: 16px;
 }
 
 .cir-critico {
@@ -110,7 +111,7 @@ nav {
 .ponto-status {
     font-size: 40px;
     position: fixed;
-    margin-top: -21px;
+    margin-top: -24px;
     margin-left: 3px;
 }
 
@@ -168,6 +169,10 @@ nav {
     border-color: var(--cor-perigo);
 }
 
+.card-dispositivo p {
+    font-size: 20px;
+}
+
 .dashboard-kpis {
     display: grid;
     grid-template-columns: 2fr 1fr 1fr;
@@ -201,7 +206,7 @@ nav {
 }
 
 .valor-kpi {
-font-size: 28px;
+    font-size: 50px;
     font-weight: bold;
 }
 
@@ -216,8 +221,8 @@ font-size: 28px;
     font-size: 13px;
     font-weight: 600;
     color: #1f3a5f;
-     padding: 10px 14px;   
-    font-size: 15px; 
+    padding: 10px 14px;   
+    font-size: 18px; 
 }
 
 .cor-faixa {
@@ -255,9 +260,11 @@ font-size: 28px;
 }
 
 .btn-retorno {
-    background: #eee;
+    position: static;
+    background: var(--marrom-destaque);
+    color: #eee;
     border: none;
-    padding: 5px 15px;
+    padding: 10px 26px;
     border-radius: 5px;
     cursor: pointer;
     margin-right: 15px;
@@ -406,6 +413,7 @@ font-size: 28px;
     height: 12px;
     border-radius: 50%;
     flex-shrink: 0;
+    margin-top: 7px;
 }
 
 .cabecalho-secao {
