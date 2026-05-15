@@ -15,7 +15,7 @@ body {
 }
 
 .container2 {
-    min-height: 80dvh;
+    height: 70dvh;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -33,7 +33,7 @@ body {
 
 .input-group input {
     border-radius: 1.2em;
-    padding: 1.0em;
+    padding: 20px;
     border: 0;
     outline: 0;
     background-color: #f0f0f0d2;
@@ -48,7 +48,7 @@ body {
 
 .content {
     height: 100%;
-    border-radius: .5em;
+    border-radius: 0.8em;
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -138,12 +138,12 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-evenly;
     width: 45em;
-    height: 45em;
+    height: 100%;
     background-color: white;
     padding: 1em;
-    border-radius: .5em;
+    border-radius: 1.5em;
 }
 
 #caixa-maior-extras {
@@ -174,25 +174,25 @@ body {
     align-items: center;
     flex-wrap: wrap;
     justify-content: space-around;
-    height: 30em;
+    height: 20em;
 }
 
 .caixa-menor {
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 6em;
+    height: 20%;
     justify-content: space-between;
-    width: 21em;
 
 }
 
 .caixa-menor p {
-    font-size: 1.2em;
+    font-size: 1.1em;
 }
 
 .contas h2 {
     color: #c8860a;
+    font-size: 1.75em;
 }
 
 .cad-botao-resposta {
