@@ -187,7 +187,7 @@ new Chart(graficoTemp, {
         backgroundColor: "#eab20859",
       },
       {
-        label: "Faixa Alerta",
+        label: "tempMinAlerta",
         data: tempMaxAlerta.temperatura,
         borderColor: "#eab20859",
         backgroundColor: "#eab20859",
@@ -200,7 +200,7 @@ new Chart(graficoTemp, {
         backgroundColor: "#ef44446b",
       },
       {
-        label: "Faixa Crítica",
+        label: "tempMinCrítica",
         data: tempMaxCritico.temperatura,
         borderColor: "#ef44446b",
         backgroundColor: "#ef44446b",
@@ -225,7 +225,14 @@ new Chart(graficoTemp, {
       legend: {
         labels: {
           filter: function (item, chart) {
-            return item.text !== "Faixa Ideal" && item.text !== "tempMinIdeal";
+            return (
+              item.text !== "Faixa Ideal" &&
+              item.text !== "tempMinIdeal" &&
+              item.text !== "Faixa Alerta" &&
+              item.text !== "tempMinAlerta" &&
+              item.text !== "Faixa Crítica" &&
+              item.text !== "tempMinCrítica"
+            );
           },
         },
       },
@@ -269,6 +276,32 @@ new Chart(graficoUmidade, {
         backgroundColor: "#459aea4a",
         fill: "-1",
       },
+      {
+        label: "FaixaMinAlerta",
+        data: tempMinAlerta.umidade,
+        borderColor: "#eab20859",
+        backgroundColor: "#eab20859",
+      },
+      {
+        label: "FaixaMaxAlerta",
+        data: tempMaxAlerta.umidade,
+        borderColor: "#eab20859",
+        backgroundColor: "#eab20859",
+        fill: "-1",
+      },
+      {
+        label: "FaixaMinCrítica",
+        data: tempMinCritico.umidade,
+        borderColor: "#ef44446b",
+        backgroundColor: "#ef44446b",
+      },
+      {
+        label: "FaixaMaxCrítica",
+        data: tempMaxCritico.umidade,
+        borderColor: "#ef44446b",
+        backgroundColor: "#ef44446b",
+        fill: "-1",
+      },
     ],
   },
   options: {
@@ -299,7 +332,12 @@ new Chart(graficoUmidade, {
         labels: {
           filter: function (item, chart) {
             return (
-              item.text !== "FaixaMaxIdeal" && item.text !== "FaixaMinIdeal"
+              item.text !== "FaixaMaxIdeal" &&
+              item.text !== "FaixaMinIdeal" &&
+              item.text !== "FaixaMaxAlerta" &&
+              item.text !== "FaixaMinAlerta" &&
+              item.text !== "FaixaMaxCrítica" &&
+              item.text !== "FaixaMinCrítica"
             );
           },
         },
