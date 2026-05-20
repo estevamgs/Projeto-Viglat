@@ -133,6 +133,16 @@ const tempMinIdeal = {
   temperatura: [18, 18, 18, 18, 18, 18, 18, 18],
   umidade: [80, 80, 80, 80, 80, 80, 80, 80],
 };
+const tempMinCritico = {
+  horas: dadosSensorA.horas,
+  temperatura: [26.1, 26.1, 26.1, 26.1, 26.1, 26.1, 26.1, 26.1],
+  umidade: [95.1, 95.1, 95.1, 95.1, 95.1, 95.1, 95.1, 95.1],
+};
+const tempMaxCritico = {
+  horas: dadosSensorA.horas,
+  temperatura: [32, 32, 32, 32, 32, 32, 32, 32],
+  umidade: [100, 100, 100, 100, 100, 100, 100, 100],
+};
 
 new Chart(graficoTemp, {
   type: "line",
@@ -181,6 +191,19 @@ new Chart(graficoTemp, {
         data: tempMaxAlerta.temperatura,
         borderColor: "#eab20859",
         backgroundColor: "#eab20859",
+        fill: "-1",
+      },
+      {
+        label: "Faixa Crítica",
+        data: tempMinCritico.temperatura,
+        borderColor: "#ef44446b",
+        backgroundColor: "#ef44446b",
+      },
+      {
+        label: "Faixa Crítica",
+        data: tempMaxCritico.temperatura,
+        borderColor: "#ef44446b",
+        backgroundColor: "#ef44446b",
         fill: "-1",
       },
     ],
