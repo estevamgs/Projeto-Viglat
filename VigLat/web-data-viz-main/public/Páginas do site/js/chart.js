@@ -113,10 +113,20 @@ const dadosSensorC = {
   temperatura: [18, 22, 20, 21, 18, 22, 20, 21],
   umidade: [90, 87, 90, 80, 80, 87, 90, 80],
 };
+const tempMinAlerta = {
+  horas: dadosSensorA.horas,
+  temperatura: [22.1, 22.1, 22.1, 22.1, 22.1, 22.1, 22.1, 22.1],
+  umidade: [90.1, 90.1, 90.1, 90.1, 90.1, 90.1, 90.1, 90.1],
+};
+const tempMaxAlerta = {
+  horas: dadosSensorA.horas,
+  temperatura: [26, 26, 26, 26, 26, 26, 26, 26],
+  umidade: [95, 95, 95, 95, 95, 95, 95, 95],
+};
 const tempMaxIdeal = {
   horas: dadosSensorA.horas,
   temperatura: [22, 22, 22, 22, 22, 22, 22, 22],
-  umidade: [95, 95, 95, 95, 95, 95, 95, 95],
+  umidade: [90, 90, 90, 90, 90, 90, 90, 90],
 };
 const tempMinIdeal = {
   horas: dadosSensorA.horas,
@@ -158,6 +168,19 @@ new Chart(graficoTemp, {
         data: tempMinIdeal.temperatura,
         borderColor: "#459aea4a",
         backgroundColor: "#459aea4a",
+        fill: "-1",
+      },
+      {
+        label: "Faixa Alerta",
+        data: tempMinAlerta.temperatura,
+        borderColor: "#eab20859",
+        backgroundColor: "#eab20859",
+      },
+      {
+        label: "Faixa Alerta",
+        data: tempMaxAlerta.temperatura,
+        borderColor: "#eab20859",
+        backgroundColor: "#eab20859",
         fill: "-1",
       },
     ],
