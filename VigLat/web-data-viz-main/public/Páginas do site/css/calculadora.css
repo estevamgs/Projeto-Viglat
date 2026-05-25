@@ -202,7 +202,7 @@ body {
     background-color: #6B3A2E;
     color: white;
     font-weight: bold;
-    font-size: 1.2em;
+    font-size: 1.4em;
     cursor: pointer;
     transition: .3s;
 }
@@ -230,5 +230,5 @@ h6#resp1,
 h6#resp2,
 h6#resp3 {
     color: rgb(192, 192, 192);
-    font-size: 1.4em;
+    font-size: 1.5em;
 }
