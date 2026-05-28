@@ -14,6 +14,11 @@ body {
     background-color: #f2f1f0;
 }
 
+header nav {
+    margin-bottom: 0 !important;
+    height: 5em !important;
+}
+
 .container2 {
     height: 70dvh;
     width: 100%;
