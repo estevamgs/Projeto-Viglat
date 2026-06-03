@@ -197,11 +197,11 @@ nav {
     align-items: center;
 }
 .indicador-card .rotulo-kpi {
-    font-size: 15px;
+    font-size: 25px;
+    font-weight: bold;
 }
 
 .rotulo-kpi {
-    font-size: 13px;
     color: #666;
     display: block;
 }
@@ -215,15 +215,15 @@ nav {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background-color: #459aea4a;
-    border: 2px solid #459aea;
+    background-color: #45ea4d28;
+    border: 2px solid #45ea8a;
     padding: 6px 12px;
     border-radius: 20px;
-    font-size: 13px;
     font-weight: 600;
     color: #1f3a5f;
     padding: 10px 14px;   
-    font-size: 18px; 
+    font-size: 24px; 
+    width: 92%;
 }
 .box-faixa-ideal.alerta{
     background-color: #ffff0038;
@@ -236,8 +236,8 @@ nav {
 .cor-faixa {
     width: 12px;
     height: 12px;
-    background-color: #459aea4a;
-    border: 2px solid #459aea;
+    background-color: #45ea4d28;
+    border: 2px solid #45ea8a;
     border-radius: 3px;
 }
 .cor-faixa.alerta{
@@ -280,9 +280,10 @@ nav {
     color: #eee;
     border: none;
     padding: 10px 26px;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
     margin-right: 15px;
+    font-size: 15px;
 }
 
 .legenda-status {
@@ -352,6 +353,7 @@ nav {
     border: 1px solid #e7e7e7;
     border-radius: 12px;
     padding: 12px;
+    font-size: 22px;
 }
 
 .sensor-topo {
@@ -362,7 +364,7 @@ nav {
 }
 
 .sensor-nome {
-    font-size: 14px;
+    font-size: 25px;
     font-weight: bold;
 }
 
