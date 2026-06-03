@@ -1,24 +1,23 @@
-var dashModel = require("../models/dashModel");
+var dashModel = require("../models/Model");
 
-function formarDashboard(req, res) {
-  var fazendaId = req.params.;
-  var fkCapitulo = req.params.fk_capitulo;
+function buscarKPIS(req, res) {
 
-  aquarioModel
-    .buscarAquariosPorEmpresa(idUsuario)
-    .then((resultado) => {
-      if (resultado.length > 0) {
-        res.status(200).json(resultado);
-      } else {
-        res.status(204).json([]);
-      }
-    })
-    .catch(function (erro) {
-      console.log(erro);
-      console.log("Houve um erro ao buscar os aquarios: ", erro.sqlMessage);
-      res.status(500).json(erro.sqlMessage);
-    });
+  var fazendaId = req.params.fazendaId;
+    var idFazenda = req.params.idFazenda;
+
+  dashModel.buscarKPIS().then((resultado) => {
+    if (resultado.length > 0) {
+      res.status(200).json(resultado);
+    } else {
+      res.status(204).json([]);
+    }
+  }).catch(function (erro) {
+    console.log(erro);
+    console.log("Houve um erro ao buscar os aquarios: ", erro.sqlMessage);
+    res.status(500).json(erro.sqlMessage);
+  });
 }
+
 
 function cadastrar(req, res) {
   var descricao = req.body.descricao;
@@ -29,16 +28,17 @@ function cadastrar(req, res) {
   } else if (idUsuario == undefined) {
     res.status(400).send("idUsuario está undefined!");
   } else {
-    aquarioModel
-      .cadastrar(descricao, idUsuario)
+
+
+    aquarioModel.cadastrar(descricao, idUsuario)
       .then((resultado) => {
         res.status(201).json(resultado);
-      })
-      .catch((erro) => {
+      }
+      ).catch((erro) => {
         console.log(erro);
         console.log(
           "\nHouve um erro ao realizar o cadastro! Erro: ",
-          erro.sqlMessage,
+          erro.sqlMessage
         );
         res.status(500).json(erro.sqlMessage);
       });
@@ -47,5 +47,5 @@ function cadastrar(req, res) {
 
 module.exports = {
   buscarAquariosPorEmpresa,
-  cadastrar,
-};
+  cadastrar
+}

@@ -3,7 +3,7 @@ var router = express.Router();
 
 var dashController = require("../controllers/dashController");
 
-router.get("dash/:fazendaId/:idFazenda", function (req, res) {
+router.get("/dash/:fazendaId/:idFazenda", function (req, res) {
   dashController.formarDashboard(req, res);
 });
 

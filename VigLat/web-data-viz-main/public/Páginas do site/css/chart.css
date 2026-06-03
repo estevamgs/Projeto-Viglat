@@ -31,7 +31,9 @@ html {
 nav {
     height: 100px;
 }
-
+h3{
+    font-size: 28px;
+}
 .viglat-navbar {
     background: #fff;
     padding: 5px 4%;
@@ -170,7 +172,7 @@ nav {
 }
 
 .card-dispositivo p {
-    font-size: 20px;
+    font-size: 24px;
 }
 
 .dashboard-kpis {
@@ -283,7 +285,7 @@ nav {
     border-radius: 8px;
     cursor: pointer;
     margin-right: 15px;
-    font-size: 15px;
+    font-size: 18px;
 }
 
 .legenda-status {
@@ -298,7 +300,7 @@ nav {
     display: block;
     padding: 8px 20px;
     border-radius: 50px;
-    font-size: 13px;
+    font-size: 18px;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.5px;
@@ -397,6 +399,7 @@ nav {
 }
 .aba-unidade {
     position: relative;
+    font-size: 20px;
 }
 .bolinha-fazenda {
     position: absolute;
@@ -420,7 +423,7 @@ nav {
     gap: 8px;
 }
 .status-label {
-    font-size: 13px;
+    font-size: 18px;
     font-weight: 700;
     text-transform: uppercase;
     color: var(--marrom-primario);

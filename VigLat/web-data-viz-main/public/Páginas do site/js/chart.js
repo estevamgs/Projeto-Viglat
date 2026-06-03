@@ -22,6 +22,9 @@ new Chart(alertas, {
       title: {
         display: true,
         text: "Quantidade de Alertas (últimas 24 horas)",
+        font:{
+          size: 24
+        }
       },
     },
     scales: {
@@ -68,6 +71,9 @@ new Chart(alertaSemana, {
       title: {
         display: true,
         text: "Quantidade de Alertas (últimos 7 dias)",
+        font:{
+          size: 24
+        },
       },
     },
     scales: {
