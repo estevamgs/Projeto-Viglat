@@ -224,7 +224,14 @@ nav {
     padding: 10px 14px;   
     font-size: 18px; 
 }
-
+.box-faixa-ideal.alerta{
+    background-color: #ffff0038;
+    border: 2px solid #ffbd5a;
+}
+.box-faixa-ideal.critico{
+    background-color: #ff000059;
+    border: 2px solid #ff5a5a;
+}
 .cor-faixa {
     width: 12px;
     height: 12px;
@@ -232,7 +239,14 @@ nav {
     border: 2px solid #459aea;
     border-radius: 3px;
 }
-
+.cor-faixa.alerta{
+    background-color: #ffff0038;
+    border: 2px solid #ffbd5a;
+}
+.cor-faixa.critico{
+    background-color: #ff000025;
+    border: 2px solid #ff5a5a;
+}
 .container-grafico-geral {
     flex: 1;
     min-height: 0;
