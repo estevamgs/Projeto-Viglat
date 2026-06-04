@@ -82,3 +82,39 @@
     </div>
   </body>
 </html>
+
+<script>
+  function ent() {
+  var email = input_email.value;
+  var senha = input_senha.value;
+
+  fetch("/usuarios/autenticar", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      emailServer: email,
+      senhaServer: senha
+    })
+  })
+    .then(function (resposta) {
+      if (resposta.ok) {
+        resposta.json().then(function (usuario) {
+          sessionStorage.ID_USUARIO = usuario.idUsuario;
+          sessionStorage.NOME_USUARIO = usuario.nome;
+          sessionStorage.EMAIL_USUARIO = usuario.email;
+          sessionStorage.EMPRESA_ID = usuario.empresa_id;
+
+          window.location = "../dashboard/chart.html";
+        });
+      } else {
+        alert("Email ou senha inválidos.");
+      }
+    })
+    .catch(function (erro) {
+      console.log(erro);
+      alert("Erro de conexão com o servidor.");
+    });
+}
+</script>
