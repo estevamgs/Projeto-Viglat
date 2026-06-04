@@ -208,7 +208,9 @@
           resposta5.innerHTML = (
             faturamentoMensalBruto - perdaMensalComSistema
           ).toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
-          resposta6.innerHTML = gastoExtra.toLocaleString("pt-BR", {
+          resposta6.innerHTML = (
+            perdaMensalComSistema + gastoExtra
+          ).toLocaleString("pt-BR", {
             style: "currency",
             currency: "BRL",
           });
