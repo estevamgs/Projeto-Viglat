@@ -12,12 +12,17 @@ var cors = require("cors");
 var path = require("path");
 var PORTA_APP = process.env.APP_PORT;
 var HOST_APP = process.env.APP_HOST;
-
+var usuariosRouter = require("./src/routes/usuarios");
+var empresasRouter = require("./src/routes/empresas");
+var medidasRouter = require("./src/routes/medidas");
 var app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "./public/Páginas do site")));
+app.use("/usuarios", usuariosRouter);
+app.use("/empresas", empresasRouter);
+app.use("/medidas", medidasRouter);
 
 app.use(cors());
 
