@@ -200,7 +200,7 @@ fetch("/dash/graficos/1")
     new Chart(graficoTemp, {
   type: "line",
   data: {
-    labels: dadosSensorA.horas,
+    labels: horas,
     datasets: [
       {
         label: "Sensor A",
@@ -358,11 +358,11 @@ fetch("/dash/graficos/1")
     new Chart(graficoUmidade, {
   type: "line",
   data: {
-    labels: dadosSensorA.horas,
+    labels: horas,
     datasets: [
       {
         label: "Sensor A",
-        data: dadosSensorA.umidade,
+        data: temperaturaSensor1,
         borderColor: "purple",
         backgroundColor: "purple",
       },
