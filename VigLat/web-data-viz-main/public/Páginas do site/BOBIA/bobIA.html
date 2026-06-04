@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BobIA</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div id="iconeBobIA">
+      <img
+        onclick="aparecerChat()"
+        style="cursor: pointer"
+        height="100"
+        src="./chat.avif"
+        alt=""
+      />
+    </div>
+
+    <div id="container">
+      <div id="box-container">
+        <h1>Estou aqui para tirar suas dúvidas</h1>
+        <div class="resposta">
+          <div id="resposta"></div>
+          <div class="pergunta">
+            <textarea
+              id="pergunta"
+              type="text"
+              placeholder="Digite a pergunta..."
+            ></textarea>
+            <i class="fa-regular fa-paper-plane" onclick="gerarResposta()"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      async function gerarResposta() {
+        const perguntaDiv = document.getElementById("pergunta");
+        const pergunta = perguntaDiv.value;
+
+        perguntaDiv.value = ``;
+
+        const response = await fetch("/perguntar", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ pergunta }),
+        });
+
+        const data = await response.json();
+
+        resposta.style.display = "block";
+        document.getElementById("resposta").innerText = data.resultado;
+      }
+
+      function aparecerChat() {
+        const container = document.getElementById("container");
+        if (container.style.display == "") {
+          container.style.display = "flex";
+        } else {
+          container.style.display = "";
+          document.getElementById("resposta").innerText = "";
+        }
+      }
+    </script>
+  </body>
+</html>

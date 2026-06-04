@@ -22,6 +22,9 @@ new Chart(alertas, {
       title: {
         display: true,
         text: "Quantidade de Alertas (últimas 24 horas)",
+        font:{
+          size: 24
+        }
       },
     },
     scales: {
@@ -68,6 +71,9 @@ new Chart(alertaSemana, {
       title: {
         display: true,
         text: "Quantidade de Alertas (últimos 7 dias)",
+        font:{
+          size: 24
+        },
       },
     },
     scales: {
@@ -123,6 +129,16 @@ const tempMaxAlerta = {
   temperatura: [26, 26, 26, 26, 26, 26, 26, 26],
   umidade: [95, 95, 95, 95, 95, 95, 95, 95],
 };
+const tempMinAlerta2 = {
+  horas: dadosSensorA.horas,
+  temperatura: [17.9, 17.9, 17.9, 17.9, 17.9, 17.9, 17.9, 17.9],
+  umidade: [79.9, 79.9, 79.9, 79.9, 79.9, 79.9, 79.9, 79.9],
+};
+const tempMaxAlerta2 = {
+  horas: dadosSensorA.horas,
+  temperatura: [15, 15, 15, 15, 15, 15, 15, 15],
+  umidade: [70, 70, 70, 70, 70, 70, 70, 70],
+};
 const tempMaxIdeal = {
   horas: dadosSensorA.horas,
   temperatura: [22, 22, 22, 22, 22, 22, 22, 22],
@@ -142,6 +158,16 @@ const tempMaxCritico = {
   horas: dadosSensorA.horas,
   temperatura: [32, 32, 32, 32, 32, 32, 32, 32],
   umidade: [100, 100, 100, 100, 100, 100, 100, 100],
+};
+const tempMinCritico2 = {
+  horas: dadosSensorA.horas,
+  temperatura: [14.9, 14.9, 14.9, 14.9, 14.9, 14.9, 14.9, 14.9],
+  umidade: [69.9, 69.9, 69.9, 69.9, 69.9, 69.9, 69.9, 69.9],
+};
+const tempMaxCritico2 = {
+  horas: dadosSensorA.horas,
+  temperatura: [0, 0, 0, 0, 0, 0, 0, 0],
+  umidade: [0, 0, 0, 0, 0, 0, 0, 0],
 };
 
 new Chart(graficoTemp, {
@@ -170,14 +196,14 @@ new Chart(graficoTemp, {
       {
         label: "Faixa Ideal",
         data: tempMaxIdeal.temperatura,
-        borderColor: "#459aea4a",
-        backgroundColor: "#459aea4a",
+        borderColor: "#45ea8a59",
+        backgroundColor: "#45ea8a59",
       },
       {
         label: "tempMinIdeal",
         data: tempMinIdeal.temperatura,
-        borderColor: "#459aea4a",
-        backgroundColor: "#459aea4a",
+        borderColor: "#45ea8a59",
+        backgroundColor: "#45ea8a59",
         fill: "-1",
       },
       {
@@ -194,16 +220,42 @@ new Chart(graficoTemp, {
         fill: "-1",
       },
       {
+        label: "Faixa Alerta",
+        data: tempMinAlerta2.temperatura,
+        borderColor: "#eab20859",
+        backgroundColor: "#eab20859",
+      },
+      {
+        label: "tempMinAlerta",
+        data: tempMaxAlerta2.temperatura,
+        borderColor: "#eab20859",
+        backgroundColor: "#eab20859",
+        fill: "-1",
+      },
+      {
         label: "Faixa Crítica",
         data: tempMinCritico.temperatura,
-        borderColor: "#ef44446b",
-        backgroundColor: "#ef44446b",
+        borderColor: "#ef444454",
+        backgroundColor: "#ef444454",
       },
       {
         label: "tempMinCrítica",
         data: tempMaxCritico.temperatura,
-        borderColor: "#ef44446b",
-        backgroundColor: "#ef44446b",
+        borderColor: "#ef444454",
+        backgroundColor: "#ef444454",
+        fill: "-1",
+      },
+      {
+        label: "Faixa Crítica",
+        data: tempMinCritico2.temperatura,
+        borderColor: "#ef444454",
+        backgroundColor: "#ef444454",
+      },
+      {
+        label: "tempMinCrítica",
+        data: tempMaxCritico2.temperatura,
+        borderColor: "#ef444454",
+        backgroundColor: "#ef444454",
         fill: "-1",
       },
     ],
@@ -266,14 +318,14 @@ new Chart(graficoUmidade, {
       {
         label: "FaixaMinIdeal",
         data: tempMaxIdeal.umidade,
-        borderColor: "#459aea4a",
-        backgroundColor: "#459aea4a",
+        borderColor: "#45ea8a59",
+        backgroundColor: "#45ea8a59",
       },
       {
         label: "FaixaMaxIdeal",
         data: tempMinIdeal.umidade,
-        borderColor: "#459aea4a",
-        backgroundColor: "#459aea4a",
+        borderColor: "#45ea8a59",
+        backgroundColor: "#45ea8a59",
         fill: "-1",
       },
       {
@@ -290,16 +342,42 @@ new Chart(graficoUmidade, {
         fill: "-1",
       },
       {
+        label: "FaixaMinAlerta",
+        data: tempMinAlerta2.umidade,
+        borderColor: "#eab20859",
+        backgroundColor: "#eab20859",
+      },
+      {
+        label: "FaixaMaxAlerta",
+        data: tempMaxAlerta2.umidade,
+        borderColor: "#eab20859",
+        backgroundColor: "#eab20859",
+        fill: "-1",
+      },
+      {
         label: "FaixaMinCrítica",
         data: tempMinCritico.umidade,
-        borderColor: "#ef44446b",
-        backgroundColor: "#ef44446b",
+        borderColor: "#ef444454",
+        backgroundColor: "#ef444454",
       },
       {
         label: "FaixaMaxCrítica",
         data: tempMaxCritico.umidade,
-        borderColor: "#ef44446b",
-        backgroundColor: "#ef44446b",
+        borderColor: "#ef444454",
+        backgroundColor: "#ef444454",
+        fill: "-1",
+      },
+      {
+        label: "FaixaMinCrítica",
+        data: tempMinCritico2.umidade,
+        borderColor: "#ef444454",
+        backgroundColor: "#ef444454",
+      },
+      {
+        label: "FaixaMaxCrítica",
+        data: tempMaxCritico2.umidade,
+        borderColor: "#ef444454",
+        backgroundColor: "#ef444454",
         fill: "-1",
       },
     ],
