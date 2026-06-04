@@ -1,9 +1,11 @@
-var aquarioModel = require("../models/aquarioModel");
+var dashModel = require("../models/Model");
 
-function buscarAquariosPorEmpresa(req, res) {
-  var idUsuario = req.params.idUsuario;
+function buscarKPIS(req, res) {
 
-  aquarioModel.buscarAquariosPorEmpresa(idUsuario).then((resultado) => {
+  var fazendaId = req.params.fazendaId;
+    var idFazenda = req.params.idFazenda;
+
+  dashModel.buscarKPIS().then((resultado) => {
     if (resultado.length > 0) {
       res.status(200).json(resultado);
     } else {
