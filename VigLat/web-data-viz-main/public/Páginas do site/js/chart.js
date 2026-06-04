@@ -3,7 +3,8 @@ const alertaSemana = document.getElementById("grafico-alerta");
 const graficoTemp = document.getElementById("grafico-temp");
 const graficoUmidade = document.getElementById("grafico-umidade");
 
-new Chart(alertas, {
+
+   new Chart(alertas, {
   type: "bar",
   data: {
     labels: ["CÂMARA 01", "CÂMARA 02", "CÂMARA 03", "CÂMARA 04"],
@@ -43,8 +44,10 @@ new Chart(alertas, {
     },
   },
 });
+  
 
-new Chart(alertaSemana, {
+
+    new Chart(alertaSemana, {
   type: "bar",
   data: {
     labels: [
@@ -92,21 +95,9 @@ new Chart(alertaSemana, {
     },
   },
 });
+  
 
-const dadosSensorA = {
-  horas: [
-    "12:00",
-    "13:00",
-    "14:00",
-    "15:00",
-    "16:00",
-    "17:00",
-    "18:00",
-    "19:00",
-  ],
-  temperatura: [22, 21, 20, 22, 22, 21, 20, 22],
-  umidade: [80, 82, 80, 85, 80, 82, 80, 85],
-};
+
 
 const dadosSensorB = {
   horas: dadosSensorA.horas,
@@ -170,7 +161,43 @@ const tempMaxCritico2 = {
   umidade: [0, 0, 0, 0, 0, 0, 0, 0],
 };
 
-new Chart(graficoTemp, {
+
+fetch("/dash/graficos/1")
+  .then(function (resposta) {
+    return resposta.json();
+  })
+  .then(function (dados) {
+    console.log("Dados do banco:", dados);
+
+    var sensor1 = dados.filter(function (item) {
+      return item.idSensor == 1;
+    });
+
+    var sensor2 = dados.filter(function (item) {
+      return item.idSensor == 2;
+    });
+
+    var horas = sensor1.map(function (item) {
+      return item.dt_Hora;
+    });
+
+    var temperaturaSensor1 = sensor1.map(function (item) {
+      return item.temperatura;
+    });
+
+    var temperaturaSensor2 = sensor2.map(function (item) {
+      return item.temperatura;
+    });
+
+    var umidadeSensor1 = sensor1.map(function (item) {
+      return item.umidade;
+    });
+
+    var umidadeSensor2 = sensor2.map(function (item) {
+      return item.umidade;
+    });
+
+    new Chart(graficoTemp, {
   type: "line",
   data: {
     labels: dadosSensorA.horas,
@@ -291,8 +318,44 @@ new Chart(graficoTemp, {
     },
   },
 });
+  });
 
-new Chart(graficoUmidade, {
+fetch("/dash/graficos/1")
+  .then(function (resposta) {
+    return resposta.json();
+  })
+  .then(function (dados) {
+    console.log("Dados do banco:", dados);
+
+    var sensor1 = dados.filter(function (item) {
+      return item.idSensor == 1;
+    });
+
+    var sensor2 = dados.filter(function (item) {
+      return item.idSensor == 2;
+    });
+
+    var horas = sensor1.map(function (item) {
+      return item.dt_Hora;
+    });
+
+    var temperaturaSensor1 = sensor1.map(function (item) {
+      return item.temperatura;
+    });
+
+    var temperaturaSensor2 = sensor2.map(function (item) {
+      return item.temperatura;
+    });
+
+    var umidadeSensor1 = sensor1.map(function (item) {
+      return item.umidade;
+    });
+
+    var umidadeSensor2 = sensor2.map(function (item) {
+      return item.umidade;
+    });
+
+    new Chart(graficoUmidade, {
   type: "line",
   data: {
     labels: dadosSensorA.horas,
@@ -423,3 +486,5 @@ new Chart(graficoUmidade, {
     },
   },
 });
+
+  });

@@ -15,6 +15,7 @@ var HOST_APP = process.env.APP_HOST;
 var usuariosRouter = require("./src/routes/usuarios");
 var empresasRouter = require("./src/routes/empresas");
 var medidasRouter = require("./src/routes/medidas");
+var dashRouter = require("./src/routes/dash");
 var app = express();
 
 app.use(express.json());
@@ -23,7 +24,7 @@ app.use(express.static(path.join(__dirname, "./public/Páginas do site")));
 app.use("/usuarios", usuariosRouter);
 app.use("/empresas", empresasRouter);
 app.use("/medidas", medidasRouter);
-
+app.use("/dash", dashRouter);
 app.use(cors());
 
 // BOB AI

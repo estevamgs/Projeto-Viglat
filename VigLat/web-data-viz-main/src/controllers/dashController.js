@@ -1,51 +1,27 @@
-var dashModel = require("../models/Model");
+var dashModel = require("../models/dashModel");
 
-function buscarKPIS(req, res) {
+function buscarDadosGraficos(req, res) {
+  var idCamara = req.params.idCamara;
 
-  var fazendaId = req.params.fazendaId;
-    var idFazenda = req.params.idFazenda;
-
-  dashModel.buscarKPIS().then((resultado) => {
-    if (resultado.length > 0) {
-      res.status(200).json(resultado);
-    } else {
-      res.status(204).json([]);
-    }
-  }).catch(function (erro) {
-    console.log(erro);
-    console.log("Houve um erro ao buscar os aquarios: ", erro.sqlMessage);
-    res.status(500).json(erro.sqlMessage);
-  });
-}
-
-
-function cadastrar(req, res) {
-  var descricao = req.body.descricao;
-  var idUsuario = req.body.idUsuario;
-
-  if (descricao == undefined) {
-    res.status(400).send("descricao está undefined!");
-  } else if (idUsuario == undefined) {
-    res.status(400).send("idUsuario está undefined!");
+  if (idCamara == undefined) {
+    res.status(400).send("O idCamara está undefined!");
   } else {
-
-
-    aquarioModel.cadastrar(descricao, idUsuario)
-      .then((resultado) => {
-        res.status(201).json(resultado);
-      }
-      ).catch((erro) => {
+    dashModel.buscarDadosGraficos(idCamara)
+      .then(function (resultado) {
+        if (resultado.length > 0) {
+          res.status(200).json(resultado);
+        } else {
+          res.status(204).send("Nenhum resultado encontrado!");
+        }
+      })
+      .catch(function (erro) {
         console.log(erro);
-        console.log(
-          "\nHouve um erro ao realizar o cadastro! Erro: ",
-          erro.sqlMessage
-        );
+        console.log("Houve um erro ao buscar dados dos gráficos: ", erro.sqlMessage);
         res.status(500).json(erro.sqlMessage);
       });
   }
 }
 
 module.exports = {
-  buscarAquariosPorEmpresa,
-  cadastrar
-}
+  buscarDadosGraficos
+};
