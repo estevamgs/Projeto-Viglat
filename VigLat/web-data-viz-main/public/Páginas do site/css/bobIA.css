@@ -1,0 +1,97 @@
+#iconeBobIA {
+    position: absolute;
+    bottom: 5%;
+    right: 2%;
+    background-color: aliceblue;
+    border-radius: 50%;
+    z-index: 2;
+    transition: .3s;
+}
+
+#iconeBobIA img {
+    border-radius: 50%;
+    pointer-events: all;
+}
+
+#iconeBobIA:hover,.pergunta i:hover {
+    transform: scale(1.1);
+}
+
+#container {
+    background-color: aliceblue;
+    display: none;
+    align-items: center;
+    width: 20em;
+    height: 30em;
+    padding: 1em;
+    position: absolute;
+    bottom: 10%;
+    right: 5%;
+    z-index: 1;
+    border-radius: .5em;
+    border: 1px solid black;
+    justify-content: center;
+}
+
+#box-container {
+    padding: 1em;
+    border-radius: 1em;
+    background-color: white;
+    min-height: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#container h1 {
+    font-size: 1.5em;
+    text-align: center;
+    padding-bottom: 1em;
+    border-bottom: 2px solid aqua;
+}
+
+.resposta {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 3em;
+    height: 20em;
+}
+
+.pergunta {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    background-color: white;
+    border-radius: .5em;
+    padding: 1em;
+    border: 1px solid black;
+}
+
+.pergunta i {
+    background-color: blue;
+    color: white;
+    cursor: pointer;
+    border-radius: 50%;
+    padding: 1em;
+    transition: .3s;
+}
+
+textarea {
+    resize: none;
+    min-height: 3em;
+    width: 100%;
+    border: 0;
+    outline: 0;
+    box-shadow: none !important;
+    border: none !important;
+}
+
+#resposta {
+    overflow-y: scroll;
+    text-align: justify;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    height: 15em;
+}

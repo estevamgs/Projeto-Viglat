@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./css/index.css" />
     <link rel="stylesheet" href="./css/header.css" />
+    <link rel="stylesheet" href="./css/bobIA.css">
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
@@ -12,6 +13,7 @@
     <title>VigLat</title>
   </head>
   <body>
+
     <!-- Cabeçalho -->
     <div class="background-viglat">
       <header>
@@ -229,6 +231,33 @@
       </div>
     </footer>
 
+     <div id="iconeBobIA">
+      <img
+        onclick="aparecerChat()"
+        style="cursor: pointer"
+        height="100"
+        src="./BOBIA/chat.avif"
+        alt=""
+      />
+    </div>
+
+    <div id="container">
+      <div id="box-container">
+        <h1>BOB-AI</h1>
+        <div class="resposta">
+          <div id="resposta"></div>
+          <div class="pergunta">
+            <textarea
+              id="pergunta"
+              type="text"
+              placeholder="Digite a pergunta..."
+            ></textarea>
+            <i class="fa-regular fa-paper-plane" onclick="gerarResposta()"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- VLibras -->
     <div vw class="enabled">
       <div vw-access-button class="active"></div>
@@ -254,6 +283,11 @@
     <script
       src="https://app.gpt-trainer.com/widget-asset.min.js"
       defer
+
+    
     ></script>
+
+    <script src="./BOBIA/bobIA.js"></script>
+
   </body>
 </html>
