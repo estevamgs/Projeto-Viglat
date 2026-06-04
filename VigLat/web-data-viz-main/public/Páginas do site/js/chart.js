@@ -204,19 +204,19 @@ fetch("/dash/graficos/1")
     datasets: [
       {
         label: "Sensor A",
-        data: dadosSensorA.temperatura,
+        data: temperaturaSensor1,
         borderColor: "purple",
         backgroundColor: "purple",
       },
       {
         label: "Sensor B",
-        data: dadosSensorB.temperatura,
+        data: temperaturaSensor2,
         borderColor: "#ec4899",
         backgroundColor: "#ec4899",
       },
       {
         label: "Sensor C",
-        data: dadosSensorC.temperatura,
+        data: temperaturaSensor3,
         borderColor: "gray",
         backgroundColor: "gray",
       },
@@ -362,19 +362,19 @@ fetch("/dash/graficos/1")
     datasets: [
       {
         label: "Sensor A",
-        data: temperaturaSensor1,
+        data: umidadeSensor1,
         borderColor: "purple",
         backgroundColor: "purple",
       },
       {
         label: "Sensor B",
-        data: dadosSensorB.umidade,
+        data: umidadeSensor2,
         borderColor: "#ec4899",
         backgroundColor: "#ec4899",
       },
       {
         label: "Sensor C",
-        data: dadosSensorC.umidade,
+        data: umidadeSensor3,
         borderColor: "gray",
         backgroundColor: "gray",
       },
