@@ -1,4 +1,4 @@
-const alertas = document.getElementById("chart");
+﻿const alertas = document.getElementById("chart");
 const alertaSemana = document.getElementById("grafico-alerta");
 const graficoTemp = document.getElementById("grafico-temp");
 const graficoUmidade = document.getElementById("grafico-umidade");
@@ -8,7 +8,7 @@ var chartUmidade;
 new Chart(alertas, {
   type: "bar",
   data: {
-    labels: ["CÂMARA 01", "CÂMARA 02", "CÂMARA 03", "CÂMARA 04"],
+    labels: ["CÃ‚MARA 01", "CÃ‚MARA 02", "CÃ‚MARA 03", "CÃ‚MARA 04"],
     datasets: [
       {
         label: "Alertas",
@@ -30,7 +30,7 @@ new Chart(alertas, {
       },
       title: {
         display: true,
-        text: "Quantidade de Alertas (últimas 24 horas)",
+        text: "Quantidade de Alertas (Ãºltimas 24 horas)",
         font:{
           size: 24
         },
@@ -63,7 +63,7 @@ new Chart(alertaSemana, {
   data: {
     labels: [
       "Segunda-Feira",
-      "Terça-Feira",
+      "TerÃ§a-Feira",
       "Quarta-Feira",
       "Quinta-Feira",
       "Sexta-Feira",
@@ -91,7 +91,7 @@ new Chart(alertaSemana, {
       },
       title: {
         display: true,
-        text: "Quantidade de Alertas (últimos 7 dias)",
+        text: "Quantidade de Alertas (Ãºltimos 7 dias)",
         font: {
           size: 24,
         },
@@ -119,14 +119,12 @@ new Chart(alertaSemana, {
   },
 });
 
-var idCamara = sessionStorage.ID_CAMARA_ATUAL || 1;
-
 function carregarGraficos(idCamara) { 
 
   fetch("/dash/graficos/" + idCamara)
   .then(function (resposta) {
     if (resposta.status == 204) {
-      alert("Essa câmara ainda não possui registros no banco.");
+      alert("Essa cÃ¢mara ainda nÃ£o possui registros no banco.");
       return [];
     }
 
@@ -316,26 +314,26 @@ chartTemperatura = new Chart(graficoTemp, {
             fill: "-1",
           },
           {
-            label: "Faixa Crítica",
+            label: "Faixa CrÃ­tica",
             data: tempMinCritico.temperatura,
             borderColor: "#ef444454",
             backgroundColor: "#ef444454",
           },
           {
-            label: "tempMinCrítica",
+            label: "tempMinCrÃ­tica",
             data: tempMaxCritico.temperatura,
             borderColor: "#ef444454",
             backgroundColor: "#ef444454",
             fill: "-1",
           },
           {
-            label: "Faixa Crítica",
+            label: "Faixa CrÃ­tica",
             data: tempMinCritico2.temperatura,
             borderColor: "#ef444454",
             backgroundColor: "#ef444454",
           },
           {
-            label: "tempMinCrítica",
+            label: "tempMinCrÃ­tica",
             data: tempMaxCritico2.temperatura,
             borderColor: "#ef444454",
             backgroundColor: "#ef444454",
@@ -367,7 +365,7 @@ chartTemperatura = new Chart(graficoTemp, {
         plugins: {
           title: {
             display: true,
-            text: "Gráfico de Temperatura",
+            text: "GrÃ¡fico de Temperatura",
             font:{
               size: 20
             },
@@ -380,8 +378,8 @@ chartTemperatura = new Chart(graficoTemp, {
                   item.text !== "tempMinIdeal" &&
                   item.text !== "Faixa Alerta" &&
                   item.text !== "tempMinAlerta" &&
-                  item.text !== "Faixa Crítica" &&
-                  item.text !== "tempMinCrítica"
+                  item.text !== "Faixa CrÃ­tica" &&
+                  item.text !== "tempMinCrÃ­tica"
                 );
               },
               font:{
@@ -456,26 +454,26 @@ chartTemperatura = new Chart(graficoTemp, {
             fill: "-1",
           },
           {
-            label: "FaixaMinCrítica",
+            label: "FaixaMinCrÃ­tica",
             data: tempMinCritico.umidade,
             borderColor: "#ef444454",
             backgroundColor: "#ef444454",
           },
           {
-            label: "FaixaMaxCrítica",
+            label: "FaixaMaxCrÃ­tica",
             data: tempMaxCritico.umidade,
             borderColor: "#ef444454",
             backgroundColor: "#ef444454",
             fill: "-1",
           },
           {
-            label: "FaixaMinCrítica",
+            label: "FaixaMinCrÃ­tica",
             data: tempMinCritico2.umidade,
             borderColor: "#ef444454",
             backgroundColor: "#ef444454",
           },
           {
-            label: "FaixaMaxCrítica",
+            label: "FaixaMaxCrÃ­tica",
             data: tempMaxCritico2.umidade,
             borderColor: "#ef444454",
             backgroundColor: "#ef444454",
@@ -515,7 +513,7 @@ chartTemperatura = new Chart(graficoTemp, {
         plugins: {
           title: {
             display: true,
-            text: "Gráfico de Umidade",
+            text: "GrÃ¡fico de Umidade",
             font:{
               size:20
             }
@@ -528,8 +526,8 @@ chartTemperatura = new Chart(graficoTemp, {
                   item.text !== "FaixaMinIdeal" &&
                   item.text !== "FaixaMaxAlerta" &&
                   item.text !== "FaixaMinAlerta" &&
-                  item.text !== "FaixaMaxCrítica" &&
-                  item.text !== "FaixaMinCrítica"
+                  item.text !== "FaixaMaxCrÃ­tica" &&
+                  item.text !== "FaixaMinCrÃ­tica"
                 );
               },
               font:{ 
@@ -543,4 +541,4 @@ chartTemperatura = new Chart(graficoTemp, {
   });
   }
 
-  carregarGraficos(idCamara);
+  carregarGraficos(1);

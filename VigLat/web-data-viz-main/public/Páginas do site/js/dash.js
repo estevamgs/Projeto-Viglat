@@ -1,4 +1,4 @@
-function showView(viewId) {
+﻿function showView(viewId) {
   let telas = document.querySelectorAll('.tela-monitoramento');
   for (var i = 0; i < telas.length; i++) {
     telas[i].style.display = 'none';
@@ -8,16 +8,10 @@ function showView(viewId) {
 
 function abrirDetalhes(elemento) {
   let nome = elemento.dataset.nome;
-  let alertas = elemento.dataset.alertas;
-  var idCamara = elemento.dataset.idCamara;
-
-
-  sessionStorage.ID_CAMARA_ATUAL = idCamara;
 
   document.getElementById('titulo-camara').innerText = nome;
 
   showView('view-camara');
-  carregarGraficos(idCamara);
 }
 
 function renderizarGraficosDetalhes() {
@@ -32,7 +26,7 @@ function trocarFazenda(id, botao) {
 
   
   botao.classList.add('ativa');
-  document.getElementById('titulo-fazenda').innerText = "Visão Geral: Fazenda " + id;
+  document.getElementById('titulo-fazenda').innerText = "VisÃ£o Geral: Fazenda " + id;
   showView('view-fazenda');
 }
 
@@ -65,5 +59,5 @@ function aplicarFazenda1() {
   cards[0].querySelector("p").innerText = "Ideal";
   cards[1].querySelector("p").innerText = "Alerta";
   cards[2].querySelector("p").innerText = "Ideal";
-  cards[3].querySelector("p").innerText = "CRÍTICO!";
+  cards[3].querySelector("p").innerText = "CRÃTICO!";
 }

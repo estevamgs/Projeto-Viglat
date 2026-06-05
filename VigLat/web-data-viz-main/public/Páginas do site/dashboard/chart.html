@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="pt-br">
 
 <head>
@@ -20,10 +20,10 @@
               </a>
             </div>
             <ul class="ul">
-              <li><a href="../index.html">Início</a></li>
+              <li><a href="../index.html">In&iacute;cio</a></li>
               <li><a href="../Calculadora Financeira/Calculadora.html">Simulador Financeiro</a></li>
               <li><a href="../index.html#contato">Contato</a></li>
-              <li><a class="btn-gradiente" href="../Página de login/login.html">Login</a></li>
+              <li><a class="btn-gradiente" href="../P&aacute;gina de login/login.html">Login</a></li>
             </ul>
           </nav>
         </div>
@@ -44,7 +44,7 @@
 
       <section id="view-fazenda" class="tela-monitoramento">
         <header class="cabecalho-secao">
-          <h2 id="titulo-fazenda" style="font-size: 30px;">Visão Geral:</h2>
+          <h2 id="titulo-fazenda" style="font-size: 30px;">Vis&atilde;o Geral:</h2>
           <div class="legenda-status">
             <div class="status-item">
               <span class="status-tag metrica">T - Temperatura<br />U - Umidade</span>
@@ -58,16 +58,16 @@
                 </span>
             </div>
             <div class="status-item">
-              <span class="status-tag status-ideal">T:18°C a 22°C&nbsp;&nbsp; / Ideal<br />U:80% a 90%&nbsp;&nbsp; /
+              <span class="status-tag status-ideal">T:18&deg;C a 22&deg;C&nbsp;&nbsp; / Ideal<br />U:80% a 90%&nbsp;&nbsp; /
                 Ideal</span>
             </div>
             <div class="status-item">
-              <span class="status-tag status-alerta">T:>22°C ou
-                <18°C / Alerta<br />U:>90% ou <80%&nbsp; / Alerta</span>
+              <span class="status-tag status-alerta">T:>22&deg;C ou
+                <18&deg;C / Alerta<br />U:>90% ou <80%&nbsp; / Alerta</span>
             </div>
             <div class="status-item">
-              <span class="status-tag status-critico">T:>26°C ou
-                <15°C &nbsp;/ Crítico<br />U:>95% ou <70% &nbsp;&nbsp;/ Crítico</span>
+              <span class="status-tag status-critico">T:>26&deg;C ou
+                <15&deg;C &nbsp;/ Cr&iacute;tico<br />U:>95% ou <70% &nbsp;&nbsp;/ Cr&iacute;tico</span>
             </div>
             <div class="status-item legenda-flex">
               <div class="status-grupo">
@@ -80,28 +80,28 @@
               </div>
               <div class="status-grupo">
                 <span class="bolinha-status status-critico"></span>
-                <span class="status-label">Crítico</span>
+                <span class="status-label">Cr&iacute;tico</span>
               </div>
             </div>
           </div>
         </header>
 
         <div class="grid-dispositivos">
-          <div class="card-dispositivo status-ideal" data-id-camara="1" data-nome="Câmara 01" data-alertas="1" onclick="abrirDetalhes(this)">
-            <h3>Câmara 01</h3>
+          <div class="card-dispositivo status-ideal" data-id-camara="1" data-nome="C&acirc;mara 01" data-alertas="1" onclick="abrirDetalhes(this); carregarGraficos(1)">
+            <h3>C&acirc;mara 01</h3>
             <p>Ideal</p>
           </div>
-          <div class="card-dispositivo status-alerta" data-id-camara="2" data-nome="Câmara 02" data-alertas="4" onclick="abrirDetalhes(this)">
-            <h3>Câmara 02</h3>
+          <div class="card-dispositivo status-alerta" data-id-camara="2" data-nome="C&acirc;mara 02" data-alertas="4" onclick="abrirDetalhes(this); carregarGraficos(2)">
+            <h3>C&acirc;mara 02</h3>
             <p>Alerta</p>
           </div>
-          <div class="card-dispositivo status-ideal" data-id-camara="3" data-nome="Câmara 03" data-alertas="0" onclick="abrirDetalhes(this)">
-            <h3>Câmara 03</h3>
+          <div class="card-dispositivo status-ideal" data-id-camara="3" data-nome="C&acirc;mara 03" data-alertas="0" onclick="abrirDetalhes(this); carregarGraficos(3)">
+            <h3>C&acirc;mara 03</h3>
             <p>Ideal</p>
           </div>
-          <div class="card-dispositivo status-critico" data-id-camara="4" data-nome="Câmara 04" data-alertas="8" onclick="abrirDetalhes(this)">
-            <h3>Câmara 04</h3>
-            <p><b>CRÍTICO!</b></p>
+          <div class="card-dispositivo status-critico" data-id-camara="4" data-nome="C&acirc;mara 04" data-alertas="8" onclick="abrirDetalhes(this); carregarGraficos(4)">
+            <h3>C&acirc;mara 04</h3>
+            <p><b>CR&Iacute;TICO!</b></p>
           </div>
         </div>
 
@@ -119,14 +119,14 @@
       <section id="view-camara" class="tela-monitoramento" style="display: none">
   <header class="cabecalho-secao">
     <button class="btn-retorno" onclick="showView('view-fazenda')">
-      ← Voltar
+      &larr; Voltar
     </button>
-    <h2 id="titulo-camara" style="font-size: 32px; margin-top: 10px;">Câmara 01</h2>
+    <h2 id="titulo-camara" style="font-size: 32px; margin-top: 10px;">C&acirc;mara 01</h2>
   </header>
 
   <div class="dashboard-kpis">
   <div class="indicador-card indicador-sensores">
-    <span class="rotulo-kpi">Sensores da Câmara</span>
+    <span class="rotulo-kpi">Sensores da C&acirc;mara</span>
 
     <div class="grid-sensores-kpi">
       <div class="sensor-box">
@@ -134,7 +134,7 @@
           <span class="sensor-nome">Sensor A</span>
           <span class="bolinha-status status-ideal"></span>
         </div>
-        <p>T: 22°C</p>
+        <p>T: 22&deg;C</p>
         <p>U: 85%</p>
       </div>
 
@@ -143,7 +143,7 @@
           <span class="sensor-nome">Sensor B</span>
           <span class="bolinha-status status-critico"></span>
         </div>
-        <p>T: 32°C</p>
+        <p>T: 32&deg;C</p>
         <p>U: 85%</p>
       </div>
 
@@ -152,7 +152,7 @@
           <span class="sensor-nome">Sensor C</span>
           <span class="bolinha-status status-ideal"></span>
         </div>
-        <p>T: 21°C</p>
+        <p>T: 21&deg;C</p>
         <p>U: 80%</p>
       </div>
     </div>
@@ -167,7 +167,7 @@
     <span class="rotulo-kpi">Faixa ideal</span>
     <div class="box-faixa-ideal critico">
       <span class="cor-faixa critico"></span>
-      Temperatura e Umidade Crítica
+      Temperatura e Umidade Cr&iacute;tica
     </div>
     <div class="box-faixa-ideal alerta">
       <span class="cor-faixa alerta"></span>
@@ -225,3 +225,8 @@
 </body>
 
 </html>
+
+
+
+
+
