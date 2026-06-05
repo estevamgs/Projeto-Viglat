@@ -282,7 +282,7 @@ function montarGraficosCamara2(dados, graficoTemp, graficoUmidade) {
           },
         },
       },
-    }
+    },
   });
 
   new Chart(graficoUmidade, {
@@ -424,9 +424,11 @@ function montarGraficosCamara2(dados, graficoTemp, graficoUmidade) {
           },
         },
       },
-    }
+    },
   });
 }
+
+
 
 
 
