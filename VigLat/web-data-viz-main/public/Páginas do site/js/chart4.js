@@ -240,7 +240,49 @@ function montarGraficosCamara4(dados, graficoTemp, graficoUmidade) {
 },
       ],
     },
-    options: { tension: 0.25, maintainAspectRatio: false, scales: { y: { min: 8, max: 32 }, x: { ticks: { font: { size: 16 } } } }, plugins: { title: { display: true, text: "Grafico de Temperatura", font: { size: 20 } }, legend: { labels: { filter: function (item) { return item.text !== "Faixa Ideal" && item.text !== "tempMinIdeal" && item.text !== "Faixa Alerta" && item.text !== "tempMinAlerta" && item.text !== "Faixa Critica" && item.text !== "tempMinCritica"; }, font: { size: 18 } } } } }
+    options: {
+      tension: 0.25,
+      maintainAspectRatio: false,
+      scales: {
+        y: {
+          min: 8,
+          max: 32,
+        },
+        x: {
+          ticks: {
+            font: {
+              size: 16,
+            },
+          },
+        },
+      },
+      plugins: {
+        title: {
+          display: true,
+          text: "Grafico de Temperatura",
+          font: {
+            size: 20,
+          },
+        },
+        legend: {
+          labels: {
+            filter: function (item) {
+              return (
+                item.text !== "Faixa Ideal" &&
+                item.text !== "tempMinIdeal" &&
+                item.text !== "Faixa Alerta" &&
+                item.text !== "tempMinAlerta" &&
+                item.text !== "Faixa Critica" &&
+                item.text !== "tempMinCritica"
+              );
+            },
+            font: {
+              size: 18,
+            },
+          },
+        },
+      },
+    }
   });
 
   new Chart(graficoUmidade, {
@@ -333,8 +375,58 @@ function montarGraficosCamara4(dados, graficoTemp, graficoUmidade) {
 },
       ],
     },
-    options: { tension: 0.25, maintainAspectRatio: false, scales: { y: { min: 50, max: 100, grid: { display: true, color: "rgba(255,99,132,0.2)" } }, x: { grid: { display: false }, ticks: { font: { size: 16 } } } }, plugins: { title: { display: true, text: "Grafico de Umidade", font: { size: 20 } }, legend: { labels: { filter: function (item) { return item.text !== "FaixaMaxIdeal" && item.text !== "FaixaMinIdeal" && item.text !== "FaixaMaxAlerta" && item.text !== "FaixaMinAlerta" && item.text !== "FaixaMaxCritica" && item.text !== "FaixaMinCritica"; }, font: { size: 18 } } } } }
+    options: {
+      tension: 0.25,
+      maintainAspectRatio: false,
+      scales: {
+        y: {
+          min: 50,
+          max: 100,
+          grid: {
+            display: true,
+            color: "rgba(255,99,132,0.2)",
+          },
+        },
+        x: {
+          grid: {
+            display: false,
+          },
+          ticks: {
+            font: {
+              size: 16,
+            },
+          },
+        },
+      },
+      plugins: {
+        title: {
+          display: true,
+          text: "Grafico de Umidade",
+          font: {
+            size: 20,
+          },
+        },
+        legend: {
+          labels: {
+            filter: function (item) {
+              return (
+                item.text !== "FaixaMaxIdeal" &&
+                item.text !== "FaixaMinIdeal" &&
+                item.text !== "FaixaMaxAlerta" &&
+                item.text !== "FaixaMinAlerta" &&
+                item.text !== "FaixaMaxCritica" &&
+                item.text !== "FaixaMinCritica"
+              );
+            },
+            font: {
+              size: 18,
+            },
+          },
+        },
+      },
+    }
   });
 }
+
 
 
