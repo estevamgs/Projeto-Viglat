@@ -119,6 +119,62 @@ INSERT INTO sensor (nome, tipo, localizacao, camaraId) VALUES
 ('Sensor B - Câmara 04', 'DHT11', 'Centro', 4),
 ('Sensor C - Câmara 04', 'DHT11', 'Fundos', 4);
 
+-- insert dos registros de temperatura e umidade 
+
+INSERT INTO registro (idRegistro, idSensor, umidade, temperatura)
+VALUES
+-- Câmara 1 
+(133, 1, 82, 19),
+(134, 1, 85, 20),
+(135, 1, 88, 21),
+
+(136, 2, 79, 18),
+(137, 2, 84, 22),
+(138, 2, 91, 23),
+
+(139, 3, 81, 20),
+(140, 3, 86, 21),
+(141, 3, 89, 22),
+
+-- Câmara 2
+
+(142, 4, 76, 17),
+(143, 4, 78, 18),
+(144, 4, 92, 23),
+
+(145, 5, 74, 24),
+(146, 5, 80, 22),
+(147, 5, 88, 21),
+
+(148, 6, 93, 25),
+(149, 6, 89, 22),
+(150, 6, 77, 19),
+
+-- Câmara 3 
+(151, 7, 83, 19),
+(152, 7, 85, 20),
+(153, 7, 87, 21),
+
+(154, 8, 82, 20),
+(155, 8, 86, 21),
+(156, 8, 90, 22),
+
+(157, 9, 79, 18),
+(158, 9, 84, 20),
+(159, 9, 88, 21),
+
+-- Câmara 4 
+(160, 10, 68, 14),
+(161, 10, 72, 16),
+(162, 10, 96, 27),
+
+(163, 11, 65, 28),
+(164, 11, 70, 26),
+(165, 11, 98, 30),
+
+(166, 12, 69, 15),
+(167, 12, 74, 17),
+(168, 12, 97, 31);
 select * from sensor;
 -- 7. Situações dos sensores
 INSERT INTO situacao (idSituacao, SensorId, situacaoSensor, descricao) VALUES
@@ -130,7 +186,7 @@ INSERT INTO situacao (idSituacao, SensorId, situacaoSensor, descricao) VALUES
 
 desc registro;
 
-select * from registro;
+
 
 select user,host from mysql.user;
 
@@ -146,56 +202,3 @@ SHOW TABLES;
 
 SELECT * FROM sensor WHERE camaraId = 1;
 SELECT * FROM registro;
-INSERT INTO registro (idRegistro, idSensor, umidade, temperatura)
-VALUES
--- Câmara 1 - mais próxima do ideal
-(133, 1, 82, 19),
-(134, 1, 85, 20),
-(135, 1, 88, 21),
-
-(136, 2, 79, 18),
-(137, 2, 84, 22),
-(138, 2, 91, 23),
-
-(139, 3, 81, 20),
-(140, 3, 86, 21),
-(141, 3, 89, 22),
-
--- Câmara 2 - alguns alertas
-(142, 4, 76, 17),
-(143, 4, 78, 18),
-(144, 4, 92, 23),
-
-(145, 5, 74, 24),
-(146, 5, 80, 22),
-(147, 5, 88, 21),
-
-(148, 6, 93, 25),
-(149, 6, 89, 22),
-(150, 6, 77, 19),
-
--- Câmara 3 - mais estável
-(151, 7, 83, 19),
-(152, 7, 85, 20),
-(153, 7, 87, 21),
-
-(154, 8, 82, 20),
-(155, 8, 86, 21),
-(156, 8, 90, 22),
-
-(157, 9, 79, 18),
-(158, 9, 84, 20),
-(159, 9, 88, 21),
-
--- Câmara 4 - crítica
-(160, 10, 68, 14),
-(161, 10, 72, 16),
-(162, 10, 96, 27),
-
-(163, 11, 65, 28),
-(164, 11, 70, 26),
-(165, 11, 98, 30),
-
-(166, 12, 69, 15),
-(167, 12, 74, 17),
-(168, 12, 97, 31);
