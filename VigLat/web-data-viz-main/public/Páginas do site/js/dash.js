@@ -9,11 +9,15 @@ function showView(viewId) {
 function abrirDetalhes(elemento) {
   let nome = elemento.dataset.nome;
   let alertas = elemento.dataset.alertas;
+  var idCamara = elemento.dataset.idCamara;
+
+
+  sessionStorage.ID_CAMARA_ATUAL = idCamara;
 
   document.getElementById('titulo-camara').innerText = nome;
 
   showView('view-camara');
-  renderizarGraficosDetalhes();
+  carregarGraficos(idCamara);
 }
 
 function renderizarGraficosDetalhes() {

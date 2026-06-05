@@ -2,6 +2,8 @@ const alertas = document.getElementById("chart");
 const alertaSemana = document.getElementById("grafico-alerta");
 const graficoTemp = document.getElementById("grafico-temp");
 const graficoUmidade = document.getElementById("grafico-umidade");
+var chartTemperatura;
+var chartUmidade;
 
 new Chart(alertas, {
   type: "bar",
@@ -117,24 +119,57 @@ new Chart(alertaSemana, {
   },
 });
 
-fetch("/dash/graficos/1")
+var idCamara = sessionStorage.ID_CAMARA_ATUAL || 1;
+
+function carregarGraficos(idCamara) { 
+
+  fetch("/dash/graficos/" + idCamara)
   .then(function (resposta) {
+    if (resposta.status == 204) {
+      alert("Essa câmara ainda não possui registros no banco.");
+      return [];
+    }
+
     return resposta.json();
   })
   .then(function (dados) {
+    if (dados.length == 0) {
+      return;
+    }
+
     console.log("Dados do banco:", dados);
 
-    var sensor1 = dados.filter(function (item) {
-      return item.idSensor == 1;
-    });
+    
+  
 
-    var sensor2 = dados.filter(function (item) {
-      return item.idSensor == 2;
-    });
+var sensor1 = [];
+var sensor2 = [];
+var sensor3 = [];
 
-    var sensor3 = dados.filter(function (item) {
-  return item.idSensor == 6;
-});
+var idSensor1 = 0;
+var idSensor2 = 0;
+var idSensor3 = 0;
+
+for (var i = 0; i < dados.length; i++) {
+  var registro = dados[i];
+
+  if (idSensor1 == 0) {
+    idSensor1 = registro.idSensor;
+    sensor1.push(registro);
+  } else if (registro.idSensor == idSensor1) {
+    sensor1.push(registro);
+  } else if (idSensor2 == 0) {
+    idSensor2 = registro.idSensor;
+    sensor2.push(registro);
+  } else if (registro.idSensor == idSensor2) {
+    sensor2.push(registro);
+  } else if (idSensor3 == 0) {
+    idSensor3 = registro.idSensor;
+    sensor3.push(registro);
+  } else if (registro.idSensor == idSensor3) {
+    sensor3.push(registro);
+  }
+}
 
     var horas = sensor1.map(function (item) {
       return item.dt_Hora.substring(11, 19);
@@ -214,7 +249,11 @@ fetch("/dash/graficos/1")
       umidade: horas.map(function () { return 0; }),
     };
 
-    new Chart(graficoTemp, {
+    if (chartTemperatura != undefined) {
+  chartTemperatura.destroy();
+}
+
+chartTemperatura = new Chart(graficoTemp, {
       type: "line",
       data: {
         labels: horas,
@@ -502,3 +541,6 @@ fetch("/dash/graficos/1")
       },
     });
   });
+  }
+
+  carregarGraficos(idCamara);
