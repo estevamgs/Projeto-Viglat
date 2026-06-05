@@ -87,19 +87,19 @@
         </header>
 
         <div class="grid-dispositivos">
-          <div class="card-dispositivo status-ideal" data-id-camara="1" data-nome="C&acirc;mara 01" data-alertas="1" onclick="abrirDetalhes(this); carregarGraficos(1)">
+          <div class="card-dispositivo status-ideal" data-id-camara="1" data-nome="C&acirc;mara 01" data-alertas="1" onclick="showView('view-camara-1'); carregarGraficosCamara1()">
             <h3>C&acirc;mara 01</h3>
             <p>Ideal</p>
           </div>
-          <div class="card-dispositivo status-alerta" data-id-camara="2" data-nome="C&acirc;mara 02" data-alertas="4" onclick="abrirDetalhes(this); carregarGraficos(2)">
+          <div class="card-dispositivo status-alerta" data-id-camara="2" data-nome="C&acirc;mara 02" data-alertas="4" onclick="showView('view-camara-2'); carregarGraficosCamara2()">
             <h3>C&acirc;mara 02</h3>
             <p>Alerta</p>
           </div>
-          <div class="card-dispositivo status-ideal" data-id-camara="3" data-nome="C&acirc;mara 03" data-alertas="0" onclick="abrirDetalhes(this); carregarGraficos(3)">
+          <div class="card-dispositivo status-ideal" data-id-camara="3" data-nome="C&acirc;mara 03" data-alertas="0" onclick="showView('view-camara-3'); carregarGraficosCamara3()">
             <h3>C&acirc;mara 03</h3>
             <p>Ideal</p>
           </div>
-          <div class="card-dispositivo status-critico" data-id-camara="4" data-nome="C&acirc;mara 04" data-alertas="8" onclick="abrirDetalhes(this); carregarGraficos(4)">
+          <div class="card-dispositivo status-critico" data-id-camara="4" data-nome="C&acirc;mara 04" data-alertas="8" onclick="showView('view-camara-4'); carregarGraficosCamara4()">
             <h3>C&acirc;mara 04</h3>
             <p><b>CR&Iacute;TICO!</b></p>
           </div>
@@ -116,12 +116,12 @@
         </div>
       </section>
 
-      <section id="view-camara" class="tela-monitoramento" style="display: none">
+            <section id="view-camara-1" class="tela-monitoramento" style="display: none">
   <header class="cabecalho-secao">
     <button class="btn-retorno" onclick="showView('view-fazenda')">
       &larr; Voltar
     </button>
-    <h2 id="titulo-camara" style="font-size: 32px; margin-top: 10px;">C&acirc;mara 01</h2>
+    <h2 style="font-size: 32px; margin-top: 10px;">C&acirc;mara 01</h2>
   </header>
 
   <div class="dashboard-kpis">
@@ -160,7 +160,7 @@
 
   <div class="indicador-card kpi-centralizado">
     <span class="rotulo-kpi">Alertas Hoje</span>
-    <span class="valor-kpi texto-critico" id="kpi-alertas">12</span>
+    <span class="valor-kpi texto-critico">12</span>
   </div>
 
   <div class="indicador-card kpi-centralizado kpi-faixa">
@@ -182,10 +182,226 @@
 
   <div class="dashboard-graficos">
     <div class="grafico-detalhado">
-      <canvas id="grafico-temp"></canvas>
+      <canvas id="grafico-temp-1"></canvas>
     </div>
     <div class="grafico-detalhado">
-      <canvas id="grafico-umidade"></canvas>
+      <canvas id="grafico-umidade-1"></canvas>
+    </div>
+  </div>
+</section>      <section id="view-camara-2" class="tela-monitoramento" style="display: none">
+  <header class="cabecalho-secao">
+    <button class="btn-retorno" onclick="showView('view-fazenda')">
+      &larr; Voltar
+    </button>
+    <h2 style="font-size: 32px; margin-top: 10px;">C&acirc;mara 02</h2>
+  </header>
+
+  <div class="dashboard-kpis">
+  <div class="indicador-card indicador-sensores">
+    <span class="rotulo-kpi">Sensores da C&acirc;mara</span>
+
+    <div class="grid-sensores-kpi">
+      <div class="sensor-box">
+        <div class="sensor-topo">
+          <span class="sensor-nome">Sensor A</span>
+          <span class="bolinha-status status-ideal"></span>
+        </div>
+        <p>T: 22&deg;C</p>
+        <p>U: 85%</p>
+      </div>
+
+      <div class="sensor-box">
+        <div class="sensor-topo">
+          <span class="sensor-nome">Sensor B</span>
+          <span class="bolinha-status status-critico"></span>
+        </div>
+        <p>T: 32&deg;C</p>
+        <p>U: 85%</p>
+      </div>
+
+      <div class="sensor-box">
+        <div class="sensor-topo">
+          <span class="sensor-nome">Sensor C</span>
+          <span class="bolinha-status status-ideal"></span>
+        </div>
+        <p>T: 21&deg;C</p>
+        <p>U: 80%</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="indicador-card kpi-centralizado">
+    <span class="rotulo-kpi">Alertas Hoje</span>
+    <span class="valor-kpi texto-critico">12</span>
+  </div>
+
+  <div class="indicador-card kpi-centralizado kpi-faixa">
+    <span class="rotulo-kpi">Faixa ideal</span>
+    <div class="box-faixa-ideal critico">
+      <span class="cor-faixa critico"></span>
+      Temperatura e Umidade Cr&iacute;tica
+    </div>
+    <div class="box-faixa-ideal alerta">
+      <span class="cor-faixa alerta"></span>
+      Temperatura e Umidade Alerta
+    </div>
+    <div class="box-faixa-ideal">
+      <span class="cor-faixa"></span>
+      Temperatura e Umidade Ideal
+    </div>
+  </div>
+</div>
+
+  <div class="dashboard-graficos">
+    <div class="grafico-detalhado">
+      <canvas id="grafico-temp-2"></canvas>
+    </div>
+    <div class="grafico-detalhado">
+      <canvas id="grafico-umidade-2"></canvas>
+    </div>
+  </div>
+</section>      <section id="view-camara-3" class="tela-monitoramento" style="display: none">
+  <header class="cabecalho-secao">
+    <button class="btn-retorno" onclick="showView('view-fazenda')">
+      &larr; Voltar
+    </button>
+    <h2 style="font-size: 32px; margin-top: 10px;">C&acirc;mara 03</h2>
+  </header>
+
+  <div class="dashboard-kpis">
+  <div class="indicador-card indicador-sensores">
+    <span class="rotulo-kpi">Sensores da C&acirc;mara</span>
+
+    <div class="grid-sensores-kpi">
+      <div class="sensor-box">
+        <div class="sensor-topo">
+          <span class="sensor-nome">Sensor A</span>
+          <span class="bolinha-status status-ideal"></span>
+        </div>
+        <p>T: 22&deg;C</p>
+        <p>U: 85%</p>
+      </div>
+
+      <div class="sensor-box">
+        <div class="sensor-topo">
+          <span class="sensor-nome">Sensor B</span>
+          <span class="bolinha-status status-critico"></span>
+        </div>
+        <p>T: 32&deg;C</p>
+        <p>U: 85%</p>
+      </div>
+
+      <div class="sensor-box">
+        <div class="sensor-topo">
+          <span class="sensor-nome">Sensor C</span>
+          <span class="bolinha-status status-ideal"></span>
+        </div>
+        <p>T: 21&deg;C</p>
+        <p>U: 80%</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="indicador-card kpi-centralizado">
+    <span class="rotulo-kpi">Alertas Hoje</span>
+    <span class="valor-kpi texto-critico">12</span>
+  </div>
+
+  <div class="indicador-card kpi-centralizado kpi-faixa">
+    <span class="rotulo-kpi">Faixa ideal</span>
+    <div class="box-faixa-ideal critico">
+      <span class="cor-faixa critico"></span>
+      Temperatura e Umidade Cr&iacute;tica
+    </div>
+    <div class="box-faixa-ideal alerta">
+      <span class="cor-faixa alerta"></span>
+      Temperatura e Umidade Alerta
+    </div>
+    <div class="box-faixa-ideal">
+      <span class="cor-faixa"></span>
+      Temperatura e Umidade Ideal
+    </div>
+  </div>
+</div>
+
+  <div class="dashboard-graficos">
+    <div class="grafico-detalhado">
+      <canvas id="grafico-temp-3"></canvas>
+    </div>
+    <div class="grafico-detalhado">
+      <canvas id="grafico-umidade-3"></canvas>
+    </div>
+  </div>
+</section>      <section id="view-camara-4" class="tela-monitoramento" style="display: none">
+  <header class="cabecalho-secao">
+    <button class="btn-retorno" onclick="showView('view-fazenda')">
+      &larr; Voltar
+    </button>
+    <h2 style="font-size: 32px; margin-top: 10px;">C&acirc;mara 04</h2>
+  </header>
+
+  <div class="dashboard-kpis">
+  <div class="indicador-card indicador-sensores">
+    <span class="rotulo-kpi">Sensores da C&acirc;mara</span>
+
+    <div class="grid-sensores-kpi">
+      <div class="sensor-box">
+        <div class="sensor-topo">
+          <span class="sensor-nome">Sensor A</span>
+          <span class="bolinha-status status-ideal"></span>
+        </div>
+        <p>T: 22&deg;C</p>
+        <p>U: 85%</p>
+      </div>
+
+      <div class="sensor-box">
+        <div class="sensor-topo">
+          <span class="sensor-nome">Sensor B</span>
+          <span class="bolinha-status status-critico"></span>
+        </div>
+        <p>T: 32&deg;C</p>
+        <p>U: 85%</p>
+      </div>
+
+      <div class="sensor-box">
+        <div class="sensor-topo">
+          <span class="sensor-nome">Sensor C</span>
+          <span class="bolinha-status status-ideal"></span>
+        </div>
+        <p>T: 21&deg;C</p>
+        <p>U: 80%</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="indicador-card kpi-centralizado">
+    <span class="rotulo-kpi">Alertas Hoje</span>
+    <span class="valor-kpi texto-critico">12</span>
+  </div>
+
+  <div class="indicador-card kpi-centralizado kpi-faixa">
+    <span class="rotulo-kpi">Faixa ideal</span>
+    <div class="box-faixa-ideal critico">
+      <span class="cor-faixa critico"></span>
+      Temperatura e Umidade Cr&iacute;tica
+    </div>
+    <div class="box-faixa-ideal alerta">
+      <span class="cor-faixa alerta"></span>
+      Temperatura e Umidade Alerta
+    </div>
+    <div class="box-faixa-ideal">
+      <span class="cor-faixa"></span>
+      Temperatura e Umidade Ideal
+    </div>
+  </div>
+</div>
+
+  <div class="dashboard-graficos">
+    <div class="grafico-detalhado">
+      <canvas id="grafico-temp-4"></canvas>
+    </div>
+    <div class="grafico-detalhado">
+      <canvas id="grafico-umidade-4"></canvas>
     </div>
   </div>
 </section>
@@ -221,10 +437,14 @@
 
   <script src="../js/dash.js"></script> 
   <script src="../js/chart.js"></script>
+  <script src="../js/chart2.js"></script>
+  <script src="../js/chart3.js"></script>
+  <script src="../js/chart4.js"></script>
   <script src="../BOBIA/bobIA.js"></script>
 </body>
 
 </html>
+
 
 
 

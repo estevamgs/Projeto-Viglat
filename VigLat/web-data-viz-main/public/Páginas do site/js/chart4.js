@@ -1,87 +1,24 @@
-﻿var alertas = document.getElementById("chart");
-var alertaSemana = document.getElementById("grafico-alerta");
+﻿var camara4Carregada = false;
 
-new Chart(alertas, {
-  type: "bar",
-  data: {
-    labels: ["CAMARA 01", "CAMARA 02", "CAMARA 03", "CAMARA 04"],
-    datasets: [
-      {
-        label: "Alertas",
-        data: [0, 1, 0, 12],
-        borderColor: "#7a5208",
-        backgroundColor: "#7a5208",
-      },
-    ],
-  },
-  options: {
-    maintainAspectRatio: false,
-    plugins: {
-      legend: { labels: { font: { size: 18 } } },
-      title: {
-        display: true,
-        text: "Quantidade de Alertas (ultimas 24 horas)",
-        font: { size: 24 },
-      },
-    },
-    scales: {
-      y: { stacked: true, grid: { display: true, color: "rgba(255,99,132,0.2)" } },
-      x: { grid: { display: false }, ticks: { font: { size: 18 } } },
-    },
-  },
-});
-
-new Chart(alertaSemana, {
-  type: "bar",
-  data: {
-    labels: ["Segunda-Feira", "Terca-Feira", "Quarta-Feira", "Quinta-Feira", "Sexta-Feira", "Sabado", "Domingo"],
-    datasets: [
-      {
-        label: "Total de Alertas Semanais",
-        data: [1, 1, 0, 3, 4, 1, 1],
-        borderColor: "#7a5208",
-        backgroundColor: "#7a5208",
-      },
-    ],
-  },
-  options: {
-    maintainAspectRatio: false,
-    plugins: {
-      legend: { labels: { font: { size: 18 } } },
-      title: {
-        display: true,
-        text: "Quantidade de Alertas (ultimos 7 dias)",
-        font: { size: 24 },
-      },
-    },
-    scales: {
-      y: { stacked: true, grid: { display: true, color: "rgba(255,99,132,0.2)" } },
-      x: { grid: { display: false }, ticks: { font: { size: 17 } } },
-    },
-  },
-});
-
-var camara1Carregada = false;
-
-function carregarGraficosCamara1() {
-  if (camara1Carregada) {
+function carregarGraficosCamara4() {
+  if (camara4Carregada) {
     return;
   }
-  camara1Carregada = true;
+  camara4Carregada = true;
 
-  var graficoTemp = document.getElementById("grafico-temp-1");
-  var graficoUmidade = document.getElementById("grafico-umidade-1");
+  var graficoTemp = document.getElementById("grafico-temp-4");
+  var graficoUmidade = document.getElementById("grafico-umidade-4");
 
-  fetch("/dash/graficos/1")
+  fetch("/dash/graficos/4")
     .then(function (resposta) {
       return resposta.json();
     })
     .then(function (dados) {
-      montarGraficosCamara1(dados, graficoTemp, graficoUmidade);
+      montarGraficosCamara4(dados, graficoTemp, graficoUmidade);
     });
 }
 
-function montarGraficosCamara1(dados, graficoTemp, graficoUmidade) {
+function montarGraficosCamara4(dados, graficoTemp, graficoUmidade) {
   var sensor1 = [];
   var sensor2 = [];
   var sensor3 = [];
@@ -149,15 +86,7 @@ function montarGraficosCamara1(dados, graficoTemp, graficoUmidade) {
         { label: "tempMinCritica", data: tempMaxCritico2.temperatura, borderColor: "#ef444454", backgroundColor: "#ef444454", fill: "-1" },
       ],
     },
-    options: {
-      tension: 0.25,
-      maintainAspectRatio: false,
-      scales: { y: { min: 8, max: 32, ticks: { font: { size: 14 } } }, x: { ticks: { font: { size: 16 } } } },
-      plugins: {
-        title: { display: true, text: "Grafico de Temperatura", font: { size: 20 } },
-        legend: { labels: { filter: function (item) { return item.text !== "Faixa Ideal" && item.text !== "tempMinIdeal" && item.text !== "Faixa Alerta" && item.text !== "tempMinAlerta" && item.text !== "Faixa Critica" && item.text !== "tempMinCritica"; }, font: { size: 18 } } },
-      },
-    },
+    options: { tension: 0.25, maintainAspectRatio: false, scales: { y: { min: 8, max: 32 }, x: { ticks: { font: { size: 16 } } } }, plugins: { title: { display: true, text: "Grafico de Temperatura", font: { size: 20 } }, legend: { labels: { filter: function (item) { return item.text !== "Faixa Ideal" && item.text !== "tempMinIdeal" && item.text !== "Faixa Alerta" && item.text !== "tempMinAlerta" && item.text !== "Faixa Critica" && item.text !== "tempMinCritica"; }, font: { size: 18 } } } } }
   });
 
   new Chart(graficoUmidade, {
@@ -180,16 +109,6 @@ function montarGraficosCamara1(dados, graficoTemp, graficoUmidade) {
         { label: "FaixaMaxCritica", data: tempMaxCritico2.umidade, borderColor: "#ef444454", backgroundColor: "#ef444454", fill: "-1" },
       ],
     },
-    options: {
-      tension: 0.25,
-      maintainAspectRatio: false,
-      scales: { y: { min: 50, max: 100, grid: { display: true, color: "rgba(255,99,132,0.2)" }, ticks: { font: { size: 16 } } }, x: { grid: { display: false }, ticks: { font: { size: 16 } } } },
-      plugins: {
-        title: { display: true, text: "Grafico de Umidade", font: { size: 20 } },
-        legend: { labels: { filter: function (item) { return item.text !== "FaixaMaxIdeal" && item.text !== "FaixaMinIdeal" && item.text !== "FaixaMaxAlerta" && item.text !== "FaixaMinAlerta" && item.text !== "FaixaMaxCritica" && item.text !== "FaixaMinCritica"; }, font: { size: 18 } } },
-      },
-    },
+    options: { tension: 0.25, maintainAspectRatio: false, scales: { y: { min: 50, max: 100, grid: { display: true, color: "rgba(255,99,132,0.2)" } }, x: { grid: { display: false }, ticks: { font: { size: 16 } } } }, plugins: { title: { display: true, text: "Grafico de Umidade", font: { size: 20 } }, legend: { labels: { filter: function (item) { return item.text !== "FaixaMaxIdeal" && item.text !== "FaixaMinIdeal" && item.text !== "FaixaMaxAlerta" && item.text !== "FaixaMinAlerta" && item.text !== "FaixaMaxCritica" && item.text !== "FaixaMinCritica"; }, font: { size: 18 } } } } }
   });
 }
-
-carregarGraficosCamara1();
