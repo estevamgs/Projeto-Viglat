@@ -22,13 +22,17 @@ body {
 
 header {
   background-color: white;
+  margin-bottom: 3em !important;
+}
+
+nav {
+  height: 5em;
+  margin-bottom: 0 !important;
 }
 
 .background-viglat {
   background-color: #fffffa;
 }
-
-
 
 /* main */
 
