@@ -1,83 +1,145 @@
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
 }
 
-/* HEADER */
-
-header {
-    background-color: white;
-    margin-bottom: 3em !important;
+:root {
+    --corPrin: rgba(255, 255, 255, 0.15);
+    --corSec: #ffffff;
+    --corSecHover: #e0e0e0;
+    --corFundo: #121212;
+    --corBranco: rgba(255, 255, 255, 0.9);
+    --corTextoMuted: rgba(255, 255, 255, 0.7);
+    --corBotao: #593128;
+    --corBotaoHover: #794637;
 }
-
-nav {
-    height: 5em;
-    margin-bottom: 0 !important;
-}
-
-/* BODY */
 
 body {
-    font-family: 'Inter', sans-serif;
-    background-color: #f2f1f0;
+    background-color: #000000;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin: 0;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
 }
 
-h1 {
-    color: #593128;
-    margin-bottom: 20px;
-    font-size: 24px;
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url(../img/Gemini_Generated_Image_wqeozewqeozewqeo.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.25;
+    z-index: -1;
+}
 
+header {
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(5px);
+    width: 100%;
+    position: absolute;
+    top: 0;
+    z-index: 10;
+}
+
+nav {
+    height: 5em;
+    display: flex;
+    align-items: center;
+    padding: 0 2em;
 }
 
 .logo img {
-    width: 5em;
+    width: 10em;
+    height: auto;
 }
 
 .container2 {
-    background-color: #ead7bfc5;
-    border-radius: 1em;
-    padding: .5em 3em;
+    background-color: var(--corPrin);
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 1.5em;
+    padding: 2.5em;
     width: 30%;
+    max-height: 85vh;
     text-align: center;
-}
-
-.container2 h2 {
-    color: #593128;
-    margin-top: 0;
-    margin-bottom: 30px;
-
-}
-
-.content {
-    justify-self: center;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-around;
-    width: 60%;
+    justify-content: center;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    margin-top: 4em;
+}
+
+.container2 .logo img {
+    filter: brightness(0) invert(1);
+    margin-bottom: 1em;
+    width: 8em;
+}
+
+.container2 h2 {
+    color: var(--corSec);
+    font-weight: bold;
+    margin-top: 0;
+    margin-bottom: 1.2em;
+    text-align: center;
+    font-size: 24px;
+    letter-spacing: 0.5px;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
 }
 
 .content h3 {
     text-align: left;
-    color: #593128;
-    font-size: 14px;
-    margin-bottom: 8px;
+    color: var(--corTextoMuted);
+    font-weight: 500;
+    font-size: 13px;
+    margin-bottom: 6px;
     margin-left: 5px;
+    align-self: flex-start;
+}
+
+.usuario, .email, .senha, .senhaConfirm {
+    display: flex;
+    align-items: center;
+    background-color: var(--corBranco);
+    border-radius: 1em;
+    margin-bottom: 0.8em;
+    width: 100%;
+    height: 3.2em;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.usuario i, .email i, .senha i, .senhaConfirm i {
+    padding: .5em;
+    margin-left: .5em;
+    font-size: 1.1em;
+    color: #593128;
 }
 
 .content input {
     width: 100%;
-    padding: 15px;
+    height: 100%;
+    padding: 15px 15px 15px 5px;
     border: none;
-    border-radius: 15px;
-    color: #593128;
-    box-sizing: border-box;
-    font-size: 15px;
+    border-radius: 1em;
+    color: #2c1814;
+    font-size: 14px;
+    background-color: transparent;
 }
 
 .content input:focus {
@@ -86,41 +148,45 @@ h1 {
 
 .content input::placeholder {
     color: #593128;
+    opacity: 0.6;
 }
 
 .cad-botao {
-    margin-top: 20px;
+    width: 100%;
+    margin-top: 0.8em;
 }
 
 .cad-botao button {
-    background-color: #593128;
-    color: #f2f1f0;
+    background-color: var(--corBotao);
+    color: #ffffff;
     border: none;
-    padding: 15px;
+    padding: 14px;
     width: 100%;
-    border-radius: 30px;
-    font-size: 18px;
+    border-radius: 1em;
+    font-size: 16px;
     font-weight: bold;
     cursor: pointer;
-    transition: 0.3s;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(89, 49, 40, 0.3);
 }
 
 .cad-botao button:hover {
-    background-color: #794637;
+    background-color: var(--corBotaoHover);
     transform: scale(1.02);
+    box-shadow: 0 6px 16px rgba(89, 49, 40, 0.4);
 }
 
 .cad-botao p {
-    margin: 1em 0;
-    font-size: 14px;
-    color: #593128;
-
+    margin: 1em 0 0 0;
+    font-size: 13px;
+    color: var(--corTextoMuted);
 }
 
 .cad-botao a {
-    color: #593128;
+    color: var(--corSec);
     text-decoration: none;
     font-weight: bold;
+    margin-left: 3px;
 }
 
 .cad-botao a:hover {
@@ -129,36 +195,15 @@ h1 {
 
 .req {
     text-align: start;
-    font-size: .7em;
+    font-size: .75em;
     align-self: flex-start;
-    margin-bottom: 1em;
+    margin-bottom: 0.5em;
+    color: var(--corTextoMuted);
 }
 
-#caracteres,
-#especial,
-#maius,
-#minus {
-    color: red;
-}
-
-.usuario,
-.email,
-.senha,
-.senhaConfirm {
-    display: flex;
-    align-items: center;
-    background-color: white;
-    border-radius: 1em;
-    margin-bottom: 1em;
-    width: 100%;
-
-}
-
-.usuario i,
-.email i,
-.senha i,
-.senhaConfirm i {
-    margin: .5em;
+#caracteres, #especial, #maius, #minus {
+    color: #ff6b6b;
+    font-weight: 500;
 }
 
 #requisitos {
