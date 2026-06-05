@@ -430,3 +430,4 @@ function montarGraficosCamara2(dados, graficoTemp, graficoUmidade) {
 
 
 
+
