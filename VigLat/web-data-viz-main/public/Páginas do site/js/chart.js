@@ -19,11 +19,18 @@ new Chart(alertas, {
   options: {
     maintainAspectRatio: false,
     plugins: {
+      legend:{
+        labels:{ 
+          font:{ 
+            size: 18
+          }, 
+        },
+      },
       title: {
         display: true,
         text: "Quantidade de Alertas (últimas 24 horas)",
-        font: {
-          size: 24,
+        font:{
+          size: 24
         },
       },
     },
@@ -39,6 +46,11 @@ new Chart(alertas, {
         grid: {
           display: false,
         },
+        ticks:{
+          font:{
+            size: 18
+          },
+        }
       },
     },
   },
@@ -68,6 +80,13 @@ new Chart(alertaSemana, {
   options: {
     maintainAspectRatio: false,
     plugins: {
+      legend:{
+        labels:{ 
+          font:{ 
+            size: 18
+          }, 
+        },
+      },
       title: {
         display: true,
         text: "Quantidade de Alertas (últimos 7 dias)",
@@ -88,6 +107,11 @@ new Chart(alertaSemana, {
         grid: {
           display: false,
         },
+        ticks:{
+          font:{
+            size: 17
+          },
+        }
       },
     },
   },
@@ -204,15 +228,15 @@ fetch("/dash/graficos/1")
           {
             label: "Sensor B",
             data: temperaturaSensor2,
-            borderColor: "#ec4899",
-            backgroundColor: "#ec4899",
+            borderColor: "#4b48ec",
+            backgroundColor: "#4b48ec",
           },
           {
-  label: "Sensor C",
-  data: temperaturaSensor3,
-  borderColor: "gray",
-  backgroundColor: "gray",
-},
+            label: "Sensor C",
+            data: temperaturaSensor3,
+            borderColor: "gray",
+            backgroundColor: "gray",
+          },
           {
             label: "Faixa Ideal",
             data: tempMaxIdeal.temperatura,
@@ -287,12 +311,27 @@ fetch("/dash/graficos/1")
           y: {
             min: 8,
             max: 32,
+            ticks:{
+              font:{
+                size: 14
+              }
+            }
+          },
+          x: {
+            ticks:{
+              font:{
+                size: 16
+              }
+            }
           },
         },
         plugins: {
           title: {
             display: true,
             text: "Gráfico de Temperatura",
+            font:{
+              size: 20
+            },
           },
           legend: {
             labels: {
@@ -306,6 +345,9 @@ fetch("/dash/graficos/1")
                   item.text !== "tempMinCrítica"
                 );
               },
+              font:{
+                size: 18
+              }
             },
           },
         },
@@ -330,11 +372,11 @@ fetch("/dash/graficos/1")
             backgroundColor: "#ec4899",
           },
           {
-  label: "Sensor C",
-  data: umidadeSensor3,
-  borderColor: "gray",
-  backgroundColor: "gray",
-},
+            label: "Sensor C",
+            data: umidadeSensor3,
+            borderColor: "gray",
+            backgroundColor: "gray",
+          },
           {
             label: "FaixaMinIdeal",
             data: tempMaxIdeal.umidade,
@@ -403,6 +445,7 @@ fetch("/dash/graficos/1")
         ],
       },
       options: {
+  
         tension: 0.25,
         maintainAspectRatio: false,
         scales: {
@@ -413,10 +456,20 @@ fetch("/dash/graficos/1")
               display: true,
               color: "rgba(255,99,132,0.2)",
             },
+            ticks:{
+              font:{
+                size: 16
+              }
+            }
           },
           x: {
             grid: {
               display: false,
+            },
+            ticks:{
+              font:{
+                size: 16
+              },
             },
           },
         },
@@ -424,6 +477,9 @@ fetch("/dash/graficos/1")
           title: {
             display: true,
             text: "Gráfico de Umidade",
+            font:{
+              size:20
+            }
           },
           legend: {
             labels: {
@@ -437,6 +493,9 @@ fetch("/dash/graficos/1")
                   item.text !== "FaixaMinCrítica"
                 );
               },
+              font:{ 
+                size: 18
+              }, 
             },
           },
         },

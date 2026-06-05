@@ -89,7 +89,7 @@ h3{
 }
 
 .aba-unidade {
-    padding: 16px 32px;
+    padding: 20px 72px;
     border-radius: 8px;
     border: 2px solid #ddd;
     background: white;
@@ -209,7 +209,7 @@ h3{
 }
 
 .valor-kpi {
-    font-size: 50px;
+    font-size: 65px;
     font-weight: bold;
 }
 
@@ -281,11 +281,12 @@ h3{
     background: var(--marrom-destaque);
     color: #eee;
     border: none;
-    padding: 10px 26px;
+    padding: 20px 46px;
     border-radius: 8px;
     cursor: pointer;
     margin-right: 15px;
-    font-size: 18px;
+    margin-bottom: 20px;
+    font-size: 22px;
 }
 
 .legenda-status {
@@ -399,7 +400,7 @@ h3{
 }
 .aba-unidade {
     position: relative;
-    font-size: 20px;
+    font-size: 25px;
 }
 .bolinha-fazenda {
     position: absolute;
