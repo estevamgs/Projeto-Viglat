@@ -104,13 +104,13 @@ nav {
 }
 
 .content h3 {
-    text-align: left;
+    text-align: center;
     color: var(--corTextoMuted);
     font-weight: 500;
-    font-size: 13px;
+    font-size: 15px;
     margin-bottom: 6px;
     margin-left: 5px;
-    align-self: flex-start;
+    align-items: center;
 }
 
 .usuario, .email, .senha, .senhaConfirm {
@@ -119,7 +119,7 @@ nav {
     background-color: var(--corBranco);
     border-radius: 1em;
     margin-bottom: 0.8em;
-    width: 100%;
+    width: 60%;
     height: 3.2em;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
@@ -152,7 +152,7 @@ nav {
 }
 
 .cad-botao {
-    width: 100%;
+    width: 60%;
     margin-top: 0.8em;
 }
 

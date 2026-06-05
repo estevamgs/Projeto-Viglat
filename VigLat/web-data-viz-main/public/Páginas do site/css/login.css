@@ -116,10 +116,10 @@ nav {
     font-size: 13px;
     margin-bottom: 6px;
     margin-left: 5px;
-    align-self: flex-start;
     display: flex;
+    align-self: flex-start;
+    gap: 10px;
 }
-
 .email, .senha {
     display: flex;
     align-items: center;
