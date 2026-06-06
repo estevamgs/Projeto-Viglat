@@ -4,11 +4,11 @@ function buscarUltimasMedidas(req, res) {
 
     const limite_linhas = 7;
 
-    var idSensor = req.params.idSensor;
+    var idCamara = req.params.idCamara;
 
     console.log(`Recuperando as ultimas ${limite_linhas} medidas`);
 
-    medidaModel.buscarUltimasMedidas(idSensor, limite_linhas).then(function (resultado) {
+    medidaModel.buscarUltimasMedidas(idCamara, limite_linhas).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -24,11 +24,11 @@ function buscarUltimasMedidas(req, res) {
 
 function buscarMedidasEmTempoReal(req, res) {
 
-    var idSensor = req.params.idSensor;
+    var idCamara = req.params.idCamara;
 
     console.log(`Recuperando medidas em tempo real`);
 
-    medidaModel.buscarMedidasEmTempoReal(idSensor).then(function (resultado) {
+    medidaModel.buscarMedidasEmTempoReal(idCamara).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {

@@ -1,16 +1,19 @@
 var database = require("../database/config");
 
-function buscarUltimasMedidas(idSensor, limite_linhas) {
+function buscarUltimasMedidas(idCamara, limite_linhas) {
 
      var instrucaoSql = `
-        SELECT
-            temperatura,
-            umidade,
-            dt_Hora,
-            DATE_FORMAT(dt_Hora, '%H:%i:%s') AS momento_grafico
-        FROM registro
-        WHERE idSensor = ${idSensor}
-        ORDER BY dt_Hora DESC
+              SELECT
+            r.idSensor,
+            r.temperatura,
+            r.umidade,
+            r.dt_Hora,
+            DATE_FORMAT(r.dt_Hora, '%H:%i:%s') AS momento_grafico
+        FROM registro r
+        JOIN sensor s
+            ON r.idSensor = s.idSensor
+        WHERE s.camaraId = ${idCamara}
+        ORDER BY r.idRegistro DESC
         LIMIT ${limite_linhas};
     `;
 
@@ -18,18 +21,20 @@ function buscarUltimasMedidas(idSensor, limite_linhas) {
     return database.executar(instrucaoSql);
 }
 
-function buscarMedidasEmTempoReal(idSensor) {
+function buscarMedidasEmTempoReal(idCamara) {
 
-    var instrucaoSql = `
+       var instrucaoSql = `
         SELECT
-            temperatura,
-            umidade,
-            DATE_FORMAT(dt_Hora, '%H:%i:%s') AS momento_grafico,
-            idSensor
-        FROM registro
-        WHERE idSensor = ${idSensor}
-        ORDER BY dt_Hora DESC
-        LIMIT 1;
+            r.idSensor,
+            r.temperatura,
+            r.umidade,
+            DATE_FORMAT(r.dt_Hora, '%H:%i:%s') AS momento_grafico
+        FROM registro r
+        JOIN sensor s
+            ON r.idSensor = s.idSensor
+        WHERE s.camaraId = ${idCamara}
+        ORDER BY r.idRegistro DESC
+        LIMIT 3;
     `;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);

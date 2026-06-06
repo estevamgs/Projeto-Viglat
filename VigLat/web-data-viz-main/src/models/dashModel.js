@@ -9,7 +9,7 @@ function buscarDadosGraficos(idCamara) {
       r.umidade,
       r.dt_Hora
     FROM registro r
-    INNER JOIN sensor s
+    JOIN sensor s
       ON r.idSensor = s.idSensor
     WHERE s.camaraId = ${idCamara}
     ORDER BY r.dt_Hora ASC;
