@@ -51,7 +51,7 @@ constraint fkCam foreign key (camaraId) references camara(idCamara)
 
 
 CREATE TABLE registro (
-idRegistro int,
+idRegistro int AUTO_INCREMENT,
 idSensor int,
 dt_Hora datetime default now(),
 umidade int,
@@ -202,3 +202,14 @@ SHOW TABLES;
 
 SELECT * FROM sensor WHERE camaraId = 1;
 SELECT * FROM registro;
+
+select * from usuario;
+
+INSERT INTO registro (idSensor, temperatura, umidade)
+VALUES
+(1, 24, 86),
+(1, 25, 88),
+(1, 23, 84);
+
+ALTER TABLE registro
+MODIFY COLUMN idRegistro INT AUTO_INCREMENT;

@@ -8,7 +8,7 @@ const SERIAL_BAUD_RATE = 9600;
 const SERVIDOR_PORTA = 3300;
 
 // habilita ou desabilita a inserção de dados no banco de dados
-const HABILITAR_OPERACAO_INSERIR = false;
+const HABILITAR_OPERACAO_INSERIR = true;
 
 // função para comunicação serial
 const serial = async (temp, umi) => {
@@ -19,7 +19,7 @@ const serial = async (temp, umi) => {
       user: "usuarioApi",
       password: "2004Poder1@",
       database: "projetopi",
-      port: 3307,
+      port: 3306,
     })
     .promise();
 
