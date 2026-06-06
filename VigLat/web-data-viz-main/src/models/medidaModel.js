@@ -20,13 +20,17 @@ function buscarUltimasMedidas(idSensor, limite_linhas) {
 
 function buscarMedidasEmTempoReal(idSensor) {
 
-    var instrucaoSql = `SELECT 
-        dht11_temperatura as temperatura, 
-        dht11_umidade as umidade,
-                        DATE_FORMAT(momento,'%H:%i:%s') as momento_grafico, 
-                        fk_aquario 
-                        FROM medida WHERE fk_aquario = ${idSensor} 
-                    ORDER BY id DESC LIMIT 1`;
+    var instrucaoSql = `
+        SELECT
+            temperatura,
+            umidade,
+            DATE_FORMAT(dt_Hora, '%H:%i:%s') AS momento_grafico,
+            idSensor
+        FROM registro
+        WHERE idSensor = ${idSensor}
+        ORDER BY dt_Hora DESC
+        LIMIT 1;
+    `;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
