@@ -1,73 +1,82 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="pt-br">
-
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Viglat Dashboard</title>
-  <link rel="stylesheet" href="../css/header.css">
-  <link rel="stylesheet" href="../css/chart.css" />
-  <link rel="stylesheet" href="../css/bobIA.css">
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-</head>
-<body>
-  <header>
-        <div class="container">
-          <nav>
-            <div class="logo">
-              <a href="../index.html">
-                <img src="../img/Viglat-removebg-preview.png" alt="" />
-              </a>
-            </div>
-            <ul class="ul">
-              <li><a href="../index.html">Início</a></li>
-              <li><a href="../Calculadora Financeira/Calculadora.html">Simulador Financeiro</a></li>
-              <li><a href="../index.html#contato">Contato</a></li>
-              <li><a class="btn-gradiente" href="../Página de login/login.html">Login</a></li>
-            </ul>
-          </nav>
-        </div>
-      </header>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Viglat Dashboard</title>
+    <link rel="stylesheet" href="../css/header.css" />
+    <link rel="stylesheet" href="../css/chart.css" />
+    <link rel="stylesheet" href="../css/bobIA.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <nav>
+          <div class="logo">
+            <a href="../index.html">
+              <img src="../img/Viglat-removebg-preview.png" alt="" />
+            </a>
+          </div>
+          <ul class="ul">
+            <li><a href="../index.html">In&iacute;cio</a></li>
+            <li>
+              <a href="../Calculadora Financeira/Calculadora.html"
+                >Simulador Financeiro</a
+              >
+            </li>
+            <li><a href="../index.html#contato">Contato</a></li>
+            <li>
+              <a
+                class="btn-gradiente"
+                href="../P&aacute;gina de login/login.html"
+                >Login</a
+              >
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
 
     <main class="painel-principal">
-      <div class="seletor-unidades">
-        <button class="aba-unidade ativa" onclick="trocarFazenda('1', this)">
-  Fazenda 1
-  <span class="bolinha-status status-critico bolinha-fazenda"></span>
-</button>
-
-<button class="aba-unidade" onclick="trocarFazenda('2', this)">
-  Fazenda 2
-  <span class="bolinha-status status-ideal bolinha-fazenda"></span>
-</button>
-      </div>
+      <div class="seletor-unidades" id="seletor-fazendas"></div>
 
       <section id="view-fazenda" class="tela-monitoramento">
         <header class="cabecalho-secao">
-          <h2 id="titulo-fazenda" style="font-size: 30px;">Visão Geral:</h2>
+          <h2 id="titulo-fazenda" style="font-size: 30px">
+            Vis&atilde;o Geral:
+          </h2>
           <div class="legenda-status">
             <div class="status-item">
-              <span class="status-tag metrica">T - Temperatura<br />U - Umidade</span>
+              <span class="status-tag metrica"
+                >T - Temperatura<br />U - Umidade</span
+              >
             </div>
             <div class="status-item">
               <span class="status-tag metrica">
-
-                <span style="font-size: 13px; font-weight: bold;">
-                  </span> < - menor que<br>
-                    <span style="font-size: 13px; font-weight: bold;">></span> - maior que
-                </span>
+                <span style="font-size: 13px; font-weight: bold"> </span> < -
+                menor que<br />
+                <span style="font-size: 13px; font-weight: bold">></span> -
+                maior que
+              </span>
             </div>
             <div class="status-item">
-              <span class="status-tag status-ideal">T:18°C a 22°C&nbsp;&nbsp; / Ideal<br />U:80% a 90%&nbsp;&nbsp; /
-                Ideal</span>
+              <span class="status-tag status-ideal"
+                >T:18&deg;C a 22&deg;C&nbsp;&nbsp; / Ideal<br />U:80% a
+                90%&nbsp;&nbsp; / Ideal</span
+              >
             </div>
             <div class="status-item">
-              <span class="status-tag status-alerta">T:>22°C ou
-                <18°C / Alerta<br />U:>90% ou <80%&nbsp; / Alerta</span>
+              <span class="status-tag status-alerta"
+                >T:>22&deg;C ou <18&deg;C / Alerta<br />U:>90% ou <80%&nbsp; /
+                Alerta</span
+              >
             </div>
             <div class="status-item">
-              <span class="status-tag status-critico">T:>26°C ou
-                <15°C &nbsp;/ Crítico<br />U:>95% ou <70% &nbsp;&nbsp;/ Crítico</span>
+              <span class="status-tag status-critico"
+                >T:>26&deg;C ou <15&deg;C &nbsp;/ Cr&iacute;tico<br />U:>95% ou
+                <70% &nbsp;&nbsp;/ Cr&iacute;tico</span
+              >
             </div>
             <div class="status-item legenda-flex">
               <div class="status-grupo">
@@ -80,34 +89,13 @@
               </div>
               <div class="status-grupo">
                 <span class="bolinha-status status-critico"></span>
-                <span class="status-label">Crítico</span>
+                <span class="status-label">Cr&iacute;tico</span>
               </div>
             </div>
           </div>
         </header>
 
-        <div class="grid-dispositivos">
-          <div class="card-dispositivo status-ideal" data-nome="Câmara 01" data-temp="A= 19°C / B= 22°C / C= 20" data-umi="A= 80% / B= 85% / C= 65"
-            data-alertas="1" onclick="abrirDetalhes(this)">
-            <h3>Câmara 01</h3>
-            <p>Ideal</p>
-          </div>
-          <div class="card-dispositivo status-alerta" data-nome="Câmara 02" data-temp="A= 20°C / B= 30°C / C= 21" data-umi="A= 80% / B= 85% / C= 65"
-            data-alertas="4" onclick="abrirDetalhes(this)">
-            <h3>Câmara 02</h3>
-            <p>Alerta</p>
-          </div>
-          <div class="card-dispositivo status-ideal" data-nome="Câmara 03" data-temp="A= 22°C / B= 32°C / C= 21"
-            data-umi="A= 80% / B= 85% / C= 65" data-alertas="0" onclick="abrirDetalhes(this)">
-            <h3>Câmara 03</h3>
-            <p>Ideal</p>
-          </div>
-          <div class="card-dispositivo status-critico" data-nome="Câmara 04" data-temp="A= 22°C / B= 32°C / C= 21"
-            data-umi="A= 80% / B= 85% / C= 65" data-alertas="8" onclick="abrirDetalhes(this)">
-            <h3>Câmara 04</h3>
-            <p><b>CRÍTICO!</b></p>
-          </div>
-        </div>
+        <div class="grid-dispositivos" id="grid-camaras"></div>
 
         <div class="dashboard-graficos">
           <div class="grafico-detalhado">
@@ -120,83 +108,107 @@
         </div>
       </section>
 
-      <section id="view-camara" class="tela-monitoramento" style="display: none">
-  <header class="cabecalho-secao">
-    <button class="btn-retorno" onclick="showView('view-fazenda')">
-      ← Voltar
-    </button>
-    <h2 id="titulo-camara" style="font-size: 32px; margin-top: 10px;">Câmara 01</h2>
-  </header>
+      <section
+        id="view-camara"
+        class="tela-monitoramento"
+        style="display: none"
+      >
+        <header class="cabecalho-secao">
+          <button class="btn-retorno" onclick="showView('view-fazenda')">
+            ← Voltar
+          </button>
 
-  <div class="dashboard-kpis">
-  <div class="indicador-card indicador-sensores">
-    <span class="rotulo-kpi">Sensores da Câmara</span>
+          <h2 id="titulo-camara">Câmara</h2>
+        </header>
 
-    <div class="grid-sensores-kpi">
-      <div class="sensor-box">
-        <div class="sensor-topo">
-          <span class="sensor-nome">Sensor A</span>
-          <span class="bolinha-status status-ideal"></span>
+        <div class="dashboard-kpis">
+          <!-- Sensores -->
+          <div class="indicador-card indicador-sensores">
+            <span class="rotulo-kpi"> Sensores da Câmara </span>
+
+            <div class="grid-sensores-kpi" id="grid-sensores">
+              <!-- sensores entram aqui -->
+
+              <div class="sensor-box">
+                <div class="sensor-topo">
+                  <span class="sensor-nome"> Sensor A </span>
+
+                  <span class="bolinha-status status-ideal"> </span>
+                </div>
+
+                <p>T: 22°C</p>
+                <p>U: 85%</p>
+              </div>
+
+              <div class="sensor-box">
+                <div class="sensor-topo">
+                  <span class="sensor-nome"> Sensor B </span>
+
+                  <span class="bolinha-status status-alerta"> </span>
+                </div>
+
+                <p>T: 25°C</p>
+                <p>U: 92%</p>
+              </div>
+
+              <div class="sensor-box">
+                <div class="sensor-topo">
+                  <span class="sensor-nome"> Sensor C </span>
+
+                  <span class="bolinha-status status-critico"> </span>
+                </div>
+
+                <p>T: 31°C</p>
+                <p>U: 97%</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Alertas -->
+          <div class="indicador-card kpi-centralizado">
+            <span class="rotulo-kpi"> Alertas Hoje </span>
+
+            <span class="valor-kpi texto-critico" id="alertas-hoje"> 12 </span>
+          </div>
+
+          <!-- Faixa ideal -->
+          <div class="indicador-card kpi-centralizado kpi-faixa">
+            <span class="rotulo-kpi"> Faixa ideal </span>
+
+            <div class="box-faixa-ideal critico">
+              <span class="cor-faixa critico"> </span>
+
+              Temperatura e Umidade Crítica
+            </div>
+
+            <div class="box-faixa-ideal alerta">
+              <span class="cor-faixa alerta"> </span>
+
+              Temperatura e Umidade Alerta
+            </div>
+
+            <div class="box-faixa-ideal">
+              <span class="cor-faixa"> </span>
+
+              Temperatura e Umidade Ideal
+            </div>
+          </div>
         </div>
-        <p>T: 22°C</p>
-        <p>U: 85%</p>
-      </div>
 
-      <div class="sensor-box">
-        <div class="sensor-topo">
-          <span class="sensor-nome">Sensor B</span>
-          <span class="bolinha-status status-critico"></span>
+        <!-- Gráficos -->
+        <div class="dashboard-graficos">
+          <div class="grafico-detalhado">
+            <canvas id="grafico-temp"></canvas>
+          </div>
+
+          <div class="grafico-detalhado">
+            <canvas id="grafico-umidade"></canvas>
+          </div>
         </div>
-        <p>T: 32°C</p>
-        <p>U: 85%</p>
-      </div>
-
-      <div class="sensor-box">
-        <div class="sensor-topo">
-          <span class="sensor-nome">Sensor C</span>
-          <span class="bolinha-status status-ideal"></span>
-        </div>
-        <p>T: 21°C</p>
-        <p>U: 80%</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="indicador-card kpi-centralizado">
-    <span class="rotulo-kpi">Alertas Hoje</span>
-    <span class="valor-kpi texto-critico" id="kpi-alertas">12</span>
-  </div>
-
-  <div class="indicador-card kpi-centralizado kpi-faixa">
-    <span class="rotulo-kpi">Faixa ideal</span>
-    <div class="box-faixa-ideal critico">
-      <span class="cor-faixa critico"></span>
-      Temperatura e Umidade Crítica
-    </div>
-    <div class="box-faixa-ideal alerta">
-      <span class="cor-faixa alerta"></span>
-      Temperatura e Umidade Alerta
-    </div>
-    <div class="box-faixa-ideal">
-      <span class="cor-faixa"></span>
-      Temperatura e Umidade Ideal
-    </div>
-  </div>
-</div>
-
-  <div class="dashboard-graficos">
-    <div class="grafico-detalhado">
-      <canvas id="grafico-temp"></canvas>
-    </div>
-    <div class="grafico-detalhado">
-      <canvas id="grafico-umidade"></canvas>
-    </div>
-  </div>
-</section>
+      </section>
     </main>
-  </div>
 
-  <div id="iconeBobIA">
+    <div id="iconeBobIA">
       <img
         onclick="aparecerChat()"
         style="cursor: pointer"
@@ -223,9 +235,157 @@
       </div>
     </div>
 
-  <script src="../js/dash.js"></script> 
-  <script src="../js/chart.js"></script>
-  <script src="../BOBIA/bobIA.js"></script>
-</body>
+    <script src="../js/dash.js"></script>
+    <script src="../js/chart.js"></script>
+    <script src="../BOBIA/bobIA.js"></script>
+    <script>
+      window.onload = function () {
+        carregarFazendas();
+      };
 
+      async function carregarFazendas() {
+        var resposta = await fetch("/chart/listarFazendas");
+
+        var fazendas = await resposta.json();
+
+        var div = document.getElementById("seletor-fazendas");
+
+        div.innerHTML = "";
+
+        for (var i = 0; i < fazendas.length; i++) {
+          var classeStatus = "ideal";
+
+          if (fazendas[i].statusFazenda == "alerta") {
+            classeStatus = "alerta";
+          }
+
+          if (fazendas[i].statusFazenda == "critico") {
+            classeStatus = "critico";
+          }
+
+          div.innerHTML += `
+    <button
+      class="
+      aba-unidade
+      ${classeStatus}
+      "
+
+      onclick="
+      carregarCamaras(
+        ${fazendas[i].idFazenda},
+        'Fazenda ${i + 1}',
+        this
+      )">
+
+      <span
+      class="
+      bolinha-status
+      bolinha-fazenda
+      status-${classeStatus}
+      ">
+      </span>
+
+      Fazenda ${i + 1}
+
+    </button>
+    `;
+        }
+
+        // pré-seleciona a primeira fazenda
+        if (fazendas.length > 0) {
+          var primeiroBotao = document.getElementsByClassName("aba-unidade")[0];
+
+          primeiroBotao.classList.add("ativa");
+
+          carregarCamaras(
+            fazendas[0].idFazenda,
+
+            "Fazenda 1",
+
+            primeiroBotao,
+          );
+        }
+      }
+
+      async function carregarCamaras(idFazenda, nomeFazenda, botao) {
+        try {
+          var botoes = document.getElementsByClassName("aba-unidade");
+
+          for (var i = 0; i < botoes.length; i++) {
+            botoes[i].classList.remove("ativa");
+          }
+
+          botao.classList.add("ativa");
+
+          document.getElementById("titulo-fazenda").innerText =
+            `Visão Geral: Fazenda ${idFazenda}`;
+
+          var resposta = await fetch(`/chart/listarCamaras/${idFazenda}`);
+
+          var camaras = await resposta.json();
+
+          console.log(camaras);
+
+          var grid = document.getElementById("grid-camaras");
+
+          grid.innerHTML = "";
+
+          for (var i = 0; i < camaras.length; i++) {
+            var classeStatus = "status-ideal";
+
+            if (camaras[i].statusCamara == "alerta") {
+              classeStatus = "status-alerta";
+            }
+
+            if (camaras[i].statusCamara == "critico") {
+              classeStatus = "status-critico";
+            }
+
+            grid.innerHTML += `
+      <div
+        class="
+        card-dispositivo
+        ${classeStatus}
+        "
+
+        onclick="
+        abrirCamara(
+          ${camaras[i].idCamara},
+          'Câmara ${i + 1}'
+        )">
+
+        <h3>
+          Câmara ${i + 1}
+        </h3>
+
+        <p>
+          T:
+          ${camaras[i].temperatura}°C
+        </p>
+
+        <p>
+          U:
+          ${camaras[i].umidade}%
+        </p>
+
+      </div>
+      `;
+          }
+        } catch (erro) {
+          console.log("Erro ao carregar câmaras:", erro);
+        }
+      }
+
+      function abrirCamara(idCamera, nomeCamera) {
+        document.getElementById("titulo-camara").innerText = nomeCamera;
+
+        showView("view-camara");
+
+        setTimeout(function () {
+          carregarGraficos(idCamera);
+          carregarKPISensores(idCamera);
+        }, 100);
+      }
+    </script>
+  </body>
 </html>

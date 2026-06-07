@@ -49,8 +49,9 @@ camaraId int,
 constraint fkCam foreign key (camaraId) references camara(idCamara)
 );
 
+
 CREATE TABLE registro (
-idRegistro int,
+idRegistro int AUTO_INCREMENT,
 idSensor int,
 dt_Hora datetime default now(),
 umidade int,
@@ -96,16 +97,85 @@ INSERT INTO fazenda (nome, empresaId, enderecoId) VALUES
 INSERT INTO camara (nomeCamara, capacidade, fazendaId) VALUES
 ('Câmara de Maturação 01', 500.0, 1),
 ('Câmara de Maturação 02', 750.0, 1),
-('Câmara Principal - Atalaia', 1200.0, 2);
+('Câmara Principal - Atalaia', 1200.0, 2),
+('Câmara de Maturação 04', 600, 1);
+
 
 -- 6. Sensores DHT11 instalados nas câmaras
 INSERT INTO sensor (nome, tipo, localizacao, camaraId) VALUES
-('Sensor DHT11 - Entrada Câmara 01', 'DHT11', 'próximo à porta de entrada', 1),
-('Sensor DHT11 - Centro Câmara 01', 'DHT11', 'centro da câmara - nível médio', 1),
-('Sensor DHT11 - Fundos Câmara 02', 'DHT11', 'fundo da câmara - parede leste', 2),
-('Sensor DHT11 - Atalaia Principal', 'DHT11', 'teto central da câmara', 3),
-('Sensor DHT11 - Atalaia Reserva', 'DHT11', 'lateral direita próximo ao duto', 3);
+('Sensor A - Câmara 01', 'DHT11', 'Entrada', 1),
+('Sensor B - Câmara 01', 'DHT11', 'Centro', 1),
+('Sensor C - Câmara 01', 'DHT11', 'Fundos', 1),
 
+('Sensor A - Câmara 02', 'DHT11', 'Entrada', 2),
+('Sensor B - Câmara 02', 'DHT11', 'Centro', 2),
+('Sensor C - Câmara 02', 'DHT11', 'Fundos', 2),
+
+('Sensor A - Câmara 03', 'DHT11', 'Entrada', 3),
+('Sensor B - Câmara 03', 'DHT11', 'Centro', 3),
+('Sensor C - Câmara 03', 'DHT11', 'Fundos', 3),
+
+('Sensor A - Câmara 04', 'DHT11', 'Entrada', 4),
+('Sensor B - Câmara 04', 'DHT11', 'Centro', 4),
+('Sensor C - Câmara 04', 'DHT11', 'Fundos', 4);
+
+-- insert dos registros de temperatura e umidade 
+
+INSERT INTO registro (idRegistro, idSensor, umidade, temperatura)
+VALUES
+-- Câmara 1 
+(133, 1, 82, 19),
+(134, 1, 85, 20),
+(135, 1, 88, 21),
+
+(136, 2, 79, 18),
+(137, 2, 84, 22),
+(138, 2, 91, 23),
+
+(139, 3, 81, 20),
+(140, 3, 86, 21),
+(141, 3, 89, 22),
+
+-- Câmara 2
+
+(142, 4, 76, 17),
+(143, 4, 78, 18),
+(144, 4, 92, 23),
+
+(145, 5, 74, 24),
+(146, 5, 80, 22),
+(147, 5, 88, 21),
+
+(148, 6, 93, 25),
+(149, 6, 89, 22),
+(150, 6, 77, 19),
+
+-- Câmara 3 
+(151, 7, 83, 19),
+(152, 7, 85, 20),
+(153, 7, 87, 21),
+
+(154, 8, 82, 20),
+(155, 8, 86, 21),
+(156, 8, 90, 22),
+
+(157, 9, 79, 18),
+(158, 9, 84, 20),
+(159, 9, 88, 21),
+
+-- Câmara 4 
+(160, 10, 68, 14),
+(161, 10, 72, 16),
+(162, 10, 96, 27),
+
+(163, 11, 65, 28),
+(164, 11, 70, 26),
+(165, 11, 98, 30),
+
+(166, 12, 69, 15),
+(167, 12, 74, 17),
+(168, 12, 97, 31);
+select * from sensor;
 -- 7. Situações dos sensores
 INSERT INTO situacao (idSituacao, SensorId, situacaoSensor, descricao) VALUES
 (1, 1, 'Captando registro', 'Sensor operando normalmente desde a instalação'),
@@ -116,7 +186,7 @@ INSERT INTO situacao (idSituacao, SensorId, situacaoSensor, descricao) VALUES
 
 desc registro;
 
-select * from registro;
+
 
 select user,host from mysql.user;
 
@@ -132,32 +202,14 @@ SHOW TABLES;
 
 SELECT * FROM sensor WHERE camaraId = 1;
 SELECT * FROM registro;
-INSERT INTO registro (idRegistro, idSensor, umidade, temperatura) VALUES
-(1, 1, 85, 22),
-(2, 1, 83, 21),
-(3, 1, 88, 20),
-(4, 2, 75, 26),
-(5, 2, 72, 27),
-(6, 2, 70, 28);
 
-INSERT INTO registro (idRegistro, idSensor, umidade, temperatura)
-VALUES (10, 1, 92, 25);
+select * from usuario;
 
-INSERT INTO sensor (nome, tipo, localizacao, camaraId)
-VALUES ('Sensor DHT11 - Sensor C Câmara 01', 'DHT11', 'lateral da câmara', 1);
-SELECT * FROM sensor WHERE camaraId = 1;
-INSERT INTO registro (idRegistro, idSensor, umidade, temperatura)
+INSERT INTO registro (idSensor, temperatura, umidade)
 VALUES
-(10, 6, 80, 20),
-(11, 6, 82, 21),
-(12, 6, 84, 22);
+(1, 24, 86),
+(1, 25, 88),
+(1, 23, 84);
 
-
-INSERT INTO registro (idRegistro, idSensor, umidade, temperatura)
-VALUES
-(13, 2, 73, 26),
-(14, 2, 74, 25),
-(15, 2, 76, 24),
-(16, 6, 81, 20),
-(17, 6, 83, 21),
-(18, 6, 85, 22);
+ALTER TABLE registro
+MODIFY COLUMN idRegistro INT AUTO_INCREMENT;

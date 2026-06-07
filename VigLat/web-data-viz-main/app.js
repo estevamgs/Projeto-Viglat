@@ -17,6 +17,7 @@ var empresasRouter = require("./src/routes/empresas");
 var medidasRouter = require("./src/routes/medidas");
 var dashRouter = require("./src/routes/dash");
 var app = express();
+const chartRouter = require("./src/routes/chart");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -25,6 +26,7 @@ app.use("/usuarios", usuariosRouter);
 app.use("/empresas", empresasRouter);
 app.use("/medidas", medidasRouter);
 app.use("/dash", dashRouter);
+app.use("/chart", chartRouter);
 app.use(cors());
 
 // BOB AI

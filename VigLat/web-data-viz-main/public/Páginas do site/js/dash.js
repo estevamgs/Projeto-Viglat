@@ -1,65 +1,59 @@
-function showView(viewId) {
-  let telas = document.querySelectorAll('.tela-monitoramento');
+﻿function showView(viewId) {
+  let telas = document.querySelectorAll(".tela-monitoramento");
   for (var i = 0; i < telas.length; i++) {
-    telas[i].style.display = 'none';
+    telas[i].style.display = "none";
   }
-  document.getElementById(viewId).style.display = 'block';
+  document.getElementById(viewId).style.display = "block";
 }
 
 function abrirDetalhes(elemento) {
   let nome = elemento.dataset.nome;
-  let alertas = elemento.dataset.alertas;
 
-  document.getElementById('titulo-camara').innerText = nome;
+  document.getElementById("titulo-camara").innerText = nome;
 
-  showView('view-camara');
-  renderizarGraficosDetalhes();
+  showView("view-camara");
 }
 
-function renderizarGraficosDetalhes() {
-}
+async function carregarKPISensores(idCamara) {
+  const resposta = await fetch(`/dash/graficos/${idCamara}`);
+  const dados = await resposta.json();
 
-function trocarFazenda(id, botao) {
-  if (id == '2') {
-    aplicarFazenda2();
-  } else {
-    aplicarFazenda1();
+  // pega último registro de cada sensor
+  const ultimoPorSensor = {};
+
+  for (let i = 0; i < dados.length; i++) {
+    const r = dados[i];
+    ultimoPorSensor[r.idSensor] = r; // sobrescreve, então fica o último
   }
 
-  
-  botao.classList.add('ativa');
-  document.getElementById('titulo-fazenda').innerText = "Visão Geral: Fazenda " + id;
-  showView('view-fazenda');
-}
+  const sensores = Object.values(ultimoPorSensor);
 
-function aplicarFazenda2() {
-  let cards = document.querySelectorAll(".card-dispositivo");
+  const container = document.querySelector(".grid-sensores-kpi");
+  container.innerHTML = "";
 
-  cards[0].className = "card-dispositivo status-ideal";
-  cards[1].className = "card-dispositivo status-ideal";
-  cards[2].className = "card-dispositivo status-ideal";
-  cards[3].className = "card-dispositivo status-ideal";
-  
-  cards[0].querySelector("p").innerText = "Ideal";
-  cards[1].querySelector("p").innerText = "Ideal";
-  cards[2].querySelector("p").innerText = "Ideal";
-  cards[3].querySelector("p").innerText = "Ideal";
+  sensores.forEach((s, index) => {
+    const status =
+      s.temperatura > 26 ||
+      s.temperatura < 15 ||
+      s.umidade > 95 ||
+      s.umidade < 70
+        ? "status-critico"
+        : s.temperatura > 22 ||
+            s.temperatura < 18 ||
+            s.umidade > 90 ||
+            s.umidade < 80
+          ? "status-alerta"
+          : "status-ideal";
 
-
-}
-
-function aplicarFazenda1() {
-  let cards = document.querySelectorAll(".card-dispositivo");
-
-
-  cards[0].className = "card-dispositivo status-ideal";
-  cards[1].className = "card-dispositivo status-alerta";
-  cards[2].className = "card-dispositivo status-ideal";
-  cards[3].className = "card-dispositivo status-critico";
-
-
-  cards[0].querySelector("p").innerText = "Ideal";
-  cards[1].querySelector("p").innerText = "Alerta";
-  cards[2].querySelector("p").innerText = "Ideal";
-  cards[3].querySelector("p").innerText = "CRÍTICO!";
+    container.innerHTML += `
+      <div class="sensor-box">
+        <div class="sensor-topo">
+          <span class="sensor-nome">Sensor ${String.fromCharCode(65 + index)}</span>
+          <span class="bolinha-status ${status}"></span>
+        </div>
+        <p>T: ${s.temperatura}°C</p>
+        <p>U: ${s.umidade}%</p>
+      </div>
+    `;
+  });
 }
