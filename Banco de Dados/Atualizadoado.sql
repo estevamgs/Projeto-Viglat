@@ -60,15 +60,32 @@ primary key(idRegistro,idSensor),
 constraint fkSensor foreign key (idSensor) references sensor(idSensor)
 );
 
-CREATE TABLE situacao (
-idSituacao int,
-SensorId int,
-dtHora datetime default now(),
-situacaoSensor varchar(25) check(situacaoSensor in ('Captando registro', 'Não captando registro')),
-descricao varchar(150),
-primary key (idSituacao,SensorId),
-constraint sensorFk foreign key (SensorId) references sensor(idSensor)
+CREATE TABLE alerta(
+    idAlerta INT,
+    SensorId INT,
+    registroId INT,
+    dtHora DATETIME DEFAULT NOW(),
+    quantidade INT,
+    PRIMARY KEY (idAlerta, SensorId),
+    CONSTRAINT sensorFk
+        FOREIGN KEY (SensorId)
+        REFERENCES sensor(idSensor)
 );
+
+SELECT
+    idSituacao,
+    SensorId,
+    numero,
+    CASE
+        WHEN dht11_temperatura > 18 THEN 'Alerta'
+        ELSE 'Ideal'
+    END AS situacaoSensor_temperatura,
+        CASE
+        WHEN dht11_temperatura > 90 THEN 'Alerta'
+        ELSE 'Ideal'
+    END AS situacaoSensor_umidade
+    
+FROM situacao;
 
 -- 1. Empresas produtoras de queijo artesanal
 INSERT INTO empresa (nome, cnpj) VALUES
@@ -175,7 +192,7 @@ VALUES
 (166, 12, 69, 15),
 (167, 12, 74, 17),
 (168, 12, 97, 31);
-select * from sensor;
+select * from sensor JOIN usuario ON ;
 -- 7. Situações dos sensores
 INSERT INTO situacao (idSituacao, SensorId, situacaoSensor, descricao) VALUES
 (1, 1, 'Captando registro', 'Sensor operando normalmente desde a instalação'),
@@ -213,3 +230,24 @@ VALUES
 
 ALTER TABLE registro
 MODIFY COLUMN idRegistro INT AUTO_INCREMENT;
+SELECT
+    u.idUsuario,
+    u.nome AS usuario,
+    f.nome AS fazenda,
+    c.nomeCamara,
+    s.idSensor,
+    s.nome AS sensor,
+    s.tipo,
+    s.localizacao
+FROM usuario u
+JOIN empresa e
+    ON u.empresa_id = e.idEmpresa
+JOIN fazenda f
+    ON f.empresaId = e.idEmpresa
+JOIN camara c
+    ON c.fazendaId = f.idFazenda
+JOIN sensor s
+    ON s.camaraId = c.idCamara
+ORDER BY u.nome, c.nomeCamara, s.nome;
+
+select * from usuario;
