@@ -71,12 +71,6 @@ CREATE TABLE alerta(
         REFERENCES sensor(idSensor)
 );
 
--- 1. Empresas produtoras de queijo artesanal
-INSERT INTO empresa (nome, cnpj) VALUES
-('Queijos Artesanais Minas Gerais LTDA', '12345678000190'),
-('Fazenda Atalaia Paulista ME', '98765432000110'),
-('Serra da Canastra Queijos EIRELI', '45678912000155');
-
 -- 2. Endereços das fazendas
 INSERT INTO endereco (cep, complemento, numLogradouro) VALUES
 ('37945000', 'Zona Rural - Bairro São José', 'S/N'),
@@ -84,15 +78,15 @@ INSERT INTO endereco (cep, complemento, numLogradouro) VALUES
 ('37464000', 'Fazenda Boa Vista - Estrada Real', '42');
 
 -- 3. Usuários administradores/fazendeiros vinculados às empresas
-INSERT INTO usuario (nome, email, senha, empresa_id) VALUES
-('Carlos Henrique Oliveira', 'carlos.henrique@minasqueijos.com', 'Minas@2024', 1),
-('Ana Paula Ferreira', 'ana.ferreira@fazendaatalaia.com', 'Atalaia#2024', 2),
-('Roberto Silva Canastra', 'roberto.canastra@serraqueijos.com', 'Canastra!99', 3);
+INSERT INTO usuario (nome, email, senha) VALUES
+('Carlos Henrique Oliveira', 'carlos.henrique@minasqueijos.com', 'Minas@2024'),
+('Ana Paula Ferreira', 'ana.ferreira@fazendaatalaia.com', 'Atalaia#2024'),
+('Roberto Silva Canastra', 'roberto.canastra@serraqueijos.com', 'Canastra!99');
 
 -- 4. Fazendas vinculadas às empresas e endereços
-INSERT INTO fazenda (nome, empresaId, enderecoId) VALUES
-('Fazenda São José da Serra', 1, 1),
-('Fazenda Atalaia Paulista', 2, 2);
+INSERT INTO fazenda (nome, enderecoId) VALUES
+('Fazenda São José da Serra', 1),
+('Fazenda Atalaia Paulista', 2);
 
 -- 5. Câmaras de maturação nas fazendas
 INSERT INTO camara (nomeCamara, capacidade, fazendaId) VALUES
@@ -178,17 +172,6 @@ VALUES
 (168, 12, 97, 31);
 
 desc registro;
-
-
-
-select user,host from mysql.user;
-
-create user 'usuarioApi'@'%' identified by '2004Poder1@';
-select * from usuario;
-
-grant insert on projetopi.* to 'usuarioApi'@'%';
-
-flush privileges;
 SHOW VARIABLES LIKE 'port';
 USE projetopi;
 SHOW TABLES;
@@ -206,25 +189,76 @@ VALUES
 
 ALTER TABLE registro
 MODIFY COLUMN idRegistro INT AUTO_INCREMENT;
-SELECT
-    u.idUsuario,
-    u.nome AS usuario,
-    f.nome AS fazenda,
-    c.nomeCamara,
-    s.idSensor,
-    s.nome AS sensor,
-    s.tipo,
-    s.localizacao
-FROM usuario u
-JOIN empresa e
-    ON u.empresa_id = e.idEmpresa
-JOIN fazenda f
-    ON f.empresaId = e.idEmpresa
-JOIN camara c
-    ON c.fazendaId = f.idFazenda
-JOIN sensor s
-    ON s.camaraId = c.idCamara
-ORDER BY u.nome, c.nomeCamara, s.nome;
 
 select * from usuario;
-drop database projetopi;
+
+TRUNCATE TABLE alerta;
+
+INSERT INTO alerta (idAlerta, SensorId, registroId, dtHora, quantidade) VALUES 
+(1, 1, 133, NOW() - INTERVAL 6 DAY, 1),
+(2, 4, 142, NOW() - INTERVAL 6 DAY, 1);
+
+INSERT INTO alerta (idAlerta, SensorId, registroId, dtHora, quantidade) VALUES 
+(3, 2, 137, NOW() - INTERVAL 4 DAY, 1),
+(4, 10, 160, NOW() - INTERVAL 4 DAY, 1),
+(5, 11, 163, NOW() - INTERVAL 4 DAY, 1);
+
+INSERT INTO alerta (idAlerta, SensorId, registroId, dtHora, quantidade) VALUES 
+(6, 3, 140, NOW() - INTERVAL 2 DAY, 1),
+(7, 12, 168, NOW() - INTERVAL 2 DAY, 1);
+
+INSERT INTO alerta (idAlerta, SensorId, registroId, dtHora, quantidade) VALUES 
+(8, 1, 134, NOW() - INTERVAL 1 DAY, 1),
+(9, 5, 145, NOW() - INTERVAL 1 DAY, 1);
+
+INSERT INTO alerta (idAlerta, SensorId, registroId, dtHora, quantidade) VALUES 
+(10, 11, 164, NOW() - INTERVAL 18 HOUR, 1);
+
+INSERT INTO alerta (idAlerta, SensorId, registroId, dtHora, quantidade) VALUES 
+(11, 2, 138, NOW() - INTERVAL 12 HOUR, 1),
+(12, 6, 148, NOW() - INTERVAL 12 HOUR, 1);
+
+INSERT INTO alerta (idAlerta, SensorId, registroId, dtHora, quantidade) VALUES 
+(13, 10, 162, NOW() - INTERVAL 6 HOUR, 1),
+(14, 12, 167, NOW() - INTERVAL 6 HOUR, 1);
+
+INSERT INTO alerta (idAlerta, SensorId, registroId, dtHora, quantidade) VALUES 
+(15, 11, 165, NOW() - INTERVAL 2 HOUR, 1);
+
+INSERT INTO registro (idSensor, dt_Hora, umidade, temperatura)
+VALUES (1, NOW(), 65, 32); 
+
+INSERT INTO alerta (idAlerta, SensorId, registroId, dtHora, quantidade)
+VALUES (16, 1, LAST_INSERT_ID(), NOW(), 1);
+
+INSERT INTO registro (idSensor, dt_Hora, umidade, temperatura)
+VALUES (1, NOW(), 65, 32);
+
+INSERT INTO alerta (idAlerta, SensorId, registroId, dtHora, quantidade)
+VALUES (17, 1, LAST_INSERT_ID(), NOW(), 1);
+
+INSERT INTO registro (idSensor, dt_Hora, umidade, temperatura)
+VALUES (7, NOW(), 99, 34);
+
+DELIMITER $$
+
+CREATE TRIGGER trg_gerar_alerta_automatico
+AFTER INSERT ON registro
+FOR EACH ROW
+BEGIN
+    IF NEW.temperatura > 22 OR NEW.temperatura < 18 
+       OR NEW.umidade > 90 OR NEW.umidade < 80 THEN
+       
+        INSERT INTO alerta (idAlerta, SensorId, registroId, dtHora, quantidade)
+        VALUES (
+            COALESCE((SELECT MAX(idAlerta) + 1 FROM alerta WHERE SensorId = NEW.idSensor), 1),
+            NEW.idSensor,
+            NEW.idRegistro,
+            NEW.dt_Hora,
+            1
+        );
+        
+    END IF;
+END$$
+
+DELIMITER ;
