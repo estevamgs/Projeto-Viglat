@@ -13,9 +13,9 @@ function listarAlertasPorCamara(idCamara) {
             r.temperatura,
             r.umidade
         FROM alerta a
-        INNER JOIN sensor s ON a.SensorId = s.idSensor
-        INNER JOIN camara c ON s.camaraId = c.idCamara
-        INNER JOIN registro r ON a.registroId = r.idRegistro
+        JOIN sensor s ON a.SensorId = s.idSensor
+        JOIN camara c ON s.camaraId = c.idCamara
+        JOIN registro r ON a.registroId = r.idRegistro
         WHERE c.idCamara = ${idCamara}
         ORDER BY a.dtHora DESC;
     `;

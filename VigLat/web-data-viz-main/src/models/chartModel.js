@@ -18,7 +18,7 @@ function listarFazendas() {
         LEFT JOIN (
             SELECT reg.idSensor, reg.temperatura, reg.umidade
             FROM registro reg
-            INNER JOIN (
+            JOIN (
                 SELECT idSensor, MAX(idRegistro) AS maxId
                 FROM registro
                 GROUP BY idSensor

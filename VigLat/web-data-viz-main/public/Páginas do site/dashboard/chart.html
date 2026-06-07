@@ -417,7 +417,10 @@
     `;
     container.appendChild(novoToast);
     setTimeout(function() {
-        if (novoToast && novoToast.parentElement) novoToast.remove();
+        if (novoToast && novoToast.parentElement) 
+        {
+          novoToast.remove();
+        }
     }, 8000);
   }
     </script>
