@@ -1,12 +1,6 @@
 CREATE DATABASE projetopi;
 USE projetopi;
 
-CREATE TABLE empresa (
-idEmpresa int primary key auto_increment,
-nome varchar(45),
-cnpj char(14)
-);
-
 CREATE TABLE endereco (
 idEndereco int primary key auto_increment,
 cep char(8),
@@ -18,18 +12,23 @@ CREATE TABLE usuario (
 idUsuario int primary key auto_increment,
 nome varchar(45),
 email varchar(75),
-senha varchar(30),
-empresa_id int,
-constraint fkEmp foreign key (empresa_id) references empresa(idEmpresa)
+senha varchar(30)
 );
 
 CREATE TABLE fazenda (
 idFazenda int primary key auto_increment,
 nome varchar(45),
-empresaId int,
 enderecoId int,
-constraint fkEmpFazenda foreign key (empresaId) references empresa(idEmpresa),
 constraint fkEndereco foreign key (enderecoId) references endereco(idEndereco)
+);
+
+CREATE TABLE fazenda_produtor (
+fkFazenda int,
+fkUsuario int,
+cargo varchar(45),
+primary key(fkFazenda, fkUsuario),
+foreign key (fkFazenda) references fazenda(idFazenda),
+foreign key (fkUsuario) references usuario(idUsuario)
 );
 
 CREATE TABLE camara (
@@ -71,21 +70,6 @@ CREATE TABLE alerta(
         FOREIGN KEY (SensorId)
         REFERENCES sensor(idSensor)
 );
-
-SELECT
-    idSituacao,
-    SensorId,
-    numero,
-    CASE
-        WHEN dht11_temperatura > 18 THEN 'Alerta'
-        ELSE 'Ideal'
-    END AS situacaoSensor_temperatura,
-        CASE
-        WHEN dht11_temperatura > 90 THEN 'Alerta'
-        ELSE 'Ideal'
-    END AS situacaoSensor_umidade
-    
-FROM situacao;
 
 -- 1. Empresas produtoras de queijo artesanal
 INSERT INTO empresa (nome, cnpj) VALUES
@@ -192,14 +176,6 @@ VALUES
 (166, 12, 69, 15),
 (167, 12, 74, 17),
 (168, 12, 97, 31);
-select * from sensor JOIN usuario ON ;
--- 7. Situações dos sensores
-INSERT INTO situacao (idSituacao, SensorId, situacaoSensor, descricao) VALUES
-(1, 1, 'Captando registro', 'Sensor operando normalmente desde a instalação'),
-(1, 2, 'Captando registro', 'Sensor operando normalmente - calibrado mensalmente'),
-(1, 3, 'Não captando registro', 'Sensor com falha de conexão - necessita manutenção'),
-(1, 4, 'Captando registro', 'Sensor novo instalado na semana passada'),
-(1, 5, 'Captando registro', 'Sensor operando com leituras estáveis');
 
 desc registro;
 
@@ -251,3 +227,4 @@ JOIN sensor s
 ORDER BY u.nome, c.nomeCamara, s.nome;
 
 select * from usuario;
+drop database projetopi;
