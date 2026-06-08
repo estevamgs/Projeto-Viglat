@@ -1,4 +1,4 @@
-var database = require("../database/config");
+﻿var database = require("../database/config");
 
 function listarAlertasPorCamara(idCamara) {
 
@@ -17,9 +17,10 @@ function listarAlertasPorCamara(idCamara) {
         JOIN camara c ON s.camaraId = c.idCamara
         JOIN registro r ON a.registroId = r.idRegistro
         WHERE c.idCamara = ${idCamara}
+          AND a.dtHora >= NOW() - INTERVAL 1 DAY
         ORDER BY a.dtHora DESC;
     `;
-    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    console.log("Executando a instruÃ§Ã£o SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
 

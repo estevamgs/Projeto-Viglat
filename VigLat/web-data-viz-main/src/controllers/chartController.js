@@ -1,4 +1,4 @@
-var chartModel = require("../models/chartModel");
+﻿var chartModel = require("../models/chartModel");
 
 function listarFazendas(req, res) {
   chartModel
@@ -40,7 +40,7 @@ async function buscarDadosFazenda(req, res) {
             alertas7dias: []
         };
         for (var i = 0; i < resultado24h.length; i++) {
-            dadosFormatados.labels24h.push(resultado24h[i].hora);
+            dadosFormatados.labels24h.push(`Câmara ${i + 1}`);
             dadosFormatados.alertas24h.push(resultado24h[i].qtd);
         }
         for (var j = 0; j < resultado7dias.length; j++) {
@@ -87,3 +87,4 @@ module.exports = {
   buscarDadosFazenda,
   buscarAlertasHojeCamara
 };
+

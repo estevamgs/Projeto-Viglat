@@ -104,17 +104,17 @@ function listarCamaras(idFazenda) {
 function buscarAlertas24h(idFazenda) {
     var instrucaoSql = `
         SELECT 
-            DATE_FORMAT(a.dtHora, '%H:00') AS hora, 
+            c.nomeCamara AS camara,
             COUNT(a.idAlerta) AS qtd 
         FROM alerta a
         JOIN sensor s ON a.SensorId = s.idSensor
         JOIN camara c ON s.camaraId = c.idCamara
-        WHERE c.fazendaId = ${idFazenda} 
+        WHERE c.fazendaId = ${idFazenda}
           AND a.dtHora >= NOW() - INTERVAL 1 DAY
-        GROUP BY hora
-        ORDER BY hora ASC;
+        GROUP BY c.idCamara, c.nomeCamara
+        ORDER BY c.idCamara ASC;
     `;
-    console.log("Executando SQL 24h: \n" + instrucaoSql);
+    console.log("Executando SQL Alertas por Camara 24h: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
 

@@ -252,9 +252,9 @@
       }
       var viewCamara = document.getElementById("view-camara");
       if (viewCamara && viewCamara.style.display !== "none") {
-        var idCamaraAtual = document.getElementById("titulo-camara").innerText.match(/\d+/);
+        var idCamaraAtual = document.getElementById("titulo-camara").dataset.idCamara;
         if (idCamaraAtual) {
-          carregarQuantidadeAlertas(idCamaraAtual[0]);
+          carregarQuantidadeAlertas(idCamaraAtual);
         }
       }
     }, 10000); 
@@ -326,7 +326,7 @@
         }
 
         grid.innerHTML += `
-          <div class="card-dispositivo ${classeStatus}" onclick="abrirCamara(${camaras[i].idCamara}, 'Câmara ${camaras[i].idCamara}')">
+          <div class="card-dispositivo ${classeStatus}" onclick="abrirCamara(${camaras[i].idCamara}, 'Câmara ${i + 1}')">
             <h3>Câmara ${i + 1}</h3>
             <p>T: ${camaras[i].temperatura}°C</p>
             <p>U: ${camaras[i].umidade}%</p>
@@ -339,7 +339,9 @@
   }
 
   function abrirCamara(idCamera, nomeCamera) {
-    document.getElementById("titulo-camara").innerText = nomeCamera;
+    var tituloCamara = document.getElementById("titulo-camara");
+    tituloCamara.innerText = nomeCamera;
+    tituloCamara.dataset.idCamara = idCamera;
     showView("view-camara");
 
     setTimeout(function () {
@@ -430,3 +432,4 @@
     </script>
   </body>
 </html>
+
