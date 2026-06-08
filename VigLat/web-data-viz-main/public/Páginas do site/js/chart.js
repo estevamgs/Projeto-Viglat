@@ -433,7 +433,7 @@ function montarGraficos(dados) {
       maintainAspectRatio: false,
       scales: {
         y: {
-          min: 50,
+          min: 5,
           max: 100,
         },
       },
