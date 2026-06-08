@@ -8,6 +8,13 @@ complemento varchar(45),
 numLogradouro char(5)
 );
 
+CREATE TABLE usuario (
+idUsuario int primary key auto_increment,
+nome varchar(45),
+email varchar(75),
+senha varchar(30)
+);
+
 CREATE TABLE fazenda (
 idFazenda int primary key auto_increment,
 nome varchar(45),
@@ -15,13 +22,13 @@ enderecoId int,
 constraint fkEndereco foreign key (enderecoId) references endereco(idEndereco)
 );
 
-CREATE TABLE usuario (
-idUsuario int primary key auto_increment,
-nome varchar(45),
-email varchar(75),
-senha varchar(30),
-fazendaId int,
-constraint fkFazenda foreign key (fazendaId) references fazenda(idFazenda)
+CREATE TABLE fazenda_produtor (
+fkFazenda int,
+fkUsuario int,
+cargo varchar(45),
+primary key(fkFazenda, fkUsuario),
+foreign key (fkFazenda) references fazenda(idFazenda),
+foreign key (fkUsuario) references usuario(idUsuario)
 );
 
 CREATE TABLE camara (
@@ -53,7 +60,7 @@ constraint fkSensor foreign key (idSensor) references sensor(idSensor)
 );
 
 CREATE TABLE alerta(
-    idAlerta INT,
+    idAlerta INT AUTO_INCREMENT,
     SensorId INT,
     registroId INT,
     dtHora DATETIME DEFAULT NOW(),
@@ -70,17 +77,16 @@ INSERT INTO endereco (cep, complemento, numLogradouro) VALUES
 ('13430000', 'Sítio Atalaia - Km 15', '125'),
 ('37464000', 'Fazenda Boa Vista - Estrada Real', '42');
 
+-- 3. Usuários administradores/fazendeiros vinculados às empresas
+INSERT INTO usuario (nome, email, senha) VALUES
+('Carlos Henrique Oliveira', 'carlos.henrique@minasqueijos.com', 'Minas@2024'),
+('Ana Paula Ferreira', 'ana.ferreira@fazendaatalaia.com', 'Atalaia#2024'),
+('Roberto Silva Canastra', 'roberto.canastra@serraqueijos.com', 'Canastra!99');
 
--- 3. Fazendas vinculadas às empresas e endereços
+-- 4. Fazendas vinculadas às empresas e endereços
 INSERT INTO fazenda (nome, enderecoId) VALUES
 ('Fazenda São José da Serra', 1),
 ('Fazenda Atalaia Paulista', 2);
-
--- 4. Usuários administradores/fazendeiros vinculados às empresas
-INSERT INTO usuario (nome, email, senha, fazendaId) VALUES
-('Carlos Henrique Oliveira', 'carlos.henrique@minasqueijos.com', 'Minas@2024', 1),
-('Ana Paula Ferreira', 'ana.ferreira@fazendaatalaia.com', 'Atalaia#2024', 1),
-('Roberto Silva Canastra', 'roberto.canastra@serraqueijos.com', 'Canastra!99', 2);
 
 -- 5. Câmaras de maturação nas fazendas
 INSERT INTO camara (nomeCamara, capacidade, fazendaId) VALUES
@@ -108,6 +114,12 @@ INSERT INTO sensor (nome, tipo, localizacao, camaraId) VALUES
 ('Sensor B - Câmara 04', 'DHT11', 'Centro', 4),
 ('Sensor C - Câmara 04', 'DHT11', 'Fundos', 4);
 
+
+INSERT INTO fazenda_produtor (fkFazenda, fkUsuario, cargo) VALUES
+(1, 1, 'Administrador'),
+(2, 2, 'Administrador'),
+(1, 3, 'Produtor'),
+(2, 3, 'Consultor');
 -- insert dos registros de temperatura e umidade 
 
 INSERT INTO registro (idRegistro, idSensor, umidade, temperatura)
@@ -175,12 +187,6 @@ SELECT * FROM registro;
 
 select * from usuario;
 
-INSERT INTO registro (idSensor, temperatura, umidade)
-VALUES
-(1, 24, 86),
-(1, 25, 88),
-(1, 23, 84);
-
 ALTER TABLE registro
 MODIFY COLUMN idRegistro INT AUTO_INCREMENT;
 
@@ -188,48 +194,48 @@ select * from usuario;
 
 TRUNCATE TABLE alerta;
 
-INSERT INTO alerta (idAlerta, SensorId, registroId, dtHora, quantidade) VALUES 
-(1, 1, 133, NOW() - INTERVAL 6 DAY, 1),
-(2, 4, 142, NOW() - INTERVAL 6 DAY, 1);
+INSERT INTO alerta (SensorId, registroId, dtHora, quantidade) VALUES 
+( 1, 133, NOW() - INTERVAL 6 DAY, 1),
+( 4, 142, NOW() - INTERVAL 6 DAY, 1);
 
-INSERT INTO alerta (idAlerta, SensorId, registroId, dtHora, quantidade) VALUES 
-(3, 2, 137, NOW() - INTERVAL 4 DAY, 1),
-(4, 10, 160, NOW() - INTERVAL 4 DAY, 1),
-(5, 11, 163, NOW() - INTERVAL 4 DAY, 1);
+INSERT INTO alerta ( SensorId, registroId, dtHora, quantidade) VALUES 
+( 2, 137, NOW() - INTERVAL 4 DAY, 1),
+( 10, 160, NOW() - INTERVAL 4 DAY, 1),
+( 11, 163, NOW() - INTERVAL 4 DAY, 1);
 
-INSERT INTO alerta (idAlerta, SensorId, registroId, dtHora, quantidade) VALUES 
-(6, 3, 140, NOW() - INTERVAL 2 DAY, 1),
-(7, 12, 168, NOW() - INTERVAL 2 DAY, 1);
+INSERT INTO alerta ( SensorId, registroId, dtHora, quantidade) VALUES 
+( 3, 140, NOW() - INTERVAL 2 DAY, 1),
+( 12, 168, NOW() - INTERVAL 2 DAY, 1);
 
-INSERT INTO alerta (idAlerta, SensorId, registroId, dtHora, quantidade) VALUES 
-(8, 1, 134, NOW() - INTERVAL 1 DAY, 1),
-(9, 5, 145, NOW() - INTERVAL 1 DAY, 1);
+INSERT INTO alerta ( SensorId, registroId, dtHora, quantidade) VALUES 
+( 1, 134, NOW() - INTERVAL 1 DAY, 1),
+( 5, 145, NOW() - INTERVAL 1 DAY, 1);
 
-INSERT INTO alerta (idAlerta, SensorId, registroId, dtHora, quantidade) VALUES 
-(10, 11, 164, NOW() - INTERVAL 18 HOUR, 1);
+INSERT INTO alerta ( SensorId, registroId, dtHora, quantidade) VALUES 
+( 11, 164, NOW() - INTERVAL 18 HOUR, 1);
 
-INSERT INTO alerta (idAlerta, SensorId, registroId, dtHora, quantidade) VALUES 
-(11, 2, 138, NOW() - INTERVAL 12 HOUR, 1),
-(12, 6, 148, NOW() - INTERVAL 12 HOUR, 1);
+INSERT INTO alerta ( SensorId, registroId, dtHora, quantidade) VALUES 
+( 2, 138, NOW() - INTERVAL 12 HOUR, 1),
+( 6, 148, NOW() - INTERVAL 12 HOUR, 1);
 
-INSERT INTO alerta (idAlerta, SensorId, registroId, dtHora, quantidade) VALUES 
-(13, 10, 162, NOW() - INTERVAL 6 HOUR, 1),
-(14, 12, 167, NOW() - INTERVAL 6 HOUR, 1);
+INSERT INTO alerta ( SensorId, registroId, dtHora, quantidade) VALUES 
+( 10, 162, NOW() - INTERVAL 6 HOUR, 1),
+( 12, 167, NOW() - INTERVAL 6 HOUR, 1);
 
-INSERT INTO alerta (idAlerta, SensorId, registroId, dtHora, quantidade) VALUES 
-(15, 11, 165, NOW() - INTERVAL 2 HOUR, 1);
+INSERT INTO alerta ( SensorId, registroId, dtHora, quantidade) VALUES 
+( 11, 165, NOW() - INTERVAL 2 HOUR, 1);
 
 INSERT INTO registro (idSensor, dt_Hora, umidade, temperatura)
 VALUES (1, NOW(), 65, 32); 
 
-INSERT INTO alerta (idAlerta, SensorId, registroId, dtHora, quantidade)
-VALUES (16, 1, LAST_INSERT_ID(), NOW(), 1);
+INSERT INTO alerta ( SensorId, registroId, dtHora, quantidade)
+VALUES ( 1, LAST_INSERT_ID(), NOW(), 1);
 
 INSERT INTO registro (idSensor, dt_Hora, umidade, temperatura)
 VALUES (1, NOW(), 65, 32);
 
-INSERT INTO alerta (idAlerta, SensorId, registroId, dtHora, quantidade)
-VALUES (17, 1, LAST_INSERT_ID(), NOW(), 1);
+INSERT INTO alerta (SensorId, registroId, dtHora, quantidade)
+VALUES ( 1, LAST_INSERT_ID(), NOW(), 1);
 
 INSERT INTO registro (idSensor, dt_Hora, umidade, temperatura)
 VALUES (7, NOW(), 99, 34);
@@ -243,9 +249,8 @@ BEGIN
     IF NEW.temperatura > 22 OR NEW.temperatura < 18 
        OR NEW.umidade > 90 OR NEW.umidade < 80 THEN
        
-        INSERT INTO alerta (idAlerta, SensorId, registroId, dtHora, quantidade)
+        INSERT INTO alerta (SensorId, registroId, dtHora, quantidade)
         VALUES (
-            COALESCE((SELECT MAX(idAlerta) + 1 FROM alerta WHERE SensorId = NEW.idSensor), 1),
             NEW.idSensor,
             NEW.idRegistro,
             NEW.dt_Hora,
@@ -282,10 +287,13 @@ SELECT
 		ON s.camaraId = c.idCamara
 	JOIN fazenda f
 		ON c.fazendaId = f.idFazenda
+	JOIN fazenda_produtor fp
+		ON f.idFazenda = fp.fkFazenda
 	JOIN usuario u
-		ON u.fazendaId = f.idFazenda
+		ON fp.fkUsuario = u.idUsuario
 	JOIN registro r
-		ON r.idSensor = s.idSensor
-        ORDER BY u.idUsuario;
+		ON r.idSensor = s.idSensor;
+        
 select * from situacao_atual;
-drop view situacao_atual;
+
+select * from registro;
