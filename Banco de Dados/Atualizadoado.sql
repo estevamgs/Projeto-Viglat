@@ -114,6 +114,12 @@ INSERT INTO sensor (nome, tipo, localizacao, camaraId) VALUES
 ('Sensor B - Câmara 04', 'DHT11', 'Centro', 4),
 ('Sensor C - Câmara 04', 'DHT11', 'Fundos', 4);
 
+
+INSERT INTO fazenda_produtor (fkFazenda, fkUsuario, cargo) VALUES
+(1, 1, 'Administrador'),
+(2, 2, 'Administrador'),
+(1, 3, 'Produtor'),
+(2, 3, 'Consultor');
 -- insert dos registros de temperatura e umidade 
 
 INSERT INTO registro (idRegistro, idSensor, umidade, temperatura)
@@ -262,3 +268,37 @@ BEGIN
 END$$
 
 DELIMITER ;
+
+CREATE VIEW situacao_atual AS
+SELECT
+    s.nome AS sensor,
+    u.nome AS usuario,
+    f.nome AS fazenda,
+    r.temperatura,
+    r.umidade,
+    CASE
+        WHEN r.temperatura > 26
+          OR r.temperatura < 15
+          OR r.umidade > 95
+          OR r.umidade < 70
+        THEN 'Crítico'
+        WHEN r.temperatura > 22
+          OR r.temperatura < 18
+          OR r.umidade > 90
+          OR r.umidade < 80
+        THEN 'Alerta'
+        ELSE 'Ideal'
+    END AS estado
+	FROM sensor s
+	JOIN camara c
+		ON s.camaraId = c.idCamara
+	JOIN fazenda f
+		ON c.fazendaId = f.idFazenda
+	JOIN fazenda_produtor fp
+		ON f.idFazenda = fp.fkFazenda
+	JOIN usuario u
+		ON fp.fkUsuario = u.idUsuario
+	JOIN registro r
+		ON r.idSensor = s.idSensor;
+        
+select * from situacao_atual;
