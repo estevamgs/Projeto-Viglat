@@ -57,8 +57,8 @@ const serial = async (temp, umi) => {
       // armazena os valores dos sensores nos arrays correspondentes
       temp.push(temperatura);
       umi.push(umidade);
-      var tempSensor2 = umidade + Math.floor(Math.random() * 2);
-      var tempSensor3 = umidade - Math.floor(Math.random() * 2);
+      var tempSensor2 = temperatura + Math.floor(Math.random() * 2);
+      var tempSensor3 = temperatura - Math.floor(Math.random() * 2);
       var umidadeSensor2 = umidade + Math.floor(Math.random() * 2);
       var umidadeSensor3 = umidade - Math.floor(Math.random() * 2);
 
@@ -66,11 +66,16 @@ const serial = async (temp, umi) => {
       if (HABILITAR_OPERACAO_INSERIR) {
         // este insert irá inserir os dados na tabela "medida"
         await poolBancoDados.execute(
-          "INSERT INTO registro (idSensor,temperatura,umidade) VALUES (1,?,?), (2,?,?), (3,?,?)",
-          [temperatura, umidade],
-          [tempSensor2, umidadeSensor2],
-          [tempSensor3, umidadeSensor3]
-        );
+            "INSERT INTO registro (idSensor,temperatura,umidade) VALUES (1,?,?), (2,?,?), (3,?,?)",
+            [
+              temperatura,
+              umidade,
+              tempSensor2,
+              umidadeSensor2,
+              tempSensor3,
+              umidadeSensor3,
+            ],
+          );
 
         console.log(
           "valores inseridos no banco: ",
