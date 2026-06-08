@@ -5,7 +5,7 @@ const mysql = require("mysql2");
 
 // constantes para configurações
 const SERIAL_BAUD_RATE = 9600;
-const SERVIDOR_PORTA = 3300;
+const SERVIDOR_PORTA = 3000;
 
 // habilita ou desabilita a inserção de dados no banco de dados
 const HABILITAR_OPERACAO_INSERIR = true;
@@ -15,9 +15,9 @@ const serial = async (temp, umi) => {
   // conexão com o banco de dados MySQL
   let poolBancoDados = mysql
     .createPool({
-      host: "localhost",
-      user: "root",
-      password: "Holla949071041!",
+      host: "10.18.33.55",
+      user: "usuarioApi",
+      password: "2004Poder1@",
       database: "projetopi",
       port: 3306,
     })
@@ -57,13 +57,19 @@ const serial = async (temp, umi) => {
       // armazena os valores dos sensores nos arrays correspondentes
       temp.push(temperatura);
       umi.push(umidade);
+      var tempSensor2 = umidade + Math.floor(Math.random() * 2);
+      var tempSensor3 = umidade - Math.floor(Math.random() * 2);
+      var umidadeSensor2 = umidade + Math.floor(Math.random() * 2);
+      var umidadeSensor3 = umidade - Math.floor(Math.random() * 2);
 
       // insere os dados no banco de dados (se habilitado)
       if (HABILITAR_OPERACAO_INSERIR) {
         // este insert irá inserir os dados na tabela "medida"
         await poolBancoDados.execute(
-          "INSERT INTO registro (idSensor,temperatura,umidade) VALUES (?,?,?)",
-          [1, temperatura, umidade],
+          "INSERT INTO registro (idSensor,temperatura,umidade) VALUES (1,?,?), (2,?,?), (3,?,?)",
+          [temperatura, umidade],
+          [tempSensor2, umidadeSensor2],
+          [tempSensor3, umidadeSensor3]
         );
 
         console.log(
