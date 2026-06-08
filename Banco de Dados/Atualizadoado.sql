@@ -8,13 +8,6 @@ complemento varchar(45),
 numLogradouro char(5)
 );
 
-CREATE TABLE usuario (
-idUsuario int primary key auto_increment,
-nome varchar(45),
-email varchar(75),
-senha varchar(30)
-);
-
 CREATE TABLE fazenda (
 idFazenda int primary key auto_increment,
 nome varchar(45),
@@ -22,13 +15,13 @@ enderecoId int,
 constraint fkEndereco foreign key (enderecoId) references endereco(idEndereco)
 );
 
-CREATE TABLE fazenda_produtor (
-fkFazenda int,
-fkUsuario int,
-cargo varchar(45),
-primary key(fkFazenda, fkUsuario),
-foreign key (fkFazenda) references fazenda(idFazenda),
-foreign key (fkUsuario) references usuario(idUsuario)
+CREATE TABLE usuario (
+idUsuario int primary key auto_increment,
+nome varchar(45),
+email varchar(75),
+senha varchar(30),
+fazendaId int,
+constraint fkFazenda foreign key (fazendaId) references fazenda(idFazenda)
 );
 
 CREATE TABLE camara (
@@ -77,16 +70,17 @@ INSERT INTO endereco (cep, complemento, numLogradouro) VALUES
 ('13430000', 'Sítio Atalaia - Km 15', '125'),
 ('37464000', 'Fazenda Boa Vista - Estrada Real', '42');
 
--- 3. Usuários administradores/fazendeiros vinculados às empresas
-INSERT INTO usuario (nome, email, senha) VALUES
-('Carlos Henrique Oliveira', 'carlos.henrique@minasqueijos.com', 'Minas@2024'),
-('Ana Paula Ferreira', 'ana.ferreira@fazendaatalaia.com', 'Atalaia#2024'),
-('Roberto Silva Canastra', 'roberto.canastra@serraqueijos.com', 'Canastra!99');
 
--- 4. Fazendas vinculadas às empresas e endereços
+-- 3. Fazendas vinculadas às empresas e endereços
 INSERT INTO fazenda (nome, enderecoId) VALUES
 ('Fazenda São José da Serra', 1),
 ('Fazenda Atalaia Paulista', 2);
+
+-- 4. Usuários administradores/fazendeiros vinculados às empresas
+INSERT INTO usuario (nome, email, senha, fazendaId) VALUES
+('Carlos Henrique Oliveira', 'carlos.henrique@minasqueijos.com', 'Minas@2024', 1),
+('Ana Paula Ferreira', 'ana.ferreira@fazendaatalaia.com', 'Atalaia#2024', 1),
+('Roberto Silva Canastra', 'roberto.canastra@serraqueijos.com', 'Canastra!99', 2);
 
 -- 5. Câmaras de maturação nas fazendas
 INSERT INTO camara (nomeCamara, capacidade, fazendaId) VALUES
@@ -114,12 +108,6 @@ INSERT INTO sensor (nome, tipo, localizacao, camaraId) VALUES
 ('Sensor B - Câmara 04', 'DHT11', 'Centro', 4),
 ('Sensor C - Câmara 04', 'DHT11', 'Fundos', 4);
 
-
-INSERT INTO fazenda_produtor (fkFazenda, fkUsuario, cargo) VALUES
-(1, 1, 'Administrador'),
-(2, 2, 'Administrador'),
-(1, 3, 'Produtor'),
-(2, 3, 'Consultor');
 -- insert dos registros de temperatura e umidade 
 
 INSERT INTO registro (idRegistro, idSensor, umidade, temperatura)
@@ -294,11 +282,10 @@ SELECT
 		ON s.camaraId = c.idCamara
 	JOIN fazenda f
 		ON c.fazendaId = f.idFazenda
-	JOIN fazenda_produtor fp
-		ON f.idFazenda = fp.fkFazenda
 	JOIN usuario u
-		ON fp.fkUsuario = u.idUsuario
+		ON u.fazendaId = f.idFazenda
 	JOIN registro r
-		ON r.idSensor = s.idSensor;
-        
+		ON r.idSensor = s.idSensor
+        ORDER BY u.idUsuario;
 select * from situacao_atual;
+drop view situacao_atual;
