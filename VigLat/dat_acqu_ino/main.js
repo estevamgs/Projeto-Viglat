@@ -57,10 +57,10 @@ const serial = async (temp, umi) => {
       // armazena os valores dos sensores nos arrays correspondentes
       temp.push(temperatura);
       umi.push(umidade);
-      var tempSensor2 = temperatura + Math.floor(Math.random() * 2);
-      var tempSensor3 = temperatura - Math.floor(Math.random() * 2);
-      var umidadeSensor2 = umidade + Math.floor(Math.random() * 2);
-      var umidadeSensor3 = umidade - Math.floor(Math.random() * 2);
+      var tempSensor2 = temperatura + Math.floor(Math.random() * 3 + 1);
+      var tempSensor3 = temperatura - Math.floor(Math.random() * 3 + 1);
+      var umidadeSensor2 = umidade + Math.floor(Math.random() * 3 + 1);
+      var umidadeSensor3 = umidade - Math.floor(Math.random() * 3 + 1);
 
       // insere os dados no banco de dados (se habilitado)
       if (HABILITAR_OPERACAO_INSERIR) {

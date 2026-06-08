@@ -347,6 +347,12 @@
       carregarKPISensores(idCamera);
       carregarQuantidadeAlertas(idCamera);
     }, 100);
+    setInterval(() => {
+      carregarGraficos(idCamera);
+      carregarKPISensores(idCamera);
+      carregarQuantidadeAlertas(idCamera);
+    
+    }, 15000);
   }
 
   function carregarQuantidadeAlertas(idCamara) {
