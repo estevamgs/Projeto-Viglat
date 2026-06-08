@@ -1,5 +1,72 @@
 ﻿var graficoTemperatura = null;
 var graficoUmidade = null;
+var grafico24h = null;
+var grafico7dias = null;
+
+function carregarGraficosFazenda(idFazenda) {
+    fetch(`/chart/dados-fazenda/${idFazenda}`)
+    .then(function (resposta) {
+        if (resposta.ok) {
+            resposta.json().then(function (dados) {
+                console.log("Dados recebidos para a visão geral:", dados);
+                var ctx24h = document.getElementById('chart');
+                if (ctx24h) {
+                    if (grafico24h != null) {
+                        grafico24h.destroy();
+                    }
+
+                    grafico24h = new Chart(ctx24h.getContext('2d'), {
+                        type: 'bar',
+                        data: {
+                            labels: dados.labels24h,
+                            datasets: [{
+                                label: 'Alertas nas últimas 24h',
+                                data: dados.alertas24h,
+                                backgroundColor: '#7a5208',
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            scales: { y: { beginAtZero: true } }
+                        }
+                    });
+                }
+                var ctx7dias = document.getElementById('grafico-alerta');
+                if (ctx7dias) {
+                    if (grafico7dias != null) {
+                        grafico7dias.destroy();
+                    }
+
+                    grafico7dias = new Chart(ctx7dias.getContext('2d'), {
+                        type: 'line',
+                        data: {
+                            labels: dados.labels7dias,
+                            datasets: [{
+                                label: 'Alertas nos últimos 7 dias',
+                                data: dados.alertas7dias,
+                                borderColor: '#7a5208',
+                                backgroundColor: 'rgba(0, 0, 0, 0.1)',
+                                fill: true,
+                                tension: 0.3
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            scales: { y: { beginAtZero: true } }
+                        }
+                    });
+                }
+
+            });
+        } else {
+            console.error("Erro ao buscar dados dos gráficos da fazenda.");
+        }
+    })
+    .catch(function (erro) {
+        console.error("Erro de conexão nos gráficos da visão geral:", erro);
+    });
+}
 
 async function carregarGraficos(idCamara) {
   try {

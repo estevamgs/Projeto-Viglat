@@ -23,7 +23,7 @@ body {
     align-items: center;
     justify-content: center;
     height: 100vh;
-    overflow: hidden;
+    overflow-x: hidden;
     position: relative;
 }
 
@@ -70,7 +70,7 @@ nav {
     border-radius: 1.5em;
     padding: 2.5em;
     width: 30%;
-    max-height: 85vh;
+    max-height: 100vh;
     text-align: center;
     display: flex;
     flex-direction: column;

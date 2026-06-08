@@ -10,6 +10,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   </head>
   <body>
+    <div id="container-notificacoes" class="notificacoes-container"></div>
     <header>
       <div class="container">
         <nav>
@@ -168,7 +169,7 @@
           <div class="indicador-card kpi-centralizado">
             <span class="rotulo-kpi"> Alertas Hoje </span>
 
-            <span class="valor-kpi texto-critico" id="alertas-hoje"> 12 </span>
+            <span class="valor-kpi texto-critico" id="kpi-alertas-hoje"> 0 </span>
           </div>
 
           <!-- Faixa ideal -->
@@ -239,153 +240,189 @@
     <script src="../js/chart.js"></script>
     <script src="../BOBIA/bobIA.js"></script>
     <script>
-      window.onload = function () {
-        carregarFazendas();
-      };
-
-      async function carregarFazendas() {
-        var resposta = await fetch("/chart/listarFazendas");
-
-        var fazendas = await resposta.json();
-
-        var div = document.getElementById("seletor-fazendas");
-
-        div.innerHTML = "";
-
-        for (var i = 0; i < fazendas.length; i++) {
-          var classeStatus = "ideal";
-
-          if (fazendas[i].statusFazenda == "alerta") {
-            classeStatus = "alerta";
-          }
-
-          if (fazendas[i].statusFazenda == "critico") {
-            classeStatus = "critico";
-          }
-
-          div.innerHTML += `
-    <button
-      class="
-      aba-unidade
-      ${classeStatus}
-      "
-
-      onclick="
-      carregarCamaras(
-        ${fazendas[i].idFazenda},
-        'Fazenda ${i + 1}',
-        this
-      )">
-
-      <span
-      class="
-      bolinha-status
-      bolinha-fazenda
-      status-${classeStatus}
-      ">
-      </span>
-
-      Fazenda ${i + 1}
-
-    </button>
-    `;
-        }
-
-        // pré-seleciona a primeira fazenda
-        if (fazendas.length > 0) {
-          var primeiroBotao = document.getElementsByClassName("aba-unidade")[0];
-
-          primeiroBotao.classList.add("ativa");
-
-          carregarCamaras(
-            fazendas[0].idFazenda,
-
-            "Fazenda 1",
-
-            primeiroBotao,
-          );
+  window.onload = function () {
+    carregarFazendas();
+    setInterval(function () {
+      var botaoAtivo = document.querySelector(".aba-unidade.ativa");
+      if (botaoAtivo) {
+        var idAtual = document.getElementById("titulo-fazenda").innerText.match(/\d+/);
+        if (idAtual) {
+          carregarGraficosFazenda(idAtual[0]);
         }
       }
+      var viewCamara = document.getElementById("view-camara");
+      if (viewCamara && viewCamara.style.display !== "none") {
+        var idCamaraAtual = document.getElementById("titulo-camara").innerText.match(/\d+/);
+        if (idCamaraAtual) {
+          carregarQuantidadeAlertas(idCamaraAtual[0]);
+        }
+      }
+    }, 10000); 
+  };
 
-      async function carregarCamaras(idFazenda, nomeFazenda, botao) {
-        try {
-          var botoes = document.getElementsByClassName("aba-unidade");
+  async function carregarFazendas() {
+    var resposta = await fetch("/chart/listarFazendas");
+    var fazendas = await resposta.json();
 
-          for (var i = 0; i < botoes.length; i++) {
-            botoes[i].classList.remove("ativa");
-          }
+    var div = document.getElementById("seletor-fazendas");
+    div.innerHTML = "";
 
-          botao.classList.add("ativa");
+    for (var i = 0; i < fazendas.length; i++) {
+      var classeStatus = "ideal";
 
-          document.getElementById("titulo-fazenda").innerText =
-            `Visão Geral: Fazenda ${idFazenda}`;
+      if (fazendas[i].statusFazenda == "alerta") {
+        classeStatus = "alerta";
+      }
 
-          var resposta = await fetch(`/chart/listarCamaras/${idFazenda}`);
+      if (fazendas[i].statusFazenda == "critico") {
+        classeStatus = "critico";
+      }
 
-          var camaras = await resposta.json();
-
-          console.log(camaras);
-
-          var grid = document.getElementById("grid-camaras");
-
-          grid.innerHTML = "";
-
-          for (var i = 0; i < camaras.length; i++) {
-            var classeStatus = "status-ideal";
-
-            if (camaras[i].statusCamara == "alerta") {
-              classeStatus = "status-alerta";
-            }
-
-            if (camaras[i].statusCamara == "critico") {
-              classeStatus = "status-critico";
-            }
-
-            grid.innerHTML += `
-      <div
-        class="
-        card-dispositivo
-        ${classeStatus}
-        "
-
-        onclick="
-        abrirCamara(
-          ${camaras[i].idCamara},
-          'Câmara ${i + 1}'
-        )">
-
-        <h3>
-          Câmara ${i + 1}
-        </h3>
-
-        <p>
-          T:
-          ${camaras[i].temperatura}°C
-        </p>
-
-        <p>
-          U:
-          ${camaras[i].umidade}%
-        </p>
-
-      </div>
+      div.innerHTML += `
+        <button
+          class="aba-unidade ${classeStatus}"
+          onclick="carregarCamaras(${fazendas[i].idFazenda}, 'Fazenda ${i + 1}', this)"
+        >
+          <span class="bolinha-status bolinha-fazenda status-${classeStatus}"></span>
+          Fazenda ${i + 1}
+        </button>
       `;
-          }
-        } catch (erro) {
-          console.log("Erro ao carregar câmaras:", erro);
+    }
+    if (fazendas.length > 0) {
+      var primeiroBotao = document.getElementsByClassName("aba-unidade")[0];
+      primeiroBotao.classList.add("ativa");
+      carregarCamaras(fazendas[0].idFazenda, "Fazenda 1", primeiroBotao);
+      carregarGraficosFazenda(fazendas[0].idFazenda);
+    }
+  }
+
+  async function carregarCamaras(idFazenda, nomeFazenda, botao) {
+    try {
+      var botoes = document.getElementsByClassName("aba-unidade");
+
+      for (var i = 0; i < botoes.length; i++) {
+        botoes[i].classList.remove("ativa");
+      }
+
+      botao.classList.add("ativa");
+
+      document.getElementById("titulo-fazenda").innerText = `Visão Geral: Fazenda ${idFazenda}`;
+
+      var resposta = await fetch(`/chart/listarCamaras/${idFazenda}`);
+      var camaras = await resposta.json();
+
+      var grid = document.getElementById("grid-camaras");
+      grid.innerHTML = "";
+
+      for (var i = 0; i < camaras.length; i++) {
+        var classeStatus = "status-ideal";
+
+        if (camaras[i].statusCamara == "alerta") {
+          classeStatus = "status-alerta";
         }
+
+        if (camaras[i].statusCamara == "critico") {
+          classeStatus = "status-critico";
+        }
+
+        grid.innerHTML += `
+          <div class="card-dispositivo ${classeStatus}" onclick="abrirCamara(${camaras[i].idCamara}, 'Câmara ${camaras[i].idCamara}')">
+            <h3>Câmara ${i + 1}</h3>
+            <p>T: ${camaras[i].temperatura}°C</p>
+            <p>U: ${camaras[i].umidade}%</p>
+          </div>
+        `;
       }
+    } catch (erro) {
+      console.log("Erro ao carregar câmaras:", erro);
+    }
+  }
 
-      function abrirCamara(idCamera, nomeCamera) {
-        document.getElementById("titulo-camara").innerText = nomeCamera;
+  function abrirCamara(idCamera, nomeCamera) {
+    document.getElementById("titulo-camara").innerText = nomeCamera;
+    showView("view-camara");
 
-        showView("view-camara");
+    setTimeout(function () {
+      carregarGraficos(idCamera);
+      carregarKPISensores(idCamera);
+      carregarQuantidadeAlertas(idCamera);
+    }, 100);
+  }
 
-        setTimeout(function () {
-          carregarGraficos(idCamera);
-          carregarKPISensores(idCamera);
-        }, 100);
+  function carregarQuantidadeAlertas(idCamara) {
+    fetch(`/dash/alertas/camara/${idCamara}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json"
       }
+    })
+    .then(function (resposta) {
+      if (resposta.ok) {
+        if (resposta.status == 204) {
+          document.getElementById("kpi-alertas-hoje").innerText = "0";
+          document.getElementById("kpi-alertas-hoje").className = "valor-kpi";
+          return;
+        }
+
+        resposta.json().then(function (alertas) {
+          console.log("Alertas do banco recebidos:", alertas);
+          var totalAlertas = alertas.length;
+          
+          var kpiAlertas = document.getElementById("kpi-alertas-hoje");
+          if (kpiAlertas) {
+            kpiAlertas.innerText = totalAlertas;
+          }
+
+          document.getElementById("container-notificacoes").innerHTML = "";
+
+          if (totalAlertas > 0) {
+            if (kpiAlertas) kpiAlertas.className = "valor-kpi texto-critico";
+            var limiteExibicao = alertas.length > 3 ? 3 : alertas.length;
+            for (var i = 0; i < limiteExibicao; i++) {
+              exibirNotificacao(alertas[i]);
+            }
+          } else {
+            if (kpiAlertas) kpiAlertas.className = "valor-kpi";
+          }
+        });
+      } else {
+        console.log("Erro na resposta do servidor:", resposta.status);
+      }
+    })
+    .catch(function (erro) {
+      console.log("Erro de conexão com o servidor ao buscar alertas:", erro);
+    });
+  }
+
+  function exibirNotificacao(alerta) {
+    var container = document.getElementById("container-notificacoes");
+    if (!container) return;
+
+    var dataFormatada = new Date(alerta.dtHora).toLocaleTimeString('pt-BR', {hour: '2-digit', minute:'2-digit'});
+    
+    var tipoClasse = (alerta.temperatura > 26 || alerta.umidade < 70) ? "critico" : "alerta";
+
+    var novoToast = document.createElement("div");
+    novoToast.className = `card-notificacao-toast ${tipoClasse}`;
+    novoToast.innerHTML = `
+        <div class="toast-header">
+            <span>⚠️ Ocorrência: ${alerta.nomeSensor || 'Sensor'}</span>
+            <small>${dataFormatada}</small>
+            <button class="toast-fechar" onclick="this.parentElement.parentElement.remove()">&times;</button>
+        </div>
+        <div class="toast-body">
+            Os níveis saíram da faixa ideal.<br>
+            <b>T:</b> ${alerta.temperatura}°C | <b>U:</b> ${alerta.umidade}%
+        </div>
+    `;
+    container.appendChild(novoToast);
+    setTimeout(function() {
+        if (novoToast && novoToast.parentElement) 
+        {
+          novoToast.remove();
+        }
+    }, 8000);
+  }
     </script>
   </body>
 </html>

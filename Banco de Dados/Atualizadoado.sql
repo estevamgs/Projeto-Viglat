@@ -1,12 +1,6 @@
 CREATE DATABASE projetopi;
 USE projetopi;
 
-CREATE TABLE empresa (
-idEmpresa int primary key auto_increment,
-nome varchar(45),
-cnpj char(14)
-);
-
 CREATE TABLE endereco (
 idEndereco int primary key auto_increment,
 cep char(8),
@@ -18,18 +12,23 @@ CREATE TABLE usuario (
 idUsuario int primary key auto_increment,
 nome varchar(45),
 email varchar(75),
-senha varchar(30),
-empresa_id int,
-constraint fkEmp foreign key (empresa_id) references empresa(idEmpresa)
+senha varchar(30)
 );
 
 CREATE TABLE fazenda (
 idFazenda int primary key auto_increment,
 nome varchar(45),
-empresaId int,
 enderecoId int,
-constraint fkEmpFazenda foreign key (empresaId) references empresa(idEmpresa),
 constraint fkEndereco foreign key (enderecoId) references endereco(idEndereco)
+);
+
+CREATE TABLE fazenda_produtor (
+fkFazenda int,
+fkUsuario int,
+cargo varchar(45),
+primary key(fkFazenda, fkUsuario),
+foreign key (fkFazenda) references fazenda(idFazenda),
+foreign key (fkUsuario) references usuario(idUsuario)
 );
 
 CREATE TABLE camara (
@@ -60,21 +59,17 @@ primary key(idRegistro,idSensor),
 constraint fkSensor foreign key (idSensor) references sensor(idSensor)
 );
 
-CREATE TABLE situacao (
-idSituacao int,
-SensorId int,
-dtHora datetime default now(),
-situacaoSensor varchar(25) check(situacaoSensor in ('Captando registro', 'Não captando registro')),
-descricao varchar(150),
-primary key (idSituacao,SensorId),
-constraint sensorFk foreign key (SensorId) references sensor(idSensor)
+CREATE TABLE alerta(
+    idAlerta INT,
+    SensorId INT,
+    registroId INT,
+    dtHora DATETIME DEFAULT NOW(),
+    quantidade INT,
+    PRIMARY KEY (idAlerta, SensorId),
+    CONSTRAINT sensorFk
+        FOREIGN KEY (SensorId)
+        REFERENCES sensor(idSensor)
 );
-
--- 1. Empresas produtoras de queijo artesanal
-INSERT INTO empresa (nome, cnpj) VALUES
-('Queijos Artesanais Minas Gerais LTDA', '12345678000190'),
-('Fazenda Atalaia Paulista ME', '98765432000110'),
-('Serra da Canastra Queijos EIRELI', '45678912000155');
 
 -- 2. Endereços das fazendas
 INSERT INTO endereco (cep, complemento, numLogradouro) VALUES
@@ -83,15 +78,15 @@ INSERT INTO endereco (cep, complemento, numLogradouro) VALUES
 ('37464000', 'Fazenda Boa Vista - Estrada Real', '42');
 
 -- 3. Usuários administradores/fazendeiros vinculados às empresas
-INSERT INTO usuario (nome, email, senha, empresa_id) VALUES
-('Carlos Henrique Oliveira', 'carlos.henrique@minasqueijos.com', 'Minas@2024', 1),
-('Ana Paula Ferreira', 'ana.ferreira@fazendaatalaia.com', 'Atalaia#2024', 2),
-('Roberto Silva Canastra', 'roberto.canastra@serraqueijos.com', 'Canastra!99', 3);
+INSERT INTO usuario (nome, email, senha) VALUES
+('Carlos Henrique Oliveira', 'carlos.henrique@minasqueijos.com', 'Minas@2024'),
+('Ana Paula Ferreira', 'ana.ferreira@fazendaatalaia.com', 'Atalaia#2024'),
+('Roberto Silva Canastra', 'roberto.canastra@serraqueijos.com', 'Canastra!99');
 
 -- 4. Fazendas vinculadas às empresas e endereços
-INSERT INTO fazenda (nome, empresaId, enderecoId) VALUES
-('Fazenda São José da Serra', 1, 1),
-('Fazenda Atalaia Paulista', 2, 2);
+INSERT INTO fazenda (nome, enderecoId) VALUES
+('Fazenda São José da Serra', 1),
+('Fazenda Atalaia Paulista', 2);
 
 -- 5. Câmaras de maturação nas fazendas
 INSERT INTO camara (nomeCamara, capacidade, fazendaId) VALUES
@@ -119,6 +114,12 @@ INSERT INTO sensor (nome, tipo, localizacao, camaraId) VALUES
 ('Sensor B - Câmara 04', 'DHT11', 'Centro', 4),
 ('Sensor C - Câmara 04', 'DHT11', 'Fundos', 4);
 
+
+INSERT INTO fazenda_produtor (fkFazenda, fkUsuario, cargo) VALUES
+(1, 1, 'Administrador'),
+(2, 2, 'Administrador'),
+(1, 3, 'Produtor'),
+(2, 3, 'Consultor');
 -- insert dos registros de temperatura e umidade 
 
 INSERT INTO registro (idRegistro, idSensor, umidade, temperatura)
@@ -175,27 +176,8 @@ VALUES
 (166, 12, 69, 15),
 (167, 12, 74, 17),
 (168, 12, 97, 31);
-select * from sensor;
--- 7. Situações dos sensores
-INSERT INTO situacao (idSituacao, SensorId, situacaoSensor, descricao) VALUES
-(1, 1, 'Captando registro', 'Sensor operando normalmente desde a instalação'),
-(1, 2, 'Captando registro', 'Sensor operando normalmente - calibrado mensalmente'),
-(1, 3, 'Não captando registro', 'Sensor com falha de conexão - necessita manutenção'),
-(1, 4, 'Captando registro', 'Sensor novo instalado na semana passada'),
-(1, 5, 'Captando registro', 'Sensor operando com leituras estáveis');
 
 desc registro;
-
-
-
-select user,host from mysql.user;
-
-create user 'usuarioApi'@'%' identified by '2004Poder1@';
-select * from usuario;
-
-grant insert on projetopi.* to 'usuarioApi'@'%';
-
-flush privileges;
 SHOW VARIABLES LIKE 'port';
 USE projetopi;
 SHOW TABLES;
@@ -213,3 +195,110 @@ VALUES
 
 ALTER TABLE registro
 MODIFY COLUMN idRegistro INT AUTO_INCREMENT;
+
+select * from usuario;
+
+TRUNCATE TABLE alerta;
+
+INSERT INTO alerta (idAlerta, SensorId, registroId, dtHora, quantidade) VALUES 
+(1, 1, 133, NOW() - INTERVAL 6 DAY, 1),
+(2, 4, 142, NOW() - INTERVAL 6 DAY, 1);
+
+INSERT INTO alerta (idAlerta, SensorId, registroId, dtHora, quantidade) VALUES 
+(3, 2, 137, NOW() - INTERVAL 4 DAY, 1),
+(4, 10, 160, NOW() - INTERVAL 4 DAY, 1),
+(5, 11, 163, NOW() - INTERVAL 4 DAY, 1);
+
+INSERT INTO alerta (idAlerta, SensorId, registroId, dtHora, quantidade) VALUES 
+(6, 3, 140, NOW() - INTERVAL 2 DAY, 1),
+(7, 12, 168, NOW() - INTERVAL 2 DAY, 1);
+
+INSERT INTO alerta (idAlerta, SensorId, registroId, dtHora, quantidade) VALUES 
+(8, 1, 134, NOW() - INTERVAL 1 DAY, 1),
+(9, 5, 145, NOW() - INTERVAL 1 DAY, 1);
+
+INSERT INTO alerta (idAlerta, SensorId, registroId, dtHora, quantidade) VALUES 
+(10, 11, 164, NOW() - INTERVAL 18 HOUR, 1);
+
+INSERT INTO alerta (idAlerta, SensorId, registroId, dtHora, quantidade) VALUES 
+(11, 2, 138, NOW() - INTERVAL 12 HOUR, 1),
+(12, 6, 148, NOW() - INTERVAL 12 HOUR, 1);
+
+INSERT INTO alerta (idAlerta, SensorId, registroId, dtHora, quantidade) VALUES 
+(13, 10, 162, NOW() - INTERVAL 6 HOUR, 1),
+(14, 12, 167, NOW() - INTERVAL 6 HOUR, 1);
+
+INSERT INTO alerta (idAlerta, SensorId, registroId, dtHora, quantidade) VALUES 
+(15, 11, 165, NOW() - INTERVAL 2 HOUR, 1);
+
+INSERT INTO registro (idSensor, dt_Hora, umidade, temperatura)
+VALUES (1, NOW(), 65, 32); 
+
+INSERT INTO alerta (idAlerta, SensorId, registroId, dtHora, quantidade)
+VALUES (16, 1, LAST_INSERT_ID(), NOW(), 1);
+
+INSERT INTO registro (idSensor, dt_Hora, umidade, temperatura)
+VALUES (1, NOW(), 65, 32);
+
+INSERT INTO alerta (idAlerta, SensorId, registroId, dtHora, quantidade)
+VALUES (17, 1, LAST_INSERT_ID(), NOW(), 1);
+
+INSERT INTO registro (idSensor, dt_Hora, umidade, temperatura)
+VALUES (7, NOW(), 99, 34);
+
+DELIMITER $$
+
+CREATE TRIGGER trg_gerar_alerta_automatico
+AFTER INSERT ON registro
+FOR EACH ROW
+BEGIN
+    IF NEW.temperatura > 22 OR NEW.temperatura < 18 
+       OR NEW.umidade > 90 OR NEW.umidade < 80 THEN
+       
+        INSERT INTO alerta (idAlerta, SensorId, registroId, dtHora, quantidade)
+        VALUES (
+            COALESCE((SELECT MAX(idAlerta) + 1 FROM alerta WHERE SensorId = NEW.idSensor), 1),
+            NEW.idSensor,
+            NEW.idRegistro,
+            NEW.dt_Hora,
+            1
+        );
+        
+    END IF;
+END$$
+
+DELIMITER ;
+
+CREATE VIEW situacao_atual AS
+SELECT
+    s.nome AS sensor,
+    u.nome AS usuario,
+    f.nome AS fazenda,
+    r.temperatura,
+    r.umidade,
+    CASE
+        WHEN r.temperatura > 26
+          OR r.temperatura < 15
+          OR r.umidade > 95
+          OR r.umidade < 70
+        THEN 'Crítico'
+        WHEN r.temperatura > 22
+          OR r.temperatura < 18
+          OR r.umidade > 90
+          OR r.umidade < 80
+        THEN 'Alerta'
+        ELSE 'Ideal'
+    END AS estado
+	FROM sensor s
+	JOIN camara c
+		ON s.camaraId = c.idCamara
+	JOIN fazenda f
+		ON c.fazendaId = f.idFazenda
+	JOIN fazenda_produtor fp
+		ON f.idFazenda = fp.fkFazenda
+	JOIN usuario u
+		ON fp.fkUsuario = u.idUsuario
+	JOIN registro r
+		ON r.idSensor = s.idSensor;
+        
+select * from situacao_atual;

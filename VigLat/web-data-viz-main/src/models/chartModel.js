@@ -1,89 +1,33 @@
 var database = require("../database/config");
 
 function listarFazendas() {
-  var instrucaoSql = `
-        SELECT
+    var instrucaoSql = `
+        SELECT 
             f.idFazenda,
-            f.nome,
-
+            f.nome AS nomeFazenda,
             CASE
-
-                WHEN
-                    MAX(ultimos.temperatura) > 26
-                    OR
-                    MIN(ultimos.temperatura) < 15
-                    OR
-                    MAX(ultimos.umidade) > 95
-                    OR
-                    MIN(ultimos.umidade) < 70
-                THEN 'critico'
-
-                WHEN
-                    MAX(ultimos.temperatura) > 22
-                    OR
-                    MIN(ultimos.temperatura) < 18
-                    OR
-                    MAX(ultimos.umidade) > 90
-                    OR
-                    MIN(ultimos.umidade) < 80
-                THEN 'alerta'
-
+                WHEN MAX(r.temperatura) > 26 OR MIN(r.temperatura) < 15 
+                  OR MAX(r.umidade) > 95     OR MIN(r.umidade) < 70 THEN 'critico'
+                WHEN MAX(r.temperatura) > 22 OR MIN(r.temperatura) < 18 
+                  OR MAX(r.umidade) > 90     OR MIN(r.umidade) < 80 THEN 'alerta'
                 ELSE 'ideal'
-
             END AS statusFazenda
-
         FROM fazenda f
-
-        JOIN camara c
-            ON c.fazendaId =
-            f.idFazenda
-
-        JOIN sensor s
-            ON s.camaraId =
-            c.idCamara
-
-        JOIN (
-
-            SELECT
-                r1.idSensor,
-                r1.temperatura,
-                r1.umidade
-
-            FROM registro r1
-
+        LEFT JOIN camara c ON c.fazendaId = f.idFazenda
+        LEFT JOIN sensor s ON s.camaraId = c.idCamara
+        LEFT JOIN (
+            SELECT reg.idSensor, reg.temperatura, reg.umidade
+            FROM registro reg
             JOIN (
-
-                SELECT
-                    idSensor,
-                    MAX(dt_Hora)
-                    AS ultimaData
-
+                SELECT idSensor, MAX(idRegistro) AS maxId
                 FROM registro
-
-                GROUP BY
-                    idSensor
-
-            ) ultimoRegistro
-
-            ON r1.idSensor =
-            ultimoRegistro.idSensor
-
-            AND r1.dt_Hora =
-            ultimoRegistro.ultimaData
-
-        ) ultimos
-
-        ON ultimos.idSensor =
-        s.idSensor
-
-        GROUP BY
-            f.idFazenda,
-            f.nome;
+                GROUP BY idSensor
+            ) agrupado ON reg.idRegistro = agrupado.maxId AND reg.idSensor = agrupado.idSensor
+        ) r ON r.idSensor = s.idSensor
+        GROUP BY f.idFazenda, f.nome;
     `;
-
-  console.log(instrucaoSql);
-
-  return database.executar(instrucaoSql);
+    console.log("Executando SQL Status Dinâmico das Fazendas: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
 }
 
 function listarCamaras(idFazenda) {
@@ -157,7 +101,65 @@ function listarCamaras(idFazenda) {
   return database.executar(instrucaoSql);
 }
 
+function buscarAlertas24h(idFazenda) {
+    var instrucaoSql = `
+        SELECT 
+            DATE_FORMAT(a.dtHora, '%H:00') AS hora, 
+            COUNT(a.idAlerta) AS qtd 
+        FROM alerta a
+        JOIN sensor s ON a.SensorId = s.idSensor
+        JOIN camara c ON s.camaraId = c.idCamara
+        WHERE c.fazendaId = ${idFazenda} 
+          AND a.dtHora >= NOW() - INTERVAL 1 DAY
+        GROUP BY hora
+        ORDER BY hora ASC;
+    `;
+    console.log("Executando SQL 24h: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function buscarAlertas7Dias(idFazenda) {
+    var instrucaoSql = `
+        SELECT 
+            CASE DAYOFWEEK(a.dtHora)
+                WHEN 1 THEN 'Dom'
+                WHEN 2 THEN 'Seg'
+                WHEN 3 THEN 'Ter'
+                WHEN 4 THEN 'Qua'
+                WHEN 5 THEN 'Qui'
+                WHEN 6 THEN 'Sex'
+                WHEN 7 THEN 'Sáb'
+            END AS dia,
+            COUNT(a.idAlerta) AS qtd,
+            DAYOFWEEK(a.dtHora) as dia_num
+        FROM alerta a
+        JOIN sensor s ON a.SensorId = s.idSensor
+        JOIN camara c ON s.camaraId = c.idCamara
+        WHERE c.fazendaId = ${idFazenda}
+          AND a.dtHora >= NOW() - INTERVAL 7 DAY
+        GROUP BY dia_num, dia
+        ORDER BY dia_num ASC;
+    `;
+    console.log("Executando SQL 7 Dias: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function buscarAlertasHojeCamara(idCamara) {
+    var instrucaoSql = `
+        SELECT COUNT(idAlerta) AS totalHoje 
+        FROM alerta a
+        JOIN sensor s ON a.SensorId = s.idSensor
+        WHERE s.camaraId = ${idCamara} 
+          AND DATE(a.dtHora) = CURDATE();
+    `;
+    console.log("Executando SQL Alertas Hoje Camara: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
   listarFazendas,
   listarCamaras,
+  buscarAlertas24h,
+  buscarAlertas7Dias,
+  buscarAlertasHojeCamara
 };
