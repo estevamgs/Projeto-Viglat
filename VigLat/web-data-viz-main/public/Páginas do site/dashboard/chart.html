@@ -315,20 +315,22 @@
 
       for (var i = 0; i < camaras.length; i++) {
         var classeStatus = "status-ideal";
+        var textoStatus = "IDEAL";
 
         if (camaras[i].statusCamara == "alerta") {
           classeStatus = "status-alerta";
+          textoStatus = "ALERTA";
         }
 
         if (camaras[i].statusCamara == "critico") {
           classeStatus = "status-critico";
+          textoStatus = "CRÍTICO";
         }
 
         grid.innerHTML += `
           <div class="card-dispositivo ${classeStatus}" onclick="abrirCamara(${camaras[i].idCamara}, 'Câmara ${i + 1}')">
             <h3>Câmara ${i + 1}</h3>
-            <p>T: ${camaras[i].temperatura}°C</p>
-            <p>U: ${camaras[i].umidade}%</p>
+            <p>${textoStatus}</p>
           </div>
         `;
       }

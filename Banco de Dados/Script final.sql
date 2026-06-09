@@ -303,3 +303,25 @@ SELECT
 select * from situacao_atual;
 
 select * from registro;
+select * from usuario;
+
+INSERT INTO registro (idSensor, temperatura, umidade)
+VALUES
+(7, 20, 85),
+(8, 21, 86),
+(9, 19, 84);
+
+INSERT INTO alerta (SensorId, registroId, dtHora, quantidade)
+VALUES
+(7, 151, NOW() - INTERVAL 6 DAY, 3),
+(8, 154, NOW() - INTERVAL 5 DAY, 1),
+(9, 157, NOW() - INTERVAL 4 DAY, 4),
+(7, 152, NOW() - INTERVAL 3 DAY, 2),
+(8, 155, NOW() - INTERVAL 2 DAY, 1),
+(9, 158, NOW() - INTERVAL 1 DAY, 1);
+
+INSERT INTO registro (idSensor, temperatura, umidade)
+VALUES
+(7, 20, 85),
+(8, 21, 86),
+(9, 19, 84);

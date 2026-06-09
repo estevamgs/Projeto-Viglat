@@ -30,7 +30,11 @@ function carregarGraficosFazenda(idFazenda) {
                             responsive: true,
                             scales: {
                                 y: {
-                                    beginAtZero: true
+                                    beginAtZero: true,
+                                    max: 12,
+                                    ticks: {
+                                        stepSize: 1
+                                    }
                                 }
                             }
                         }
@@ -60,7 +64,7 @@ function carregarGraficosFazenda(idFazenda) {
                             scales: {
                                 y: {
                                     beginAtZero: true,
-                                    max: 5,
+                                    max: 12,
                                     ticks: {
                                         stepSize: 1
                                     }
