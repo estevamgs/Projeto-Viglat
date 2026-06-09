@@ -47,7 +47,7 @@
     font-size: 1.5em;
     text-align: center;
     padding-bottom: 1em;
-    border-bottom: 2px solid aqua;
+    border-bottom: 2px solid #c8860a;;
 }
 
 .resposta {
@@ -69,7 +69,7 @@
 }
 
 .pergunta i {
-    background-color: blue;
+    background-color: #754d03;;
     color: white;
     cursor: pointer;
     border-radius: 50%;
