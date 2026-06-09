@@ -42,7 +42,7 @@ O projeto atende produtores artesanais de **Minas Gerais**, ajudando a **padroni
 
 ## Uso 🎮
 1. **Login** no site com credenciais de produtor
-2. Visualize **dashboard** com gráficos **temperatura/URA** de 10 em 10 minutos
+2. Visualize **dashboard** com gráficos **temperatura/URA** de 10 em 10 segundos
 3. Configure **alertas** para limites (ex: <16°C ou >85% URA)
 4. Acesse **histórico** e baixe relatórios **PDF**
 
