@@ -28,7 +28,11 @@ function carregarGraficosFazenda(idFazenda) {
                         },
                         options: {
                             responsive: true,
-                            scales: { y: { beginAtZero: true } }
+                            scales: {
+                                y: {
+                                    beginAtZero: true
+                                }
+                            }
                         }
                     });
                 }
@@ -53,7 +57,15 @@ function carregarGraficosFazenda(idFazenda) {
                         },
                         options: {
                             responsive: true,
-                            scales: { y: { beginAtZero: true } }
+                            scales: {
+                                y: {
+                                    beginAtZero: true,
+                                    max: 5,
+                                    ticks: {
+                                        stepSize: 1
+                                    }
+                                }
+                            }
                         }
                     });
                 }

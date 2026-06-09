@@ -10,7 +10,6 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   </head>
   <body>
-    <div id="container-notificacoes" class="notificacoes-container"></div>
     <header>
       <div class="container">
         <nav>
@@ -281,7 +280,7 @@
       div.innerHTML += `
         <button
           class="aba-unidade ${classeStatus}"
-          onclick="carregarCamaras(${fazendas[i].idFazenda}, 'Fazenda ${i + 1}', this)"
+          onclick="carregarCamaras(${fazendas[i].idFazenda}, 'Fazenda ${i + 1}', this); carregarGraficosFazenda(${fazendas[i].idFazenda})"
         >
           <span class="bolinha-status bolinha-fazenda status-${classeStatus}"></span>
           Fazenda ${i + 1}
@@ -338,6 +337,8 @@
     }
   }
 
+  var intervaloCamara = null;
+
   function abrirCamara(idCamera, nomeCamera) {
     var tituloCamara = document.getElementById("titulo-camara");
     tituloCamara.innerText = nomeCamera;
@@ -349,7 +350,11 @@
       carregarKPISensores(idCamera);
       carregarQuantidadeAlertas(idCamera);
     }, 100);
-    setInterval(() => {
+    if (intervaloCamara != null) {
+      clearInterval(intervaloCamara);
+    }
+
+    intervaloCamara = setInterval(function () {
       carregarGraficos(idCamera);
       carregarKPISensores(idCamera);
     }, 15000);
@@ -379,14 +384,8 @@
             kpiAlertas.innerText = totalAlertas;
           }
 
-          document.getElementById("container-notificacoes").innerHTML = "";
-
           if (totalAlertas > 0) {
             if (kpiAlertas) kpiAlertas.className = "valor-kpi texto-critico";
-            var limiteExibicao = alertas.length > 3 ? 3 : alertas.length;
-            for (var i = 0; i < limiteExibicao; i++) {
-              exibirNotificacao(alertas[i]);
-            }
           } else {
             if (kpiAlertas) kpiAlertas.className = "valor-kpi";
           }
@@ -399,37 +398,7 @@
       console.log("Erro de conexão com o servidor ao buscar alertas:", erro);
     });
   }
-
-  function exibirNotificacao(alerta) {
-    var container = document.getElementById("container-notificacoes");
-    if (!container) return;
-
-    var dataFormatada = new Date(alerta.dtHora).toLocaleTimeString('pt-BR', {hour: '2-digit', minute:'2-digit'});
-    
-    var tipoClasse = (alerta.temperatura > 26 || alerta.umidade < 70) ? "critico" : "alerta";
-
-    var novoToast = document.createElement("div");
-    novoToast.className = `card-notificacao-toast ${tipoClasse}`;
-    novoToast.innerHTML = `
-        <div class="toast-header">
-            <span>⚠️ Ocorrência: ${alerta.nomeSensor || 'Sensor'}</span>
-            <small>${dataFormatada}</small>
-            <button class="toast-fechar" onclick="this.parentElement.parentElement.remove()">&times;</button>
-        </div>
-        <div class="toast-body">
-            Os níveis saíram da faixa ideal.<br>
-            <b>T:</b> ${alerta.temperatura}°C | <b>U:</b> ${alerta.umidade}%
-        </div>
-    `;
-    container.appendChild(novoToast);
-    setTimeout(function() {
-        if (novoToast && novoToast.parentElement) 
-        {
-          novoToast.remove();
-        }
-    }, 8000);
-  }
-    </script>
+</script>
   </body>
 </html>
 

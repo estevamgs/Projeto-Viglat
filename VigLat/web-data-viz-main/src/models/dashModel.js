@@ -12,7 +12,7 @@ function buscarDadosGraficos(idCamara) {
     JOIN sensor s
       ON r.idSensor = s.idSensor
     WHERE s.camaraId = ${idCamara}
-    ORDER BY r.dt_Hora ASC;
+    ORDER BY s.idSensor ASC, r.dt_Hora ASC;
   `;
 
   console.log("Executando a instrução SQL: \n" + instrucaoSql);

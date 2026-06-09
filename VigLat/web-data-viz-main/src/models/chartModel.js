@@ -106,11 +106,12 @@ function buscarAlertas24h(idFazenda) {
         SELECT 
             c.nomeCamara AS camara,
             COUNT(a.idAlerta) AS qtd 
-        FROM alerta a
-        JOIN sensor s ON a.SensorId = s.idSensor
-        JOIN camara c ON s.camaraId = c.idCamara
+        FROM camara c
+        LEFT JOIN sensor s ON s.camaraId = c.idCamara
+        LEFT JOIN alerta a
+            ON a.SensorId = s.idSensor
+            AND a.dtHora >= NOW() - INTERVAL 1 DAY
         WHERE c.fazendaId = ${idFazenda}
-          AND a.dtHora >= NOW() - INTERVAL 1 DAY
         GROUP BY c.idCamara, c.nomeCamara
         ORDER BY c.idCamara ASC;
     `;
@@ -120,25 +121,27 @@ function buscarAlertas24h(idFazenda) {
 
 function buscarAlertas7Dias(idFazenda) {
     var instrucaoSql = `
-        SELECT 
-            CASE DAYOFWEEK(a.dtHora)
-                WHEN 1 THEN 'Dom'
-                WHEN 2 THEN 'Seg'
-                WHEN 3 THEN 'Ter'
-                WHEN 4 THEN 'Qua'
-                WHEN 5 THEN 'Qui'
-                WHEN 6 THEN 'Sex'
-                WHEN 7 THEN 'Sáb'
-            END AS dia,
-            COUNT(a.idAlerta) AS qtd,
-            DAYOFWEEK(a.dtHora) as dia_num
-        FROM alerta a
-        JOIN sensor s ON a.SensorId = s.idSensor
-        JOIN camara c ON s.camaraId = c.idCamara
-        WHERE c.fazendaId = ${idFazenda}
-          AND a.dtHora >= NOW() - INTERVAL 7 DAY
-        GROUP BY dia_num, dia
-        ORDER BY dia_num ASC;
+        SELECT
+            dias.dia,
+            COUNT(c.idCamara) AS qtd,
+            dias.ordem AS dia_num
+        FROM (
+            SELECT 6 AS dias_atras, 'Dia 1' AS dia, 1 AS ordem
+            UNION ALL SELECT 5, 'Dia 2', 2
+            UNION ALL SELECT 4, 'Dia 3', 3
+            UNION ALL SELECT 3, 'Dia 4', 4
+            UNION ALL SELECT 2, 'Dia 5', 5
+            UNION ALL SELECT 1, 'Dia 6', 6
+            UNION ALL SELECT 0, 'Hoje', 7
+        ) dias
+        LEFT JOIN alerta a
+            ON DATE(a.dtHora) = CURDATE() - INTERVAL dias.dias_atras DAY
+        LEFT JOIN sensor s ON a.SensorId = s.idSensor
+        LEFT JOIN camara c
+            ON s.camaraId = c.idCamara
+            AND c.fazendaId = ${idFazenda}
+        GROUP BY dias.ordem, dias.dia
+        ORDER BY dias.ordem ASC;
     `;
     console.log("Executando SQL 7 Dias: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
