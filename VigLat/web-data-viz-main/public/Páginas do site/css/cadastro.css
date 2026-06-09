@@ -193,19 +193,28 @@ nav {
     text-decoration: underline;
 }
 
-.req {
-    text-align: start;
-    font-size: .75em;
-    align-self: flex-start;
-    margin-bottom: 0.5em;
-    color: var(--corTextoMuted);
-}
-
-#caracteres, #especial, #maius, #minus {
-    color: #ff6b6b;
-    font-weight: 500;
-}
-
 #requisitos {
     display: none;
+    width: 60%;
+    margin-bottom: 15px;
+    color: white;
+}
+
+#requisitos span {
+    display: inline-block;
+}
+
+#caracteres,
+#especial,
+#maius,
+#minus {
+    width: 220px;
+}
+
+#foiCar,
+#foiEsp,
+#foiMai,
+#foiMin {
+    width: 30px;
+    text-align: center;
 }
