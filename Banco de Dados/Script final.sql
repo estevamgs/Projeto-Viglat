@@ -92,7 +92,7 @@ INSERT INTO fazenda (nome, enderecoId) VALUES
 INSERT INTO camara (nomeCamara, capacidade, fazendaId) VALUES
 ('Câmara de Maturação 01', 500.0, 1),
 ('Câmara de Maturação 02', 750.0, 1),
-('Câmara Principal - Atalaia', 1200.0, 2),
+('Câmara de Maturação 01', 1200.0, 2),
 ('Câmara de Maturação 03', 600, 1);
 
 
@@ -320,7 +320,11 @@ VALUES
 (8, 155, NOW() - INTERVAL 2 DAY, 1),
 (9, 158, NOW() - INTERVAL 1 DAY, 1);
 
-USE projetopi;
+INSERT INTO registro (idSensor, temperatura, umidade)
+VALUES
+(7, 20, 85),
+(8, 21, 86),
+(9, 19, 84);
 
 INSERT INTO registro (idSensor, temperatura, umidade)
 VALUES
