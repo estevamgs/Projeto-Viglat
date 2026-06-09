@@ -203,17 +203,18 @@
     <script src="../js/dash.js"></script>
     <script src="../js/chart.js"></script>
     <script src="../BOBIA/bobIA.js"></script>
-    <script>
+
+<script>
+
+    let idFazendaAtiva = null;
+
   window.onload = function () {
     carregarFazendas();
     setInterval(function () {
-      var botaoAtivo = document.querySelector(".aba-unidade.ativa");
-      if (botaoAtivo) {
-        var idAtual = document.getElementById("titulo-fazenda").innerText.match(/\d+/);
-        if (idAtual) {
-          carregarGraficosFazenda(idAtual[0]);
-        }
+      if (idFazendaAtiva) {
+          carregarGraficosFazenda(idFazendaAtiva);
       }
+
       var viewCamara = document.getElementById("view-camara");
       if (viewCamara && viewCamara.style.display !== "none") {
         var idCamaraAtual = document.getElementById("titulo-camara").dataset.idCamara;
@@ -262,6 +263,7 @@
 
   async function carregarCamaras(idFazenda, nomeFazenda, botao) {
     try {
+       idFazendaAtiva = idFazenda
       var botoes = document.getElementsByClassName("aba-unidade");
 
       for (var i = 0; i < botoes.length; i++) {
