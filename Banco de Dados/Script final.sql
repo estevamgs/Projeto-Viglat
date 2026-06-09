@@ -8,13 +8,6 @@ complemento varchar(45),
 numLogradouro char(5)
 );
 
-CREATE TABLE usuario (
-idUsuario int primary key auto_increment,
-nome varchar(45),
-email varchar(75),
-senha varchar(30)
-);
-
 CREATE TABLE fazenda (
 idFazenda int primary key auto_increment,
 nome varchar(45),
@@ -22,19 +15,18 @@ enderecoId int,
 constraint fkEndereco foreign key (enderecoId) references endereco(idEndereco)
 );
 
-CREATE TABLE fazenda_produtor (
-fkFazenda int,
-fkUsuario int,
-cargo varchar(45),
-primary key(fkFazenda, fkUsuario),
-foreign key (fkFazenda) references fazenda(idFazenda),
-foreign key (fkUsuario) references usuario(idUsuario)
+CREATE TABLE usuario (
+idUsuario int primary key auto_increment,
+nome varchar(45),
+email varchar(75),
+senha varchar(30),
+fazendaId int,
+constraint fkFazenda foreign key (fazendaId) references fazenda(idFazenda)
 );
 
 CREATE TABLE camara (
 idCamara int primary key auto_increment,
 nomeCamara varchar(30),
-capacidade float,
 fazendaId int,
 constraint fkFaz foreign key (fazendaId) references fazenda(idFazenda)
 );
@@ -77,23 +69,23 @@ INSERT INTO endereco (cep, complemento, numLogradouro) VALUES
 ('13430000', 'Sítio Atalaia - Km 15', '125'),
 ('37464000', 'Fazenda Boa Vista - Estrada Real', '42');
 
--- 3. Usuários administradores/fazendeiros vinculados às empresas
-INSERT INTO usuario (nome, email, senha) VALUES
-('Carlos Henrique Oliveira', 'carlos.henrique@minasqueijos.com', 'Minas@2024'),
-('Ana Paula Ferreira', 'ana.ferreira@fazendaatalaia.com', 'Atalaia#2024'),
-('Roberto Silva Canastra', 'roberto.canastra@serraqueijos.com', 'Canastra!99');
-
--- 4. Fazendas vinculadas às empresas e endereços
+-- 3. Fazendas vinculadas a endereços
 INSERT INTO fazenda (nome, enderecoId) VALUES
 ('Fazenda São José da Serra', 1),
 ('Fazenda Atalaia Paulista', 2);
 
+-- 4. Usuários vinculados às fazendas
+INSERT INTO usuario (nome, email, senha, fazendaId) VALUES
+('Carlos Henrique Oliveira', 'carlos.henrique@minasqueijos.com', 'Minas@2024', 1),
+('Ana Paula Ferreira', 'ana.ferreira@fazendaatalaia.com', 'Atalaia#2024', 1),
+('Roberto Silva Canastra', 'roberto.canastra@serraqueijos.com', 'Canastra!99', 2);
+
 -- 5. Câmaras de maturação nas fazendas
-INSERT INTO camara (nomeCamara, capacidade, fazendaId) VALUES
-('Câmara de Maturação 01', 500.0, 1),
-('Câmara de Maturação 02', 750.0, 1),
-('Câmara de Maturação 01', 1200.0, 2),
-('Câmara de Maturação 03', 600, 1);
+INSERT INTO camara (nomeCamara, fazendaId) VALUES
+('Câmara de Maturação 01', 1),
+('Câmara de Maturação 02', 1),
+('Câmara Principal - Atalaia', 2),
+('Câmara de Maturação 04', 1);
 
 
 -- 6. Sensores DHT11 instalados nas câmaras
@@ -114,12 +106,6 @@ INSERT INTO sensor (nome, tipo, localizacao, camaraId) VALUES
 ('Sensor B - Câmara 04', 'DHT11', 'Centro', 4),
 ('Sensor C - Câmara 04', 'DHT11', 'Fundos', 4);
 
-
-INSERT INTO fazenda_produtor (fkFazenda, fkUsuario, cargo) VALUES
-(1, 1, 'Administrador'),
-(2, 2, 'Administrador'),
-(1, 3, 'Produtor'),
-(2, 3, 'Consultor');
 -- insert dos registros de temperatura e umidade 
 
 INSERT INTO registro (idRegistro, idSensor, umidade, temperatura)
@@ -186,12 +172,6 @@ SELECT * FROM sensor WHERE camaraId = 1;
 SELECT * FROM registro;
 
 select * from usuario;
-
-INSERT INTO registro (idSensor, temperatura, umidade)
-VALUES
-(1, 24, 86),
-(1, 25, 88),
-(1, 23, 84);
 
 ALTER TABLE registro
 MODIFY COLUMN idRegistro INT AUTO_INCREMENT;
@@ -293,12 +273,11 @@ SELECT
 		ON s.camaraId = c.idCamara
 	JOIN fazenda f
 		ON c.fazendaId = f.idFazenda
-	JOIN fazenda_produtor fp
-		ON f.idFazenda = fp.fkFazenda
 	JOIN usuario u
-		ON fp.fkUsuario = u.idUsuario
+		ON u.fazendaId = f.idFazenda
 	JOIN registro r
-		ON r.idSensor = s.idSensor;
+		ON r.idSensor = s.idSensor
+        ORDER BY u.idUsuario;
         
 select * from situacao_atual;
 
@@ -325,9 +304,3 @@ VALUES
 (7, 20, 85),
 (8, 21, 86),
 (9, 19, 84);
-
-INSERT INTO registro (idSensor, temperatura, umidade)
-VALUES
-(10, 20, 85),
-(11, 21, 86),
-(12, 19, 84);
