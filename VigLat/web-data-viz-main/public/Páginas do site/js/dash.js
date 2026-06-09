@@ -15,47 +15,77 @@ function abrirDetalhes(elemento) {
 }
 
 async function carregarKPISensores(idCamara) {
-  const resposta = await fetch(`/dash/graficos/${idCamara}`);
-  const dados = await resposta.json();
+  var resposta = await fetch(`/dash/graficos/${idCamara}`);
+  var dados = await resposta.json();
 
-  // pega último registro de cada sensor
-  const ultimoPorSensor = {};
+  var sensor1 = null;
+  var sensor2 = null;
+  var sensor3 = null;
 
-  for (let i = 0; i < dados.length; i++) {
-    const r = dados[i];
-    ultimoPorSensor[r.idSensor] = r; // sobrescreve, então fica o último
+  var idSensor1 = 0;
+  var idSensor2 = 0;
+  var idSensor3 = 0;
+
+  for (var i = 0; i < dados.length; i++) {
+    var registro = dados[i];
+
+    if (idSensor1 == 0) {
+      idSensor1 = registro.idSensor;
+      sensor1 = registro;
+    } else if (registro.idSensor == idSensor1) {
+      sensor1 = registro;
+    } else if (idSensor2 == 0) {
+      idSensor2 = registro.idSensor;
+      sensor2 = registro;
+    } else if (registro.idSensor == idSensor2) {
+      sensor2 = registro;
+    } else if (idSensor3 == 0) {
+      idSensor3 = registro.idSensor;
+      sensor3 = registro;
+    } else if (registro.idSensor == idSensor3) {
+      sensor3 = registro;
+    }
   }
 
-  const sensores = Object.values(ultimoPorSensor);
+  var sensores = [sensor1, sensor2, sensor3];
 
-  const container = document.querySelector(".grid-sensores-kpi");
+  var container = document.querySelector(".grid-sensores-kpi");
   container.innerHTML = "";
 
-  sensores.forEach((s, index) => {
-    const status =
-      s.temperatura > 26 ||
-      s.temperatura < 15 ||
-      s.umidade > 95 ||
-      s.umidade < 70
-        ? "status-critico"
-        : s.temperatura > 22 ||
-            s.temperatura < 18 ||
-            s.umidade > 90 ||
-            s.umidade < 80
-          ? "status-alerta"
-          : "status-ideal";
+  for (var i = 0; i < sensores.length; i++) {
+    var sensorAtual = sensores[i];
 
-    container.innerHTML += `
-      <div class="sensor-box">
-        <div class="sensor-topo">
-          <span class="sensor-nome">Sensor ${String.fromCharCode(65 + index)}</span>
-          <span class="bolinha-status ${status}"></span>
+    if (sensorAtual != null) {
+      var status = "status-ideal";
+
+      if (
+        sensorAtual.temperatura > 26 ||
+        sensorAtual.temperatura < 15 ||
+        sensorAtual.umidade > 95 ||
+        sensorAtual.umidade < 70
+      ) {
+        status = "status-critico";
+      } else if (
+        sensorAtual.temperatura > 22 ||
+        sensorAtual.temperatura < 18 ||
+        sensorAtual.umidade > 90 ||
+        sensorAtual.umidade < 80
+      ) {
+        status = "status-alerta";
+      }
+
+      container.innerHTML += `
+        <div class="sensor-box">
+          <div class="sensor-topo">
+            <span class="sensor-nome">Sensor ${String.fromCharCode(65 + i)}</span>
+            <span class="bolinha-status ${status}"></span>
+          </div>
+          <p>T: ${sensorAtual.temperatura}°C</p>
+          <p>U: ${sensorAtual.umidade}%</p>
         </div>
-        <p>T: ${s.temperatura}°C</p>
-        <p>U: ${s.umidade}%</p>
-      </div>
-    `;
-  });
+      `;
+    }
+  }
 }
 
 function carregarAlertasDoBanco(idCamara) {
