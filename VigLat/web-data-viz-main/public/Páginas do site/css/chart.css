@@ -358,6 +358,8 @@ h3 {
     margin-top: 12px;
 }
 
+
+
 .sensor-box {
     background: #f8f8f8;
     border: 1px solid #e7e7e7;
@@ -368,8 +370,8 @@ h3 {
 
 .sensor-topo {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    gap: 8px;
     margin-bottom: 10px;
 }
 
@@ -381,29 +383,7 @@ h3 {
 .sensor-box p {
     margin: 4px 0;
     font-weight: 600;
-}
-
-
-
-.bolinha-status {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    display: inline-block;
-}
-
-
-
-.status-ideal {
-    background-color: var(--cor-sucesso);
-}
-
-.status-alerta {
-    background-color: var(--cor-atencao);
-}
-
-.status-critico {
-    background-color: var(--cor-perigo);
+    gap: 2px;
 }
 
 .aba-unidade {

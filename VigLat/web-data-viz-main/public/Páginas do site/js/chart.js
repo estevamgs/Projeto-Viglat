@@ -28,6 +28,7 @@ function carregarGraficosFazenda(idFazenda) {
                         },
                         options: {
                             responsive: true,
+                             maintainAspectRatio: false,
                             scales: {
                                 y: {
                                     beginAtZero: true,
@@ -61,6 +62,7 @@ function carregarGraficosFazenda(idFazenda) {
                         },
                         options: {
                             responsive: true,
+                             maintainAspectRatio: false,
                             scales: {
                                 y: {
                                     beginAtZero: true,
