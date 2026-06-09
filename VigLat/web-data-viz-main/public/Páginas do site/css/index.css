@@ -422,6 +422,48 @@ textarea::placeholder{
   font-family: 'Lora', sans-serif;
 }
 
+/* contato */
+
+.contato-header h2 {
+    font-size: 42px;
+}
+
+.contato-opcoes {
+    display: flex;
+    justify-content: center;
+    gap: 150px;
+    padding: 80px 20px;
+    flex-wrap: wrap;
+}
+
+.contato-card {
+    text-align: center;
+    max-width: 250px;
+}
+
+.contato-card i {
+    font-size: 50px;
+    color: #c8850ae8;
+    margin-bottom: 15px;
+}
+
+.contato-card h3 {
+    color: #c8850ae0;
+    margin-bottom: 10px;
+}
+
+.contato-card p {
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.contato-card a {
+    color: #000;
+    text-decoration: none;
+    font-weight: bold;
+}
+/* contato */
+
 
 
 /* Miguel */
