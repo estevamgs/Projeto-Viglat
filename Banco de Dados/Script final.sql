@@ -57,10 +57,13 @@ CREATE TABLE alerta(
     registroId INT,
     dtHora DATETIME DEFAULT NOW(),
     quantidade INT,
-    PRIMARY KEY (idAlerta, SensorId),
+    PRIMARY KEY (idAlerta, SensorId, registroId),
     CONSTRAINT sensorFk
         FOREIGN KEY (SensorId)
-        REFERENCES sensor(idSensor)
+        REFERENCES sensor(idSensor),
+	CONSTRAINT registrofk
+		FOREIGN KEY (registroId)
+        REFERENCES registro(idRegistro)
 );
 
 -- 2. Endereços das fazendas
@@ -176,17 +179,17 @@ select * from usuario;
 ALTER TABLE registro
 MODIFY COLUMN idRegistro INT AUTO_INCREMENT;
 
-select * from usuario;
+select * from registro;
 
 TRUNCATE TABLE alerta;
 
 INSERT INTO alerta (SensorId, registroId, dtHora, quantidade) VALUES 
-( 1, 133, NOW() - INTERVAL 6 DAY, 1),
+( 1, 1, NOW() - INTERVAL 6 DAY, 1),
 ( 4, 142, NOW() - INTERVAL 6 DAY, 1);
 
 INSERT INTO alerta ( SensorId, registroId, dtHora, quantidade) VALUES 
-( 2, 137, NOW() - INTERVAL 4 DAY, 1),
-( 10, 160, NOW() - INTERVAL 4 DAY, 1),
+( 2, 133, NOW() - INTERVAL 4 DAY, 1),
+( 10, 141, NOW() - INTERVAL 4 DAY, 1),
 ( 11, 163, NOW() - INTERVAL 4 DAY, 1);
 
 INSERT INTO alerta ( SensorId, registroId, dtHora, quantidade) VALUES 
@@ -304,3 +307,5 @@ VALUES
 (7, 20, 85),
 (8, 21, 86),
 (9, 19, 84);
+
+select * from alerta;
